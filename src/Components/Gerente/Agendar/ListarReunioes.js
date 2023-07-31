@@ -10,6 +10,7 @@ import AdicionarReunioes from './AdicionarReunioes';
 import Search from './Search';
 import './Agendar.css';
 import AdicionarFeedback from '../Feedback/AdicionarFeedback';
+import ListarFeedback from '../Feedback/ListarFeedback';
 
 const ListarReunioes = () => {
     const [showScheduleForm, setShowScheduleForm] = useState(false);
@@ -98,7 +99,7 @@ const ListarReunioes = () => {
                         <th scope="col">COLABORADOR</th>
                         <th scope="col">SALA</th>
                         <th scope="col">DURAÇÃO</th>
-                        {/* <th scope="col">STATUS</th> */}
+                        <th scope="col">STATUS</th>
                         <th scope="col">AÇÕES</th>
                     </tr>
                 </thead>
@@ -114,7 +115,7 @@ const ListarReunioes = () => {
                                 <td>{schedule.schedule_name_collaborator}</td>
                                 <td>{schedule.schedule_meet_location}</td>
                                 <td>{schedule.schedule_duration}</td>
-                                {/* <td>{schedule.schedule_status}</td> */}
+                                <td>{schedule.schedule_status}</td>
                                 <td>
                                     <div>
                                     <i onClick={() => handleAddFeedbackButton(schedule.schedule_id)} className="btn btn-success m-1 bi bi-calendar2-check" />
