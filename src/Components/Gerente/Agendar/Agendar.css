@@ -60,6 +60,11 @@
     text-align: center;
 }
 
-.search{
-    text-align: right;
+ 
+
+.container_display_flex{
+display: flex;
+
 }
+
+
