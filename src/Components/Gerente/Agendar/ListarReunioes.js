@@ -10,6 +10,7 @@ import AdicionarReunioes from './AdicionarReunioes';
 import Search from './Search';
 import './Agendar.css';
 import AdicionarFeedback from '../Feedback/AdicionarFeedback';
+import ListarFeedback from '../Feedback/ListarFeedback';
 
 const ListarReunioes = () => {
     const [showScheduleForm, setShowScheduleForm] = useState(false);

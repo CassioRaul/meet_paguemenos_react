@@ -1,35 +1,22 @@
 import { Box, MenuItem, TextField } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { getschedule, getgerente, getcolaboradores } from '../../../Service/ApiService';
+import { useEffect, useState, useContext } from 'react';
+import { getschedule } from '../../../Service/ApiService';
+
+import { UserContext } from "../../../context/UserContext";
+import { useGerentes } from "../../../hooks/useGerentes";
+import { useColaboradores } from "../../../hooks/useColaboradores";
 
 const EditarFeedback = ({ handleEditSubmit, selectEditData, handleCancelButton }) => {
+  const { gerentes } = useGerentes([]);
+  const { colaboradores } = useColaboradores([]);
+  const { idGerentes } = useContext(UserContext);
   const [schedule, setSchedule] = useState([])
-  const [gerentes, setGerentes] = useState([])
-  const [colaborador, setColaboradores] = useState([])
 
   useEffect(() => {
     let mount = true
     getschedule()
     .then(res => {
       setSchedule(res)
-        return() => mount = false
-    })
-  }, [])
-
-  useEffect(() => {
-    let mount = true
-    getcolaboradores()
-    .then(res => {
-      setColaboradores(res)
-        return() => mount = false
-    })
-  }, [])
-
-  useEffect(() => {
-    let mount = true
-    getgerente()
-    .then(res => {
-        setGerentes(res)
         return() => mount = false
     })
   }, [])
@@ -57,16 +44,16 @@ const EditarFeedback = ({ handleEditSubmit, selectEditData, handleCancelButton }
 
       <TextField sx={{ m: 1, width: '91.5%' }} name='feedback_title' type="text"  defaultValue={selectEditData.feedback_title} className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline />
       
-      {gerentes.map(gerente => {
+      {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
           return (
           <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_name_creator' defaultValue={gerente.manager_name} className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" disabled multiline/>
           )
         })}
 
       <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_name_receiver' className="" id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select defaultValue={selectEditData.feedback_collaborator}>
-        {colaborador.map(colaboradores => {
+        {colaboradores.map(colaborador => {
         return (
-          <MenuItem value={colaboradores.collaborator_name}>{colaboradores.collaborator_name}</MenuItem>
+          <MenuItem value={colaborador.collaborator_name}>{colaborador.collaborator_name}</MenuItem>
           )
         })}
         </TextField>

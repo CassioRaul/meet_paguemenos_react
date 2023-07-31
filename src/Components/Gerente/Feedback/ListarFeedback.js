@@ -74,7 +74,7 @@ const ListarFeedback = () => {
     <div className="container_white">
         <div className="button_add_close">
             <button className="btn btn-primary m-1" onClick={() => setShowFeedbackForm(true)}>ADICIONAR</button>
-            <button className="btn btn-danger" onClick={() => setShowFeedbackForm(false)}>X</button>
+            {/* <button className="btn btn-danger" onClick={() => setShowFeedbackForm(false)}>X</button> */}
             {showFeedbackForm && <AdicionarFeedback handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />}
             {showEditFeedbackForm && <EditarFeedback handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton}/>}
         </div>
@@ -83,7 +83,7 @@ const ListarFeedback = () => {
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">ID REUNIÃO</th>
+                        <th scope="col">REUNIÃO</th>
                         <th scope="col">TÍTULO</th>
                         <th scope="col">GERENTE</th>
                         <th scope="col">COLABORADOR</th>
@@ -98,7 +98,7 @@ const ListarFeedback = () => {
                         return (
                             <tr key={feedback.feedback_iduser}>
                                 <td>{feedback.feedback_iduser}</td>
-                                <td>{feedback.feedback_idschedule}</td>
+                                <td>ID {feedback.feedback_idschedule}</td>
                                 <td>{feedback.feedback_title}</td>
                                 <td>{feedback.feedback_manage}</td>
                                 <td>{feedback.feedback_collaborator}</td>
@@ -106,14 +106,9 @@ const ListarFeedback = () => {
                                 <td>{feedback.feedback_note}</td>
                                 <td>{feedback.feedback_evaluate}</td>
                                 <td>
-                                    {/* <i className="btn btn-primary m-1 bi bi-bookmark-x"/> */}
                                     {/* <i className="btn btn-primary m-1 bi bi-person-up"></i> */}
                                     <i onClick={() => handleEditButton(feedback)} className="btn btn-warning m-1 bi bi-pencil-square"/>
-                                    {gerentes.map(gerente => {
-                                        return (
-                                            <i onClick={() => handleDeleteButton(feedback.feedback_iduser, gerente.manager_token)} className="btn btn-danger m-1 bi bi-trash"/>
-                                        )
-                                    })}    
+                                    <i onClick={() => handleDeleteButton(feedback.feedback_iduser)} className="btn btn-danger m-1 bi bi-trash"/>
                                 </td>
                             </tr>
                         )
