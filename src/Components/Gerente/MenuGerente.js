@@ -27,8 +27,7 @@ const MenuGerente = () => {
       <div className="accordion accordion-flush " id="accordionFlushExample">
         <Link to="/AGerente" className="MenuGerente__Link " >
           <button className="accordion-button collapsed MenuGerente__Button btn__home">
-            <i className="bi bi-journal-plus"></i>
-            <p>Agendar</p> 
+            <i className="bi bi-journal-plus"/>Agendar
           </button>
         </Link>
         <Link to="/PGerente" className="MenuGerente__Link" >

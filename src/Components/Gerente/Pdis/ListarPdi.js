@@ -55,12 +55,14 @@ const ListarPdi = () => {
         <>
             <div className="container_white">
                 <div className="button_add_close">
-                    <div className='container_display_flex'  >
-                        <button className="btn btn-primary m-0 i bi-plus-circle" onClick={() => setShowPdiForm(true)}> ADICIONAR</button>&nbsp;&nbsp;&nbsp;
-                        {showPdiForm && <AdicionarPdi handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />}
-                        {showEditPdiForm && <EditarPdi handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
+                    <div className='container_display_flex'>
+                        <button className="btn btn-primary m-0 i bi-plus-circle " onClick={() => setShowPdiForm(true)}> ADICIONAR</button>&nbsp;&nbsp;&nbsp;
                         <Search seach={seach} setSearch={setSearch} />
                     </div>
+                </div>
+                <div className="button_add_close">
+                    {showPdiForm && <AdicionarPdi handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />}
+                    {showEditPdiForm && <EditarPdi handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
                 </div>
                 <br></br>
                 <br></br><h3>LISTA DE PDIS</h3>
@@ -75,8 +77,10 @@ const ListarPdi = () => {
                             <th scope="col">DESCRIÇÃO</th>
                             <th scope="col">RECURSOS</th>
                             <th scope="col">COLABORADOR</th>
-                            <th scope="col">DATA</th>
-                            <th scope="col">PRAZO</th>
+                            {/* <th scope="col">DATA</th>
+                            <th scope="col">HORA</th> */}
+                            <th scope="col">DATA FINAL</th>
+                            {/* <th scope="col">HORA FINAL</th> */}
                             <th scope="col">AÇÕES</th>
                         </tr>
                     </thead>
@@ -92,8 +96,10 @@ const ListarPdi = () => {
                                     <td>{pdi.planning_description}</td>
                                     <td>{pdi.planning_resource}</td>
                                     <td>{pdi.planning_name_collaborator}</td>
-                                    <td>{pdi.planning_hour} {pdi.planning_date} </td>
-                                    <td>{pdi.planning_final_hour} {pdi.planning_final_date}</td>
+                                    {/* <td>{pdi.planning_date}</td>
+                                    <td>{pdi.planning_hour}</td> */}
+                                    <td>{pdi.planning_final_date}<br></br>{pdi.planning_final_hour}</td>
+                                    {/* <td></td> */}
                                     <td>
                                         <i className="btn btn-success bi bi-bookmark-x" />
                                         <i onClick={() => handleEditButton(pdi)} className="btn btn-warning m-1 bi bi-pencil-square" />

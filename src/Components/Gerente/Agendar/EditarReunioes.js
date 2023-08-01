@@ -37,21 +37,21 @@ const EditarReunioes = ({ handleEditSubmit, selectEditData, handleCancelButton }
 
         {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
           return (
-          <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_name_manager' defaultValue={gerente.manager_name} className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" disabled multiline/>
+          <TextField key={gerente.manager_id} sx={{ m: 1, width: '50%' }} type="text" name='schedule_name_manager' defaultValue={gerente.manager_name} className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" disabled multiline/>
           )
         })}
 
         <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_name_collaborator' className="from__input" id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select defaultValue={selectEditData.schedule_name_collaborator}>
         {colaborador.map(colaboradores => {
         return (
-          <MenuItem value={colaboradores.collaborator_name}>{colaboradores.collaborator_name}</MenuItem>
+          <MenuItem key={colaboradores.collaborator_id} value={colaboradores.collaborator_name}>{colaboradores.collaborator_name}</MenuItem>
           )
         })}
         </TextField>
 
         {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
           return (
-          <TextField sx={{ m: 1, width: '36%' }} type="text" name='schedule_manager_id' key={gerente.manager_id} defaultValue={gerente.manager_id} className="from__input" id="inputGroup-sizing-default" label="Id Gerente" placeholder="Id Gerente" disabled multiline/>
+          <TextField key={gerente.manager_id} sx={{ m: 1, width: '36%' }} type="text" name='schedule_manager_id' defaultValue={gerente.manager_id} className="from__input" id="inputGroup-sizing-default" label="Id Gerente" placeholder="Id Gerente" disabled multiline/>
           )
         })}
 

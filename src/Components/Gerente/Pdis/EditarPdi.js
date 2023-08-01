@@ -38,26 +38,25 @@ const EditarPdi = ({ handleEditSubmit, selectEditData, handleCancelButton }) => 
     <div className="container_white">
       <Box onSubmit={(e)=>handleEditSubmit(e,selectEditData.planning_id)} component="form" noValidate
       autoComplete="off">
-        <h3 className="text-center">EDITAR PDI</h3><br></br>
+        <br></br><h3 className="text-center">EDITAR PDI</h3>
 
         <TextField sx={{ m: 1, width: '50%' }} name='planning_title' type="text" className="from__input" defaultValue={selectEditData.planning_title} id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo"/>
 
         <TextField sx={{ m: 1, width: '40%' }} name='planning_date' className="from__input" defaultValue={selectEditData.planning_date} id="inputGroup-sizing-default" label="Data Hora inicial" type="datetime-local"
         InputLabelProps={{
         shrink: true,
-        }}
-        variant="filled" />
+        }}/>
 
         {gerentes.map(gerente => {
         return (
-          <TextField sx={{ m: 1, width: '50%' }} type="text" name='planning_creator' defaultValue={gerente.manager_name} className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" disabled multiline/>
+          <TextField key={gerente.manager_id} sx={{ m: 1, width: '50%' }} type="text" name='planning_creator' defaultValue={gerente.manager_name} className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" disabled multiline/>
         )
         })}
 
         <TextField sx={{ m: 1, width: '40%' }} type="text" name='planning_contributor_name' className="from__input" id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select defaultValue={selectEditData.planning_contributor_name}>
         {colaborador.map(colaboradores => {
         return (
-          <MenuItem value={colaboradores.collaborator_name}>{colaboradores.collaborator_name}</MenuItem>
+          <MenuItem key={colaboradores.collaborator_id} value={colaboradores.collaborator_name}>{colaboradores.collaborator_name}</MenuItem>
         )
         })}
         </TextField>
@@ -74,8 +73,7 @@ const EditarPdi = ({ handleEditSubmit, selectEditData, handleCancelButton }) => 
 
         <TextField sx={{ m: 1, width: '40%' }} name='planning_final_date' className="from__input" defaultValue={selectEditData.planning_final_date} id="inputGroup-sizing-default" label="Data Hora Final" type="datetime-local" InputLabelProps={{
         shrink: true,
-        }}
-        variant="filled" />
+        }}/>
 
         <TextField sx={{ m: 1, width: '92%' }} type="text" name='planning_resource' className="from__input" defaultValue={selectEditData.planning_resource} id="inputGroup-sizing-default" label="Recursos" placeholder="Recursos" multiline />
 

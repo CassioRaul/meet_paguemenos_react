@@ -13,7 +13,7 @@ const AdicionarPdi = ({ handleAddSubmit, handleCancelButton }) => {
   return (
     <div className="container_white">
     <Box onSubmit={handleAddSubmit} component="form" noValidate autoComplete="off">
-      <h3 className="text-center">CRIAR PDI</h3><br></br>
+      <br></br><h3 className="text-center">CRIAR PDI</h3>
 
       {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
           return (
@@ -49,13 +49,13 @@ const AdicionarPdi = ({ handleAddSubmit, handleCancelButton }) => {
       
       <TextField sx={{ m: 1, width: '17%' }} type="text" name='planning_progess' className="from__input" id="inputGroup-sizing-default" label="Progresso" placeholder="Progresso" multiline />
       
-      <TextField sx={{ m: 1, width: '15%' }} type="date" name='planning_date' className="from__input" id="inputGroup-sizing-default" label="DATA" InputLabelProps={{ shrink: true, }} variant="filled" />
+      <TextField sx={{ m: 1, width: '15%' }} type="date" name='planning_date' className="from__input" id="inputGroup-sizing-default" label="Data" InputLabelProps={{ shrink: true, }}/>
 
-      <TextField sx={{ m: 1, width: '15%' }} type="time" name='planning_hour' className="from__input" id="inputGroup-sizing-default" label="HORA" InputLabelProps={{ shrink: true, }} variant="filled" />
+      <TextField sx={{ m: 1, width: '15%' }} type="time" name='planning_hour' className="from__input" id="inputGroup-sizing-default" label="Hora" InputLabelProps={{ shrink: true, }}/>
 
-      <TextField sx={{ m: 1, width: '19%' }} type="date" name='planning_final_date' className="from__input" id="inputGroup-sizing-default" label="DATA FINAL" InputLabelProps={{ shrink: true, }} variant="filled" />
+      <TextField sx={{ m: 1, width: '19%' }} type="date" name='planning_final_date' className="from__input" id="inputGroup-sizing-default" label="Data Final" InputLabelProps={{ shrink: true, }}/>
 
-      <TextField sx={{ m: 1, width: '19%' }} type="time" name='planning_final_hour' className="from__input" id="inputGroup-sizing-default" label="HORA FINAL" InputLabelProps={{ shrink: true, }} variant="filled" />
+      <TextField sx={{ m: 1, width: '19%' }} type="time" name='planning_final_hour' className="from__input" id="inputGroup-sizing-default" label="Hora Final" InputLabelProps={{ shrink: true, }}/>
 
       <TextField sx={{ m: 1, width: '92%' }} type="text" name='planning_resource' className="from__input" id="inputGroup-sizing-default" label="Recursos" placeholder="Recursos" multiline />
 
