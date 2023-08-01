@@ -29,37 +29,3 @@
         animation: app-logo-spin infinite 20s linear;
     }
 }
-
-/* @keyframes app-logo-spin {
-    from{
-        transform: rotate(0deg);
-    }
-    to{
-        transform: rotate(360deg);
-    }
-} */
-
-
-
-/* .signinLogin{
-    text-align: center;
-}
-
-@media (prefers-reduced-motion: no-preference){
-    .signinLogin__Logo{
-        animation: app-logo-spin infinite 20s linear;
-    }
-}
-
-.signinLogin__Link{
-    color: aqua;
-}
-
-@keyframes app-logo-spin {
-    from{
-        transform: rotate(0deg);
-    }
-    to{
-        transform: rotate(360deg);
-    }
-} */
