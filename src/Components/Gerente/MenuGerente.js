@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import PerfilGerente from "../../Assets/Perfils/usuario.jpg";
-import "../../Styles/MenuGerente.css"
+import "../../Styles/MenuGerente.css";
 import "../../Styles/FotodePerfil.css";
 import { useGerentes } from "../../hooks/useGerentes";
 import { UserContext } from "../../context/UserContext";
@@ -15,12 +14,12 @@ const MenuGerente = () => {
     <div className="gerente__responsivo MeuGerente">
 
       <div className="sesaoPerfil">
-        <img className="fotoDePerfil" src={PerfilGerente} alt="Foto perfil gerente"/>
         {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
           return (
             <div key={gerente.manager_id}>
+              <img className="fotoDePerfil" src={gerente.manager_image} alt="Foto perfil gerente"/>
               <h4 className="gerente__nome">{gerente.manager_name}</h4>
-              <h6 className="gerente__cargo">{gerente.manager_function}</h6>
+              <h6 className="gerente__cargo">{gerente.manager_function}<br></br>token: {gerente.manager_token}</h6>
             </div>
           )
         })}

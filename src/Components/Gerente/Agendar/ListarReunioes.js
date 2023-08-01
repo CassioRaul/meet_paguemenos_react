@@ -23,6 +23,12 @@ const ListarReunioes = () => {
     const { schedules, setSchedules } = useSchedules([]);
     const { idGerentes } = useContext(UserContext);
 
+    const handleAddFeedbackButton = (schedule) => {
+        // e.preventDefault();
+        setSelectEditData(schedule)
+        setShowFeedbackForm(true)
+    }
+
     const handleAddSubmit = (e) => {
         e.preventDefault();
         addschedule(e.target)
@@ -44,17 +50,17 @@ const ListarReunioes = () => {
         setShowEditScheduleForm(true)
     }
 
-    const handleDeleteButton = (schedule_id) => {
+    const handleDeleteButton = (schedule_id, manager_token) => {
         // e.preventDefault();
-        // const token = prompt("TOKEN DE SEGURANÇA NECESSÁRIO:")
-        // if (token === manager_token) {
+        const token = prompt("TOKEN DE SEGURANÇA NECESSÁRIO:")
+        if (token === manager_token) {
         deleteschedule(schedule_id)
             .then(res => {
                 setSchedules(schedules.filter(c => c.schedule_id !== schedule_id))
             })
-        // } else {
-        //     alert("TOKEN INVÁLIDO, DIGITE NOVAMENTE!")
-        // }
+        } else {
+            alert("TOKEN INVÁLIDO, DIGITE NOVAMENTE!")
+        }
     }
 
     function handleCancelButton(e) {
@@ -64,32 +70,25 @@ const ListarReunioes = () => {
         setShowFeedbackForm(false)
     }
 
-    const handleAddFeedbackButton = (schedule) => {
-        // e.preventDefault();
-        setSelectEditData(schedule)
-        setShowFeedbackForm(true)
-    }
-
     return (
         <>
             <div className="container_white container-fluid">
                 <div className="button_add_close">
-                    <div className='container_display_flex'  >
-                        {/* <button className="btn btn-primary m-1" onClick={() => setShowScheduleForm(true)}>+</button> */}
+                    <div className='container_display_flex'>
                         <button className="btn btn-primary m-0 i bi-plus-circle " onClick={() => setShowScheduleForm(true)}> ADICIONAR</button>&nbsp;&nbsp;&nbsp;
                         <Search seach={seach} setSearch={setSearch} />
                     </div>
                 </div>
-
+                <br></br>
                 <div className="button_add_close">
                     {showScheduleForm && <AdicionarReunioes handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />}
 
                     {showEditScheduleForm && <EditarReunioes handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
 
-                    {showFeedbackForm && <AdicionarFeedback handleAddFeedbackButton={handleAddFeedbackButton} handleCancelButton={handleCancelButton} />}
+                    {showFeedbackForm && <AdicionarFeedback handleAddFeedbackButton={handleAddFeedbackButton} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
                 </div>
-
-                <div className='listaDeReunioes'>
+                <br></br>
+                <h3>LISTA DE REUNIÕES</h3>
                     <table className="table table-striped table-hover">
                         <thead>
                             <tr>
@@ -97,7 +96,7 @@ const ListarReunioes = () => {
                                 <th scope="col">TÍTULO</th>
                                 <th scope="col">DESCRIÇÃO</th>
                                 <th scope="col">DATA</th>
-                                <th scope="col">HORÁRIO</th>
+                                <th scope="col">HORA</th>
                                 <th scope="col">COLABORADOR</th>
                                 <th scope="col">SALA</th>
                                 <th scope="col">DURAÇÃO</th>
@@ -120,9 +119,13 @@ const ListarReunioes = () => {
                                         {/* <td>{schedule.schedule_status}</td> */}
                                         <td>
                                             <div>
-                                                <i onClick={() => handleAddFeedbackButton(schedule.schedule_id)} className="btn btn-success m-1 bi bi-calendar2-check" />
+                                                <i onClick={() => handleAddFeedbackButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" />
                                                 <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" />
-                                                <i onClick={() => handleDeleteButton(schedule.schedule_id)} className="btn btn-danger m-1 bi bi-trash" />
+                                                {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
+                                                    return (
+                                                    <i key={gerente.manager_id} onClick={() => handleDeleteButton(schedule.schedule_id, gerente.manager_token)} className="btn btn-danger m-1 bi bi-trash" />
+                                                    )
+                                                })}
                                             </div>
                                         </td>
                                     </tr>
@@ -130,7 +133,7 @@ const ListarReunioes = () => {
                             })}
                         </tbody>
                     </table>
-                </div>
+                <ListarFeedback/>
             </div>
         </>
     )

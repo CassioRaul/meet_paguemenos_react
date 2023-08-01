@@ -56,16 +56,14 @@ const ListarPdi = () => {
             <div className="container_white">
                 <div className="button_add_close">
                     <div className='container_display_flex'  >
-                        <button className="btn btn-primary m-1 i bi-plus-circle " onClick={() => setShowPdiForm(true)}>ADICIONAR</button>
+                        <button className="btn btn-primary m-0 i bi-plus-circle" onClick={() => setShowPdiForm(true)}> ADICIONAR</button>&nbsp;&nbsp;&nbsp;
                         {showPdiForm && <AdicionarPdi handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />}
                         {showEditPdiForm && <EditarPdi handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
                         <Search seach={seach} setSearch={setSearch} />
                     </div>
                 </div>
                 <br></br>
-                <h3>LISTA DE PDIS</h3>
-                <br></br>
-
+                <br></br><h3>LISTA DE PDIS</h3>
                 <table className="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -97,9 +95,9 @@ const ListarPdi = () => {
                                     <td>{pdi.planning_hour} {pdi.planning_date} </td>
                                     <td>{pdi.planning_final_hour} {pdi.planning_final_date}</td>
                                     <td>
-                                        <i className="btn btn-success m-1 bi bi-bookmark-x" />
+                                        <i className="btn btn-success bi bi-bookmark-x" />
                                         <i onClick={() => handleEditButton(pdi)} className="btn btn-warning m-1 bi bi-pencil-square" />
-                                        <i onClick={() => handleDeleteButton(pdi.planning_id)} className="btn btn-danger m-1 bi bi-trash" />
+                                        <i onClick={() => handleDeleteButton(pdi.planning_id)} className="btn btn-danger bi bi-trash" />
                                     </td>
                                 </tr>
                             )

@@ -16,9 +16,10 @@
 
 .from__input label {
     color: #035AA6;
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 1em;   
+    /* text-transform: uppercase; */
+    /* font-weight: 600; */
+    font-size: 1em;
+    border-color: blue;
 }
 
 .listaDeReunioes{

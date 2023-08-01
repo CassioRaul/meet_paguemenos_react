@@ -50,7 +50,7 @@ const Historico = () => {
 
     return (
         <>
-        <div className="container_white">
+            <div className="container_white">
             <h3>LISTA DE REUNIÕES</h3><br></br>
             <table className="table table-striped table-hover">
                 <thead>
@@ -84,10 +84,11 @@ const Historico = () => {
                     })}
                 </tbody>
             </table>
-        </div>
+            </div>
+            <br></br>
             <div class="container_white">
                 <h3>LISTA DE PDIS</h3>
-                <table class="form-control table table-hover ">
+                <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -124,6 +125,7 @@ const Historico = () => {
                     </tbody>
                 </table>
             </div>
+            <br></br>
             <div class="container_white">
                 <h3>LISTA DE FEEDBACKS</h3><br></br>
                 <div className='listaDeReunioes'>
@@ -138,7 +140,6 @@ const Historico = () => {
                                 <th scope="col">DATA/HORA</th>
                                 <th scope="col">ANOTAÇÕES</th>
                                 <th scope="col">AVALIAÇÃO</th>
-                                <th scope="col">AÇÕES</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -153,10 +154,6 @@ const Historico = () => {
                                         <td>{feedback.feedback_date}</td>
                                         <td>{feedback.feedback_note}</td>
                                         <td>{feedback.feedback_evaluate}</td>
-                                        <td>
-                                            <i onClick={() => setShowScheduleForm(true)} class="btn btn-primary m-1 bi bi-plus-square"/>
-                                            {/* <i onClick={ ()=>handleEditButton(schedule)} class="btn btn-success m-1 bi bi-bell"></i> */}
-                                        </td>
                                     </tr>
                                 )
                             })}

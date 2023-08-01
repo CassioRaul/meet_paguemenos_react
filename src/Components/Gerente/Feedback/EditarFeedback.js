@@ -24,10 +24,12 @@ const EditarFeedback = ({ handleEditSubmit, selectEditData, handleCancelButton }
   return (
     <>
     <div className="container_white">
-    <Box onSubmit={(e)=>handleEditSubmit(e,selectEditData.feedback_iduser)} component="form" noValidateautoComplete="off">
+    <Box onSubmit={(e)=>handleEditSubmit(e, selectEditData.feedback_id)} component="form" noValidateautoComplete="off">
       <h3 className="text-center">EDITAR FEEDBACK</h3><br></br>
 
-      <TextField sx={{ m: 1, width: '20%' }} type="text" name='feedback_idschedule' className="from__input" id="inputGroup-sizing-default" label="ID DA REUNIÃO" placeholder="ID DA REUNIÃO" multiline select>
+      <TextField sx={{ m: 1, width: '92%' }} name='feedback_title' type="text" defaultValue={selectEditData.feedback_title} className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline />
+
+      <TextField sx={{ m: 1, width: '30%' }} type="text" name='feedback_idschedule' className="from__input" id="inputGroup-sizing-default" label="ID DA REUNIÃO" placeholder="ID DA REUNIÃO" multiline select>
       {schedule.map(schedules => {
         return (
         <MenuItem value={schedules.schedule_id}>{schedules.schedule_id}</MenuItem>
@@ -35,14 +37,15 @@ const EditarFeedback = ({ handleEditSubmit, selectEditData, handleCancelButton }
       })}
       </TextField>
 
-      <TextField sx={{ m: 1, width: '40%' }} name='feedback_date' type="datetime-local" defaultValue={selectEditData.feedback_date} className="from__input" id="inputGroup-sizing-default" label="Data/Hora inicial" InputLabelProps={{
+      <TextField sx={{ m: 1, width: '18.5%' }} name='feedback_date' type="date" defaultValue={selectEditData.feedback_date} className="from__input" id="inputGroup-sizing-default" label="Data" InputLabelProps={{
         shrink: true,
-      }}
-      variant="filled" />
+      }}/>
 
-      <TextField sx={{ m: 1, width: '28.5%' }} name='feedback_evaluate' type="text" defaultValue={selectEditData.feedback_evaluate} className="from__input" id="inputGroup-sizing-default" label="Avaliação" placeholder="Avaliação" multiline />
+      <TextField sx={{ m: 1, width: '18.5%' }} name='feedback_hour' type="time" defaultValue={selectEditData.feedback_hour} className="from__input" id="inputGroup-sizing-default" label="Hora" InputLabelProps={{
+        shrink: true,
+      }}/>
 
-      <TextField sx={{ m: 1, width: '91.5%' }} name='feedback_title' type="text"  defaultValue={selectEditData.feedback_title} className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline />
+      <TextField sx={{ m: 1, width: '20%' }} name='feedback_evaluate' type="text" defaultValue={selectEditData.feedback_evaluate} className="from__input" id="inputGroup-sizing-default" label="Avaliação" placeholder="Avaliação" multiline />
       
       {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
           return (
@@ -58,7 +61,7 @@ const EditarFeedback = ({ handleEditSubmit, selectEditData, handleCancelButton }
         })}
         </TextField>
 
-      <TextField sx={{ m: 1, width: '91.5%' }} type="text" name='feedback_note' defaultValue={selectEditData.feedback_note} className="from__input" id="basic-url" label="Anotações" placeholder="Anotações" multiline rows={4} />
+      <TextField sx={{ m: 1, width: '92%' }} type="text" name='feedback_note' defaultValue={selectEditData.feedback_note} className="from__input" id="basic-url" label="Anotações" placeholder="Anotações" multiline rows={4} />
 
         <button className="btn btn-primary m-1" type='submit'>EDITAR</button>
         <button className="btn btn-danger m-1" onClick={handleCancelButton}>Fechar</button>

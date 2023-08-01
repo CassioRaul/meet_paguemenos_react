@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const ApiService = axios.create({
-  baseURL: 'http://192.168.177.29:8000',
+  baseURL: 'http://25.0.155.100:8000',
   headers: {
     'Content-Type': 'application/json'
   }
@@ -83,12 +83,15 @@ export function getfeedback() {
 
 export function addfeedback(feedback) {
   return ApiService.post('/feedback/', {
-    'feedback_iduser': null,
+    'feedback_id': null,
     'feedback_idschedule': feedback.feedback_idschedule.value,
+    'feedback_manager_id': feedback.feedback_manager_id.value,
+    'feedback_collaborator_id': feedback.feedback_collaborator_id.value,
     'feedback_title': feedback.feedback_title.value,
     'feedback_manage': feedback.feedback_manage.value,
     'feedback_collaborator': feedback.feedback_collaborator.value,
     'feedback_date': feedback.feedback_date.value,
+    'feedback_hour': feedback.feedback_hour.value,
     'feedback_note': feedback.feedback_note.value,
     'feedback_evaluate': feedback.feedback_evaluate.value,
   })

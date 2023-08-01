@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { getfeedback } from '../Service/ApiService';
 
-export const usePdi = () => {
-    const [feedback, setFeedback] = useState([]);
+export const useFeedbacks = () => {
+    const [feedbacks, setFeedbacks] = useState([]);
 
     useEffect(() => {
         getfeedback()
         .then(res => {
-            setFeedback(res)
+            setFeedbacks(res)
         })
     }, []);
 
     return {
-        feedback,
-        setFeedback,
+        feedbacks,
+        setFeedbacks,
     };
 }

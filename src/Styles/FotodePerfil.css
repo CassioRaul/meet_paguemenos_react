@@ -3,7 +3,7 @@
   width: 75%;
   height: 75%;
   padding-bottom: 0.6em;
-  padding-top: 0.6em;
+  padding-top: 1em;
 }
 
 .gerente__nome{
@@ -11,8 +11,8 @@
 }
 
 .gerente__cargo{
-  padding-bottom: 0.6em;
-  font-weight: 600;
+  padding: 0.5em;
+  padding-bottom: 1em;
   margin-bottom: 1.6em;
 }
 

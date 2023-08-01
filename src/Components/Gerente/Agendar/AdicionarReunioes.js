@@ -14,16 +14,6 @@ const AdicionarReunioes = ({ handleAddSubmit, handleCancelButton }) => {
   const [ idColaborador, SetIdColaborador ] = useState([]);
   const [ openModal, setOpenModal ] = useState(false);
 
-  const handleIdColaborador = (e) => {
-    e.preventDefault();
-    SetIdColaborador(e.target.value);
-  }
-
-  const handleSelectColaborador = (e) => {
-    e.preventDefault();
-    setOpenModal(true);
-  }
-
   return (
     <>
       <div className="container_white">
@@ -73,20 +63,18 @@ const AdicionarReunioes = ({ handleAddSubmit, handleCancelButton }) => {
 
         <TextField sx={{ m: 1, width: '19%' }} type="date" name='schedule_date' className="from__input" id="inputGroup-sizing-default" label="Data" InputLabelProps={{
           shrink: true,
-        }}
-          variant="filled" />
+        }}/>
 
         <TextField sx={{ m: 1, width: '19%' }} type="time" name='schedule_hour' className="from__input" id="inputGroup-sizing-default" label="Hora" InputLabelProps={{
           shrink: true,
-        }}
-          variant="filled" />
+        }}/>
 
         <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_meet_location' className="from__input" id="inputGroup-sizing-default" label="Local" placeholder="Local" multiline/>
 
         <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_duration' className="from__input" id="inputGroup-sizing-default" label="Duração" placeholder="30min" multiline select>
-          <MenuItem value="30">30</MenuItem>
-          <MenuItem value="45">45</MenuItem>
-          <MenuItem value="60">60</MenuItem>
+          <MenuItem value="30">30 minutos</MenuItem>
+          <MenuItem value="45">45 minutos</MenuItem>
+          <MenuItem value="60">60 minutos</MenuItem>
         </TextField>
 
         <TextField sx={{ m: 1, width: '92%' }} type="text" name='schedule_description' className="from__input" id="inputGroup-sizing-default" label="Descrição" placeholder="Descrição" multiline rows={4}/>

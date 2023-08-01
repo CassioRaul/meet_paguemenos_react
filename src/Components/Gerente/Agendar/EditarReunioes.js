@@ -6,9 +6,8 @@ import { getcolaboradores } from '../../../Service/ApiService';
 
 const EditarReunioes = ({ handleEditSubmit, selectEditData, handleCancelButton }) => {
   const { gerentes } = useGerentes([]);
-  const { idGerentes } = useContext(UserContext);
-
   const [colaborador, setColaboradores] = useState([])
+  const { idGerentes } = useContext(UserContext);
 
   useEffect(() => {
     let mount = true
@@ -26,17 +25,15 @@ const EditarReunioes = ({ handleEditSubmit, selectEditData, handleCancelButton }
       autoComplete="off">
         <h3 className="text-center">EDITAR REUNIÃO</h3><br></br>
 
-        <TextField sx={{ m: 1, width: '50%' }} name='schedule_topic' type="text" className="from__input" defaultValue={selectEditData.schedule_topic} id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline/>
+        <TextField sx={{ m: 1, width: '50%' }} name='schedule_topic' type="text" className="from__input" defaultValue={selectEditData.schedule_topic} id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline />
 
         <TextField sx={{ m: 1, width: '19%' }} type="date" name='schedule_date' className="from__input" defaultValue={selectEditData.schedule_date} id="inputGroup-sizing-default" label="Data" InputLabelProps={{
           shrink: true,
-        }}
-          variant="filled" />
+        }}/>
 
         <TextField sx={{ m: 1, width: '19%' }} type="time" name='schedule_hour' className="from__input" defaultValue={selectEditData.schedule_hour} id="inputGroup-sizing-default" label="Hora" InputLabelProps={{
           shrink: true,
-        }}
-          variant="filled" />
+        }}/>
 
         {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
           return (
@@ -44,7 +41,7 @@ const EditarReunioes = ({ handleEditSubmit, selectEditData, handleCancelButton }
           )
         })}
 
-        <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_name_collaborator' className="" id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select defaultValue={selectEditData.schedule_name_collaborator}>
+        <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_name_collaborator' className="from__input" id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select defaultValue={selectEditData.schedule_name_collaborator}>
         {colaborador.map(colaboradores => {
         return (
           <MenuItem value={colaboradores.collaborator_name}>{colaboradores.collaborator_name}</MenuItem>
@@ -63,9 +60,9 @@ const EditarReunioes = ({ handleEditSubmit, selectEditData, handleCancelButton }
         <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_meet_location' defaultValue={selectEditData.schedule_meet_location} className="from__input" id="basic-url" label="Sala" placeholder="Sala" multiline/>
 
         <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_duration' className="from__input" id="inputGroup-sizing-default" label="Duração" placeholder="30min" multiline select defaultValue={selectEditData.schedule_duration}>
-          <MenuItem value="30">30</MenuItem>
-          <MenuItem value="45">45</MenuItem>
-          <MenuItem value="60">60</MenuItem>
+          <MenuItem value="30">30 min</MenuItem>
+          <MenuItem value="45">45 min</MenuItem>
+          <MenuItem value="60">60 min</MenuItem>
         </TextField>
 
         <TextField sx={{ m: 1, width: '92%' }} type="text" name='schedule_description' defaultValue={selectEditData.schedule_description} className="from__input" id="basic-url" label="Descrição" placeholder="Descrição" multiline rows={4}/>
