@@ -68,10 +68,10 @@ const ListarReunioes = () => {
         // e.preventDefault();
         const token = prompt("TOKEN DE SEGURANÇA NECESSÁRIO:")
         if (token === manager_token) {
-        deleteschedule(schedule_id)
-            .then(res => {
-                setSchedules(schedules.filter(c => c.schedule_id !== schedule_id))
-            })
+            deleteschedule(schedule_id)
+                .then(res => {
+                    setSchedules(schedules.filter(c => c.schedule_id !== schedule_id))
+                })
         } else {
             alert("TOKEN INVÁLIDO!")
         }
@@ -103,40 +103,40 @@ const ListarReunioes = () => {
                 </div>
                 <br></br>
                 <h3>LISTA DE REUNIÕES</h3>
-                    <table className="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">TÍTULO</th>
-                                <th scope="col">DESCRIÇÃO</th>
-                                <th scope="col">DATA</th>
-                                <th scope="col">HORA</th>
-                                <th scope="col">COLABORADOR</th>
-                                <th scope="col">SALA</th>
-                                <th scope="col">DURAÇÃO</th>
-                                {/* <th scope="col">STATUS</th> */}
-                                <th scope="col">AÇÕES</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {schedules.filter(schedule => schedule.schedule_manager_id == idGerentes).filter(filterSchedule => filterSchedule.schedule_name_collaborator.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
-                                return (
-                                    <tr key={schedule.schedule_id}>
-                                        <td>{schedule.schedule_id}</td>
-                                        <td>{schedule.schedule_topic}</td>
-                                        <td>{schedule.schedule_description}</td>
-                                        <td>{schedule.schedule_date}</td>
-                                        <td>{schedule.schedule_hour}</td>
-                                        <td>{schedule.schedule_name_collaborator}</td>
-                                        <td>{schedule.schedule_meet_location}</td>
-                                        <td>{schedule.schedule_duration}</td>
-                                        {/* <td>{schedule.schedule_status}</td> */}
-                                        <td>
-                                            <div>
-                                                <i onClick={() => handleAddFeedbackButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" />
-                                                <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" />
-                                                {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
-                                                    return (
+                <table className="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">TÍTULO</th>
+                            <th scope="col">DESCRIÇÃO</th>
+                            <th scope="col">DATA</th>
+                            <th scope="col">HORA</th>
+                            <th scope="col">COLABORADOR</th>
+                            <th scope="col">SALA</th>
+                            <th scope="col">DURAÇÃO</th>
+                            {/* <th scope="col">STATUS</th> */}
+                            <th scope="col">AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {schedules.filter(schedule => schedule.schedule_manager_id == idGerentes).filter(filterSchedule => filterSchedule.schedule_name_collaborator.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
+                            return (
+                                <tr key={schedule.schedule_id}>
+                                    <td>{schedule.schedule_id}</td>
+                                    <td>{schedule.schedule_topic}</td>
+                                    <td>{schedule.schedule_description}</td>
+                                    <td>{schedule.schedule_date}</td>
+                                    <td>{schedule.schedule_hour}</td>
+                                    <td>{schedule.schedule_name_collaborator}</td>
+                                    <td>{schedule.schedule_meet_location}</td>
+                                    <td>{schedule.schedule_duration}</td>
+                                    {/* <td>{schedule.schedule_status}</td> */}
+                                    <td>
+                                        <div>
+                                            <i onClick={() => handleAddFeedbackButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" />
+                                            <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" />
+                                            {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
+                                                return (
                                                     <i key={gerente.manager_id} onClick={() => handleDeleteButton(schedule.schedule_id, gerente.manager_token)} className="btn btn-danger m-1 bi bi-trash" />
                                                     )
                                                 })}

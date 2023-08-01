@@ -45,10 +45,10 @@ const ListarReunioes = () => {
         // e.preventDefault();
         // const token = prompt("TOKEN DE SEGURANÇA NECESSÁRIO:")
         // if (token === manager_token) {
-            deleteschedule(schedule_id)
-                .then(res => {
-                    setSchedules(schedules.filter(c => c.schedule_id !== schedule_id))
-                })
+        deleteschedule(schedule_id)
+            .then(res => {
+                setSchedules(schedules.filter(c => c.schedule_id !== schedule_id))
+            })
         // } else {
         //     alert("TOKEN INVÁLIDO, DIGITE NOVAMENTE!")
         // }
@@ -61,54 +61,57 @@ const ListarReunioes = () => {
     }
 
     return (
-    <>
-        <div className="container_white container-fluid">
-            <div className="button_add_close">
-                <button className="btn btn-primary m-1" onClick={() => setShowScheduleForm(true)}>ADICIONAR</button>
-                {/* <button className="btn btn-danger" onClick={() => setShowScheduleForm(false)}>X</button> */}
-                {showScheduleForm && <AdicionarReunioes handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton}/>}
-                {showEditScheduleForm && <EditarReunioes handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton}/>}
-            </div>
-            <Search seach={seach} setSearch={setSearch}/>
-            <div className='listaDeReunioes'>
-            <table className="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">TÍTULO</th>
-                        <th scope="col">DESCRIÇÃO</th>
-                        <th scope="col">DATA/HORA</th>
-                        <th scope="col">GERENTE</th>
-                        <th scope="col">SALA</th>
-                        <th scope="col">DURAÇÃO</th>
-                        <th scope="col">STATUS</th>
-                        <th scope="col">AÇÕES</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {schedules.filter(schedule => schedule.schedule_collaborator_id == idColaboradores).filter(filterSchedule => filterSchedule.schedule_name_creator.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
-                        return (
-                            <tr key={schedule.schedule_id}>
-                                <td>{schedule.schedule_id}</td>
-                                <td>{schedule.schedule_topic}</td>
-                                <td>{schedule.schedule_description}</td>
-                                <td>{schedule.schedule_date_hour}</td>
-                                <td>{schedule.schedule_name_creator}</td>
-                                <td>{schedule.schedule_meet_location}</td>
-                                <td>{schedule.schedule_duration}</td>
-                                <td>{schedule.schedule_status}</td>
-                                <td>
-                                    <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" />
-                                    <i onClick={() => handleDeleteButton(schedule.schedule_id)} className="btn btn-danger m-1 bi bi-trash" />
-                                </td>
+        <>
+            <div className="container_white container-fluid">
+                <div className="button_add_close">
+                    <div className='container_display_flex_colaborador'>
+                        <button className="btn btn-primary m-1 bi-plus-circle " onClick={() => setShowScheduleForm(true)}>ADICIONAR</button>&nbsp;&nbsp;&nbsp;
+                        <Search seach={seach} setSearch={setSearch} />
+                    </div>
+                    {showScheduleForm && <AdicionarReunioes handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />}
+                    {showEditScheduleForm && <EditarReunioes handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
+
+                </div>
+
+                <div className='listaDeReunioes'>
+                    <table className="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">TÍTULO</th>
+                                <th scope="col">DESCRIÇÃO</th>
+                                <th scope="col">DATA/HORA</th>
+                                <th scope="col">GERENTE</th>
+                                <th scope="col">SALA</th>
+                                <th scope="col">DURAÇÃO</th>
+                                <th scope="col">STATUS</th>
+                                <th scope="col">AÇÕES</th>
                             </tr>
-                        )
-                    })}
-                </tbody>
-            </table> 
+                        </thead>
+                        <tbody>
+                            {schedules.filter(schedule => schedule.schedule_collaborator_id == idColaboradores).filter(filterSchedule => filterSchedule.schedule_name_creator.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
+                                return (
+                                    <tr key={schedule.schedule_id}>
+                                        <td>{schedule.schedule_id}</td>
+                                        <td>{schedule.schedule_topic}</td>
+                                        <td>{schedule.schedule_description}</td>
+                                        <td>{schedule.schedule_date_hour}</td>
+                                        <td>{schedule.schedule_name_creator}</td>
+                                        <td>{schedule.schedule_meet_location}</td>
+                                        <td>{schedule.schedule_duration}</td>
+                                        <td>{schedule.schedule_status}</td>
+                                        <td>
+                                            <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" />
+                                            <i onClick={() => handleDeleteButton(schedule.schedule_id)} className="btn btn-danger m-1 bi bi-trash" />
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-    </>
+        </>
     )
 }
 
