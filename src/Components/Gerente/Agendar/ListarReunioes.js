@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { addschedule, editschedule, deleteschedule } from '../../../Service/ApiService';
+import { addfeedback, addschedule, editschedule, deleteschedule } from '../../../Service/ApiService';
 
 import { UserContext } from "../../../context/UserContext";
 import { useGerentes } from "../../../hooks/useGerentes";
 import { useSchedules } from "../../../hooks/useSchedules";
+import { useFeedbacks } from "../../../hooks/useFeedbacks";
 
 import EditarReunioes from './EditarReunioes';
 import AdicionarReunioes from './AdicionarReunioes';
@@ -15,12 +16,14 @@ import ListarFeedback from '../Feedback/ListarFeedback';
 const ListarReunioes = () => {
     const [showScheduleForm, setShowScheduleForm] = useState(false);
     const [showFeedbackForm, setShowFeedbackForm] = useState(false);
+    // const [selectEditDataFeedback, setSelectEditDataFeedback] = useState();
     const [showEditScheduleForm, setShowEditScheduleForm] = useState(false);
     const [selectEditData, setSelectEditData] = useState();
     const [seach, setSearch] = useState("");
 
     const { gerentes, setGerentes } = useGerentes([]);
     const { schedules, setSchedules } = useSchedules([]);
+    const { feedbacks, setFeedbacks } = useFeedbacks([]);
     const { idGerentes } = useContext(UserContext);
 
     const handleAddFeedbackButton = (schedule) => {
@@ -32,17 +35,28 @@ const ListarReunioes = () => {
     const handleAddSubmit = (e) => {
         e.preventDefault();
         addschedule(e.target)
-            .then(res => {
-                setSchedules([res])
-            })
+        .then(res => {
+            setSchedules([res])
+        })
+        setShowScheduleForm(false)
+    }
+
+    const handleAddSubmitFeedback = (e) => {
+        e.preventDefault();
+        addfeedback(e.target)
+        .then(res => {
+            setFeedbacks([res])
+        })
+        setShowFeedbackForm(false)
     }
 
     const handleEditSubmit = (e, schedule_id) => {
         e.preventDefault();
         editschedule(schedule_id, e.target)
-            .then(res => {
-                setSchedules([res])
-            })
+        .then(res => {
+            setSchedules([res])
+        })
+        setShowEditScheduleForm(false)
     }
 
     const handleEditButton = (schedule) => {
@@ -59,7 +73,7 @@ const ListarReunioes = () => {
                 setSchedules(schedules.filter(c => c.schedule_id !== schedule_id))
             })
         } else {
-            alert("TOKEN INVÁLIDO, DIGITE NOVAMENTE!")
+            alert("TOKEN INVÁLIDO!")
         }
     }
 
@@ -85,7 +99,7 @@ const ListarReunioes = () => {
 
                     {showEditScheduleForm && <EditarReunioes handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
 
-                    {showFeedbackForm && <AdicionarFeedback handleAddFeedbackButton={handleAddFeedbackButton} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
+                    {/* {showFeedbackForm && <AdicionarFeedback handleAddSubmitFeedback={handleAddSubmitFeedback} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />} */}
                 </div>
                 <br></br>
                 <h3>LISTA DE REUNIÕES</h3>
@@ -133,7 +147,7 @@ const ListarReunioes = () => {
                             })}
                         </tbody>
                     </table>
-                {/* <ListarFeedback/> */}
+                <ListarFeedback/>
             </div>
         </>
     )
