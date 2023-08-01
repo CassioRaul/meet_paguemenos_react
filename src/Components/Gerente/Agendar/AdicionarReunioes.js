@@ -1,11 +1,10 @@
-import { Box, Button, MenuItem, TextField } from '@mui/material';
+import { Box, MenuItem, TextField } from '@mui/material';
 import { useState, useContext } from 'react';
 
 import { UserContext } from "../../../context/UserContext";
 import { useGerentes } from "../../../hooks/useGerentes";
 import { useColaboradores } from "../../../hooks/useColaboradores";
 import "./Agendar.css";
-import ModalColaborador from '../../ModalColaborador';
 
 const AdicionarReunioes = ({ handleAddSubmit, handleCancelButton }) => {
   const { gerentes } = useGerentes([]);

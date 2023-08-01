@@ -84,16 +84,16 @@ export function getfeedback() {
 export function addfeedback(feedback) {
   return ApiService.post('/feedback/', {
     'feedback_id': null,
-    'feedback_idschedule': feedback.feedback_idschedule.value,
-    'feedback_manager_id': feedback.feedback_manager_id.value,
-    'feedback_collaborator_id': feedback.feedback_collaborator_id.value,
-    'feedback_title': feedback.feedback_title.value,
     'feedback_manage': feedback.feedback_manage.value,
     'feedback_collaborator': feedback.feedback_collaborator.value,
+    'feedback_title': feedback.feedback_title.value,
     'feedback_date': feedback.feedback_date.value,
     'feedback_hour': feedback.feedback_hour.value,
     'feedback_note': feedback.feedback_note.value,
     'feedback_evaluate': feedback.feedback_evaluate.value,
+    'feedback_idschedule': feedback.feedback_idschedule.value,
+    'feedback_manager_id': feedback.feedback_manager_id.value,
+    'feedback_collaborator_id': feedback.feedback_collaborator_id.value,
   })
     .then(res => {
       return res.data
@@ -156,16 +156,20 @@ export function addpdi(pdi) {
 export function editpdi(planning_id, pdi) {
   return ApiService.put('/pdi/' + planning_id + '/',
     {
-      'planning_title': pdi.planning_title.value,
-      'planning_goals': pdi.planning_goals.value,
-      'planning_status': pdi.planning_status.value,
-      'planning_progess': pdi.planning_progess.value,
-      'planning_final_date': pdi.planning_final_date.value,
-      'planning_description': pdi.planning_description.value,
-      'planning_resource': pdi.planning_resource.value,
-      'planning_contributor_name': pdi.planning_contributor_name.value,
-      'planning_creator': pdi.planning_creator.value,
-      'planning_date': pdi.planning_date.value,
+      'planning_manager_id': pdi.planning_manager_id.value,
+    'planning_collaborator_id': pdi.planning_collaborator_id.value,
+    'planning_title': pdi.planning_title.value,
+    'planning_goals': pdi.planning_goals.value,
+    'planning_status': pdi.planning_status.value,
+    'planning_progess': pdi.planning_progess.value,
+    'planning_description': pdi.planning_description.value,
+    'planning_resource': pdi.planning_resource.value,
+    'planning_name_manager': pdi.planning_name_manager.value,
+    'planning_name_collaborator': pdi.planning_name_collaborator.value,
+    'planning_date': pdi.planning_date.value,
+    'planning_hour': pdi.planning_hour.value,
+    'planning_final_date': pdi.planning_final_date.value,
+    'planning_final_hour': pdi.planning_final_hour.value,
     })
     .then(res => {
       return res.data

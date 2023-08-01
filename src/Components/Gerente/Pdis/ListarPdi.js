@@ -20,17 +20,19 @@ const ListarPdi = () => {
     const handleAddSubmit = (e) => {
         e.preventDefault();
         addpdi(e.target)
-            .then(res => {
-                setPdi([res])
-            })
+        .then(res => {
+            setPdi([res])
+        })
+        setShowPdiForm(false)
     }
 
     const handleEditSubmit = (e, planning_id) => {
-        e.preventDefault();
+        // e.preventDefault();
         editpdi(planning_id, e.target)
             .then(res => {
                 setPdi([res])
             })
+        setShowEditPdiForm(false)
     }
 
     const handleEditButton = (pdi) => {
@@ -40,9 +42,9 @@ const ListarPdi = () => {
 
     const handleDeleteButton = (planning_id) => {
         deletepdi(planning_id)
-            .then(res => {
-                setPdi(pdis.filter(c => c.planning_id !== planning_id))
-            })
+        .then(res => {
+            setPdi(pdis.filter(c => c.planning_id !== planning_id))
+        })
     }
 
     function handleCancelButton(e) {
@@ -72,7 +74,6 @@ const ListarPdi = () => {
                             <th scope="col">ID</th>
                             <th scope="col">TÍTULO</th>
                             <th scope="col">META</th>
-                            <th scope="col">STATUS</th>
                             <th scope="col">PROGRESSO</th>
                             <th scope="col">DESCRIÇÃO</th>
                             <th scope="col">RECURSOS</th>
@@ -80,6 +81,7 @@ const ListarPdi = () => {
                             {/* <th scope="col">DATA</th>
                             <th scope="col">HORA</th> */}
                             <th scope="col">DATA FINAL</th>
+                            <th scope="col">STATUS</th>
                             {/* <th scope="col">HORA FINAL</th> */}
                             <th scope="col">AÇÕES</th>
                         </tr>
@@ -91,7 +93,6 @@ const ListarPdi = () => {
                                     <td>{pdi.planning_id}</td>
                                     <td>{pdi.planning_title}</td>
                                     <td>{pdi.planning_goals}</td>
-                                    <td>{pdi.planning_status}</td>
                                     <td>{pdi.planning_progess}</td>
                                     <td>{pdi.planning_description}</td>
                                     <td>{pdi.planning_resource}</td>
@@ -99,11 +100,11 @@ const ListarPdi = () => {
                                     {/* <td>{pdi.planning_date}</td>
                                     <td>{pdi.planning_hour}</td> */}
                                     <td>{pdi.planning_final_date}<br></br>{pdi.planning_final_hour}</td>
-                                    {/* <td></td> */}
+                                    <td>{pdi.planning_status}</td>
                                     <td>
-                                        <i className="btn btn-success bi bi-bookmark-x" />
+                                        <i className="btn btn-success m-1 bi bi-bookmark-x" />
                                         <i onClick={() => handleEditButton(pdi)} className="btn btn-warning m-1 bi bi-pencil-square" />
-                                        <i onClick={() => handleDeleteButton(pdi.planning_id)} className="btn btn-danger bi bi-trash" />
+                                        <i onClick={() => handleDeleteButton(pdi.planning_id)} className="btn btn-danger m-1 bi bi-trash" />
                                     </td>
                                 </tr>
                             )
