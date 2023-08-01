@@ -11,18 +11,6 @@ h2 {
   font-size: 22px;
 }
 
-.calendario{
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 70%;
-}
-
-.calendario__meutime{
-  display: flex;
-  justify-content: space-around;
-}
-
 table {
   width: 100%;
 }
