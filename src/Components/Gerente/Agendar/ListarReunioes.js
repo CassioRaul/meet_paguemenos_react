@@ -76,7 +76,7 @@ const ListarReunioes = () => {
                 <div className="button_add_close">
                     <div className='container_display_flex'  >
                         {/* <button className="btn btn-primary m-1" onClick={() => setShowScheduleForm(true)}>+</button> */}
-                        <button className="btn btn-primary m-1 i bi-plus-circle " onClick={() => setShowScheduleForm(true)}>ADICIONAR</button>
+                        <button className="btn btn-primary m-0 i bi-plus-circle " onClick={() => setShowScheduleForm(true)}> ADICIONAR</button>&nbsp;&nbsp;&nbsp;
                         <Search seach={seach} setSearch={setSearch} />
                     </div>
                 </div>

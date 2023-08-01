@@ -32,15 +32,15 @@ const AdicionarReunioes = ({ handleAddSubmit, handleCancelButton }) => {
         
         {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
           return (
-          <TextField sx={{ m: 1, width: '92%' }} type="text" name='schedule_name_manager' key={gerente.manager_id} defaultValue={gerente.manager_name} className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" disabled multiline/>
+          <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_name_manager' key={gerente.manager_id} defaultValue={gerente.manager_name} className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" disabled multiline/>
           )
         })}
         
-        <button className="btn btn-primary m-1" onClick={handleSelectColaborador}>SELECIONAR<br></br>COLABORADOR</button>
+        {/* <button className="btn btn-primary m-1" onClick={handleSelectColaborador}>SELECIONAR<br></br>COLABORADOR</button> */}
 
         {/* <ModalColaborador isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}>
           <Box onSubmit={handleIdColaborador} component="form" noValidate autoComplete="off"> */}
-            <TextField sx={{ width: '100%' }} type="text" name='schedule_name_collaborator' id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select>
+            <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_name_collaborator' id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select>
             {colaboradores.map(colaborador => {
             return (
               <MenuItem key={colaborador.collaborator_id} value={colaborador.collaborator_name}>{colaborador.collaborator_name}</MenuItem>
