@@ -10,8 +10,8 @@ const MainGrid = () => {
       <NavResponsivo />
       <div className="container-fluid text-center mt-51">
         <div className="row">
-          <div className="col-2"><MenuGerente/></div>
-          <div className="col-10 Calendario"><Outlet/></div>
+          <div className="col-2"><MenuGerente /></div>
+          <div className="col-10 Calendario"><Outlet /></div>
         </div>
       </div>
     </main>
