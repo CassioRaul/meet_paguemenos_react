@@ -1,10 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../../Styles/FotodePerfil.css";
-<<<<<<< HEAD
-=======
 import "../../Styles/MenuGerente.css";
->>>>>>> 1c597a9cf47b6e6c518ccae506d84920ed6012ff
 import PerfilColaborador from '../../Assets/Perfils/usuario.jpg';
 import { useColaboradores } from "../../hooks/useColaboradores";
 import { UserContext } from "../../context/UserContext";
