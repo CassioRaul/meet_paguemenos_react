@@ -6,7 +6,7 @@ import { useGerentes } from "../../../hooks/useGerentes";
 import { useColaboradores } from "../../../hooks/useColaboradores";
 import { useSchedules } from "../../../hooks/useSchedules";
 
-const AdicionarFeedback = ({ handleAddSubmit, handleCancelButton }) => {
+const AdicionarFeedback = ({ handleAddSubmit, IdSchedule, handleCancelButton }) => {
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
   const { gerentes } = useGerentes([]);
   const { colaboradores } = useColaboradores([]);
@@ -19,7 +19,7 @@ const AdicionarFeedback = ({ handleAddSubmit, handleCancelButton }) => {
     <Box onSubmit={handleAddSubmit} component="form" noValidate autoComplete="off">
       <h3 className="text-center">FEEDBACK DA REUNIÃO</h3>
 
-      <TextField sx={{ m: 1, width: '92%' }} name='feedback_title' type="text" className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline/>
+      <TextField sx={{ m: 1, width: '92%' }} name='feedback_title' type="text" defaultValue={IdSchedule.schedule_topic} className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline/>
 
       {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
         return (
@@ -46,10 +46,8 @@ const AdicionarFeedback = ({ handleAddSubmit, handleCancelButton }) => {
           )
         })}
       </TextField>
-
       
-
-      <TextField sx={{ m: 1, width: '17%' }} type="text" name='feedback_idschedule' className="from__input"  id="inputGroup-sizing-default" label="ID da Reunião" placeholder="ID da Reunião" multiline/>
+      <TextField sx={{ m: 1, width: '17%' }} type="text" name='feedback_idschedule' className="from__input" defaultValue={IdSchedule.schedule_id} id="inputGroup-sizing-default" label="ID da Reunião" placeholder="ID da Reunião" multiline disabled/>
 
       <TextField sx={{ m: 1, width: '15%' }} type="date" name='feedback_date' className="from__input" id="inputGroup-sizing-default" label="Data" InputLabelProps={{ shrink: true, }}/>
 

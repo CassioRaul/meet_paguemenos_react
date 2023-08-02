@@ -90,7 +90,7 @@ const ListarFeedback = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {feedbacks.filter(feedback => feedback.feedback_manager_id == idGerentes).filter(filterFeedbacks => filterFeedbacks.feedback_collaborator.toLowerCase().includes(seach.toLowerCase())).map(feedback => {
+                    {feedbacks.filter(feedback => feedback.feedback_manager_id == idGerentes && feedback.feedback_id == feedback.feedback_idschedule).filter(filterFeedbacks => filterFeedbacks.feedback_collaborator.toLowerCase().includes(seach.toLowerCase())).map(feedback => {
                         return (
                             <tr key={feedback.feedback_id}>
                                 <td>{feedback.feedback_id}</td>

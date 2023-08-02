@@ -10,7 +10,7 @@ const EditarFeedback = ({ handleEditSubmit, selectEditData, handleCancelButton }
   const { gerentes } = useGerentes([]);
   const { colaboradores } = useColaboradores([]);
   const { idGerentes } = useContext(UserContext);
-  const [schedule, setSchedule] = useState([])
+  const [schedules, setSchedule] = useState([])
 
   useEffect(() => {
     let mount = true
@@ -27,39 +27,37 @@ const EditarFeedback = ({ handleEditSubmit, selectEditData, handleCancelButton }
     <Box onSubmit={(e)=>handleEditSubmit(e, selectEditData.feedback_id)} component="form" noValidateautoComplete="off">
       <h3 className="text-center">EDITAR FEEDBACK</h3><br></br>
 
-      <TextField sx={{ m: 1, width: '92%' }} name='feedback_title' type="text" defaultValue={selectEditData.feedback_title} className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline />
+      <TextField sx={{ m: 1, width: '92%' }} name='feedback_title' type="text" className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline defaultValue={selectEditData.feedback_title} disabled/>
 
-      <TextField sx={{ m: 1, width: '30%' }} type="text" name='feedback_idschedule' className="from__input" id="inputGroup-sizing-default" label="ID DA REUNIÃO" placeholder="ID DA REUNIÃO" multiline select>
-      {schedule.map(schedules => {
+      {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
         return (
-        <MenuItem value={schedules.schedule_id}>{schedules.schedule_id}</MenuItem>
+          <TextField sx={{ m: 1, width: '10%' }} type="text" name='feedback_manager_id' className="from__input" id="inputGroup-sizing-default" defaultValue={gerente.manager_id}  label="ID do Gerente" placeholder="ID do Gerente" multiline disabled/>
         )
       })}
-      </TextField>
 
-      <TextField sx={{ m: 1, width: '18.5%' }} name='feedback_date' type="date" defaultValue={selectEditData.feedback_date} className="from__input" id="inputGroup-sizing-default" label="Data" InputLabelProps={{
-        shrink: true,
-      }}/>
-
-      <TextField sx={{ m: 1, width: '18.5%' }} name='feedback_hour' type="time" defaultValue={selectEditData.feedback_hour} className="from__input" id="inputGroup-sizing-default" label="Hora" InputLabelProps={{
-        shrink: true,
-      }}/>
-
-      <TextField sx={{ m: 1, width: '20%' }} name='feedback_evaluate' type="text" defaultValue={selectEditData.feedback_evaluate} className="from__input" id="inputGroup-sizing-default" label="Avaliação" placeholder="Avaliação" multiline />
-      
       {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
-          return (
-          <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_name_creator' defaultValue={gerente.manager_name} className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" disabled multiline/>
-          )
-        })}
-
-      <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_name_receiver' className="" id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select defaultValue={selectEditData.feedback_collaborator}>
-        {colaboradores.map(colaborador => {
         return (
-          <MenuItem value={colaborador.collaborator_name}>{colaborador.collaborator_name}</MenuItem>
-          )
-        })}
-        </TextField>
+        <TextField key={gerente.manager_id} sx={{ m: 1, width: '39%' }} type="text"  name='feedback_manage' className="from__input" id="inputGroup-sizing-default" defaultValue={gerente.manager_name} label="Gerente" placeholder="Gerente" multiline disabled/>
+        )
+      })}
+
+      {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
+        return (
+          <TextField sx={{ m: 1, width: '10%' }} type="text" name='feedback_collaborator_id' className="from__input" id="inputGroup-sizing-default" defaultValue={gerente.manager_id} label="ID do Colaborador" placeholder="ID do Colaborador" multiline disabled/>
+        )
+      })}
+
+      <TextField sx={{ m: 1, width: '28%' }} type="text" name='feedback_collaborator' id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline defaultValue={selectEditData.feedback_collaborator} disabled/>
+
+      <TextField sx={{ m: 1, width: '17%' }} type="text" name='feedback_idschedule' defaultValue={selectEditData.feedback_idschedule} className="from__input"  id="inputGroup-sizing-default" label="ID da Reunião" placeholder="ID da Reunião" multiline disabled/>
+
+      <TextField sx={{ m: 1, width: '15%' }} name='feedback_date' type="date" defaultValue={selectEditData.feedback_date} className="from__input" id="inputGroup-sizing-default" label="Data" InputLabelProps={{shrink: true,
+      }} disabled/>
+
+      <TextField sx={{ m: 1, width: '15%' }} name='feedback_hour' type="time" defaultValue={selectEditData.feedback_hour} className="from__input" id="inputGroup-sizing-default" label="Hora" InputLabelProps={{shrink: true,
+      }} disabled/>
+
+      <TextField sx={{ m: 1, width: '40%' }} name='feedback_evaluate' type="text" defaultValue={selectEditData.feedback_evaluate} className="from__input" id="inputGroup-sizing-default" label="Avaliação" placeholder="Avaliação" multiline />
 
       <TextField sx={{ m: 1, width: '92%' }} type="text" name='feedback_note' defaultValue={selectEditData.feedback_note} className="from__input" id="basic-url" label="Anotações" placeholder="Anotações" multiline rows={4} />
 

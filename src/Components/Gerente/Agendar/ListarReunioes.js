@@ -16,21 +16,15 @@ import ListarFeedback from '../Feedback/ListarFeedback';
 const ListarReunioes = () => {
     const [showScheduleForm, setShowScheduleForm] = useState(false);
     const [showFeedbackForm, setShowFeedbackForm] = useState(false);
-    // const [selectEditDataFeedback, setSelectEditDataFeedback] = useState();
     const [showEditScheduleForm, setShowEditScheduleForm] = useState(false);
     const [selectEditData, setSelectEditData] = useState();
+    const [IdSchedule, setIdSchedule] = useState();
     const [seach, setSearch] = useState("");
 
     const { gerentes, setGerentes } = useGerentes([]);
     const { schedules, setSchedules } = useSchedules([]);
     const { feedbacks, setFeedbacks } = useFeedbacks([]);
     const { idGerentes } = useContext(UserContext);
-
-    const handleAddFeedbackButton = (schedule) => {
-        // e.preventDefault();
-        setSelectEditData(schedule)
-        setShowFeedbackForm(true)
-    }
 
     const handleAddSubmit = (e) => {
         e.preventDefault();
@@ -41,14 +35,14 @@ const ListarReunioes = () => {
         setShowScheduleForm(false)
     }
 
-    const handleAddSubmitFeedback = (e) => {
-        e.preventDefault();
-        addfeedback(e.target)
-        .then(res => {
-            setFeedbacks([res])
-        })
-        setShowFeedbackForm(false)
-    }
+    // const handleEditSubmitFeedback = (e, schedule_id) => {
+    //     e.preventDefault();
+    //     editschedule(schedule_id, e.target)
+    //     .then(res => {
+    //         setSchedules([res])
+    //     })
+    //     setShowEditScheduleForm(false)
+    // }
 
     const handleEditSubmit = (e, schedule_id) => {
         e.preventDefault();
@@ -62,6 +56,20 @@ const ListarReunioes = () => {
     const handleEditButton = (schedule) => {
         setSelectEditData(schedule)
         setShowEditScheduleForm(true)
+    }
+
+    // const handleIdScheduleSubmit = (e, schedule_id) => {
+    //     e.preventDefault();
+    //     addfeedback(schedule_id, e.target)
+    //     .then(res => {
+    //         setFeedbacks([res])
+    //     })
+    //     setShowFeedbackForm(false)
+    // }
+
+    const handleIdScheduleButton = (schedule_id) => {
+        setIdSchedule(schedule_id)
+        setShowFeedbackForm(true)
     }
 
     const handleDeleteButton = (schedule_id, manager_token) => {
@@ -99,7 +107,7 @@ const ListarReunioes = () => {
 
                     {showEditScheduleForm && <EditarReunioes handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
 
-                    {/* {showFeedbackForm && <AdicionarFeedback handleAddSubmitFeedback={handleAddSubmitFeedback} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />} */}
+                    {showFeedbackForm && <AdicionarFeedback handleIdScheduleButton={handleIdScheduleButton} IdSchedule={IdSchedule} handleCancelButton={handleCancelButton}/>}
                 </div>
                 <br></br>
                 <h3>LISTA DE REUNIÕES</h3>
@@ -133,16 +141,17 @@ const ListarReunioes = () => {
                                     {/* <td>{schedule.schedule_status}</td> */}
                                     <td>
                                         <div>
-                                            <i onClick={() => handleAddFeedbackButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" />
+                                            <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" />
+
                                             <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" />
                                             {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
-                                                return (
-                                                    <i key={gerente.manager_id} onClick={() => handleDeleteButton(schedule.schedule_id, gerente.manager_token)} className="btn btn-danger m-1 bi bi-trash" />
-                                                    )
-                                                })}
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            return (
+                                                <i key={gerente.manager_id} onClick={() => handleDeleteButton(schedule.schedule_id, gerente.manager_token)} className="btn btn-danger m-1 bi bi-trash" />
+                                                )
+                                            })}
+                                        </div>
+                                    </td>
+                                </tr>
                                 )
                             })}
                         </tbody>
