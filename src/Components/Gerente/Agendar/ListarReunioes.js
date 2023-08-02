@@ -147,8 +147,9 @@ const ListarReunioes = () => {
                             })}
                         </tbody>
                     </table>
-                <ListarFeedback/>
             </div>
+            <br></br>
+            <ListarFeedback/>
         </>
     )
 }

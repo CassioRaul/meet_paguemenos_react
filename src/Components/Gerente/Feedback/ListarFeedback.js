@@ -74,7 +74,7 @@ const ListarFeedback = () => {
             {showEditFeedbackForm && <EditarFeedback handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton}/>}
         </div>
         
-        <h3>LISTA DE FEEDBACKS</h3><br></br>
+        <br></br><h3>LISTA DE FEEDBACKS</h3>
         <table className="table table-striped table-hover">
                 <thead>
                     <tr>

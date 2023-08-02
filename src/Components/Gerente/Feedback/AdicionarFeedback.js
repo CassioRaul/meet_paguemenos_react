@@ -4,28 +4,42 @@ import { Box, MenuItem, TextField } from '@mui/material';
 import { UserContext } from "../../../context/UserContext";
 import { useGerentes } from "../../../hooks/useGerentes";
 import { useColaboradores } from "../../../hooks/useColaboradores";
+import { useSchedules } from "../../../hooks/useSchedules";
 
 const AdicionarFeedback = ({ handleAddSubmit, handleCancelButton }) => {
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
   const { gerentes } = useGerentes([]);
   const { colaboradores } = useColaboradores([]);
   const { idGerentes } = useContext(UserContext);
+  const { schedules, setSchedules } = useSchedules([]);
     
   return (
     <>
     <div className="container_white">
-    <Box onSubmit={ handleAddSubmit } component="form" noValidate autoComplete="off">
+    <Box onSubmit={handleAddSubmit} component="form" noValidate autoComplete="off">
       <h3 className="text-center">FEEDBACK DA REUNIÃO</h3>
 
       <TextField sx={{ m: 1, width: '92%' }} name='feedback_title' type="text" className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline/>
 
       {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
         return (
-        <TextField key={gerente.manager_id} sx={{ m: 1, width: '50%' }} type="text" defaultValue={gerente.manager_name} name='feedback_manage' className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" multiline disabled/>
+          <TextField sx={{ m: 1, width: '10%' }} type="text" name='feedback_manager_id' className="from__input" id="inputGroup-sizing-default" defaultValue={gerente.manager_id}  label="ID do Gerente" placeholder="ID do Gerente" multiline disabled/>
         )
       })}
 
-      <TextField sx={{ m: 1, width: '40%' }} type="text" name='feedback_collaborator' id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select>
+      {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
+        return (
+        <TextField key={gerente.manager_id} sx={{ m: 1, width: '39%' }} type="text"  name='feedback_manage' className="from__input" id="inputGroup-sizing-default" defaultValue={gerente.manager_name} label="Gerente" placeholder="Gerente" multiline disabled/>
+        )
+      })}
+
+      {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
+        return (
+          <TextField sx={{ m: 1, width: '10%' }} type="text" name='feedback_collaborator_id' className="from__input" id="inputGroup-sizing-default" defaultValue={gerente.manager_id} label="ID do Colaborador" placeholder="ID do Colaborador" multiline disabled/>
+        )
+      })}
+
+      <TextField sx={{ m: 1, width: '28%' }} type="text" name='feedback_collaborator' id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select>
         {colaboradores.map(colaborador => {
         return (
           <MenuItem key={colaborador.collaborator_id} value={colaborador.collaborator_name}>{colaborador.collaborator_name}</MenuItem>
@@ -33,9 +47,7 @@ const AdicionarFeedback = ({ handleAddSubmit, handleCancelButton }) => {
         })}
       </TextField>
 
-      <TextField sx={{ m: 1, width: '40%' }} type="text" name='feedback_manager_id' className="from__input" id="inputGroup-sizing-default" label="ID do Gerente" placeholder="ID do Gerente" multiline/>
-
-      <TextField sx={{ m: 1, width: '40%' }} type="text" name='feedback_collaborator_id' className="from__input" id="inputGroup-sizing-default" label="ID do Colaborador" placeholder="ID do Colaborador" multiline/>
+      
 
       <TextField sx={{ m: 1, width: '17%' }} type="text" name='feedback_idschedule' className="from__input"  id="inputGroup-sizing-default" label="ID da Reunião" placeholder="ID da Reunião" multiline/>
 
