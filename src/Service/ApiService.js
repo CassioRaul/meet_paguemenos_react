@@ -103,13 +103,16 @@ export function addfeedback(feedback) {
 export function editfeedback(feedback_iduser, feedback) {
   return ApiService.put('/feedback/' + feedback_iduser + '/',
     {
-      'feedback_idschedule': feedback.feedback_idschedule.value,
-      'feedback_title': feedback.feedback_title.value,
       'feedback_manage': feedback.feedback_manage.value,
       'feedback_collaborator': feedback.feedback_collaborator.value,
+      'feedback_title': feedback.feedback_title.value,
       'feedback_date': feedback.feedback_date.value,
+      'feedback_hour': feedback.feedback_hour.value,
       'feedback_note': feedback.feedback_note.value,
       'feedback_evaluate': feedback.feedback_evaluate.value,
+      'feedback_idschedule': feedback.feedback_idschedule.value,
+      'feedback_manager_id': feedback.feedback_manager_id.value,
+      'feedback_collaborator_id': feedback.feedback_collaborator_id.value,
     })
     .then(res => {
       return res.data

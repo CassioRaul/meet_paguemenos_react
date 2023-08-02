@@ -70,7 +70,7 @@ const ListarFeedback = () => {
             </div>
         </div>
         <div className="button_add_close">
-            {showFeedbackForm && <AdicionarFeedback handleAddSubmit={handleAddSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
+            {showFeedbackForm && <AdicionarFeedback handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />}
             {showEditFeedbackForm && <EditarFeedback handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton}/>}
         </div>
         
