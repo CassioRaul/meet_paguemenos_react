@@ -79,9 +79,6 @@ const ListarReunioes = () => {
             deleteschedule(schedule_id).then(res => {
                 setSchedules(schedules.filter(c => c.schedule_id !== schedule_id))
             })
-            deletefeedback(schedule_id).then(res => {
-                setFeedbacks(feedbacks.filter(f => f.feedback_id !== schedule_id))
-            })
         } else {
             alert("TOKEN INVÁLIDO!")
         }
