@@ -122,7 +122,7 @@ const ListarReunioes = () => {
                             <th scope="col">DATA</th>
                             <th scope="col">HORA</th>
                             <th scope="col">COLABORADOR</th>
-                            <th scope="col">SALA</th>
+                            <th scope="col">LOCAL</th>
                             <th scope="col">DURAÇÃO</th>
                             {/* <th scope="col">STATUS</th> */}
                             <th scope="col">AÇÕES</th>

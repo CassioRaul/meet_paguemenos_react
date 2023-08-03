@@ -15,6 +15,8 @@ const ListarReunioes = () => {
     const [showEditScheduleForm, setShowEditScheduleForm] = useState(false);
     const [selectEditData, setSelectEditData] = useState();
     const [seach, setSearch] = useState("");
+    const [IdSchedule, setIdSchedule] = useState();
+    const [showFeedbackForm, setShowFeedbackForm] = useState(false);
 
     const { colaboradores, setColaboradores } = useColaboradores([]);
     const { schedules, setSchedules } = useSchedules([]);
@@ -39,6 +41,11 @@ const ListarReunioes = () => {
     const handleEditButton = (schedule) => {
         setSelectEditData(schedule)
         setShowEditScheduleForm(true)
+    }
+
+    const handleIdScheduleButton = (schedule_id) => {
+        setIdSchedule(schedule_id)
+        setShowFeedbackForm(true)
     }
 
     const handleDeleteButton = (schedule_id) => {
@@ -80,29 +87,36 @@ const ListarReunioes = () => {
                                 <th scope="col">ID</th>
                                 <th scope="col">TÍTULO</th>
                                 <th scope="col">DESCRIÇÃO</th>
-                                <th scope="col">DATA/HORA</th>
+                                <th scope="col">DATA</th>
+                                <th scope="col">HORA</th>
                                 <th scope="col">GERENTE</th>
-                                <th scope="col">SALA</th>
+                                <th scope="col">LOCAL</th>
                                 <th scope="col">DURAÇÃO</th>
-                                <th scope="col">STATUS</th>
+                                {/* <th scope="col">STATUS</th> */}
                                 <th scope="col">AÇÕES</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {schedules.filter(schedule => schedule.schedule_collaborator_id == idColaboradores).filter(filterSchedule => filterSchedule.schedule_name_creator.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
+                            {schedules.filter(schedule => schedule.schedule_collaborator_id == idColaboradores).filter(filterSchedule => filterSchedule.schedule_name_manager.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
                                 return (
                                     <tr key={schedule.schedule_id}>
                                         <td>{schedule.schedule_id}</td>
                                         <td>{schedule.schedule_topic}</td>
                                         <td>{schedule.schedule_description}</td>
-                                        <td>{schedule.schedule_date_hour}</td>
-                                        <td>{schedule.schedule_name_creator}</td>
+                                        <td>{schedule.schedule_date}</td>
+                                        <td>{schedule.schedule_hour}</td>
+                                        <td>{schedule.schedule_name_manager}</td>
                                         <td>{schedule.schedule_meet_location}</td>
                                         <td>{schedule.schedule_duration}</td>
-                                        <td>{schedule.schedule_status}</td>
                                         <td>
-                                            <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" />
-                                            <i onClick={() => handleDeleteButton(schedule.schedule_id)} className="btn btn-danger m-1 bi bi-trash" />
+                                        <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" />
+
+                                        <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" />
+                                        {colaboradores.filter(colaborador => colaborador.collaborator_id == idColaboradores).map(colaborador => {
+                                        return (
+                                            <i key={colaborador.collaborator_id} onClick={() => handleDeleteButton(schedule.schedule_id, colaborador.collaborator_token)} className="btn btn-danger m-1 bi bi-trash" />
+                                            )
+                                        })}
                                         </td>
                                     </tr>
                                 )

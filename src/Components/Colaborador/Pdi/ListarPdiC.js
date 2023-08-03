@@ -14,7 +14,6 @@ const ListarPdiC = () => {
         let mount = true
         getgerente()
             .then(res => {
-                console.log(res)
                 setGerentes(res)
                 return () => mount = false
             })
