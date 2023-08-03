@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { deletefeedback, addschedule, editschedule, deleteschedule } from '../../../Service/ApiService';
+import { addschedule, editschedule, deleteschedule } from '../../../Service/ApiService';
 
 import { UserContext } from "../../../context/UserContext";
 import { useGerentes } from "../../../hooks/useGerentes";
@@ -12,6 +12,7 @@ import Search from './Search';
 import './Agendar.css';
 import AdicionarFeedback from '../Feedback/AdicionarFeedback';
 import ListarFeedback from '../Feedback/ListarFeedback';
+import GraficoGeral from '../../Graficos/GraficoGeral';
 
 const ListarReunioes = () => {
     const [showScheduleForm, setShowScheduleForm] = useState(false);
@@ -158,6 +159,7 @@ const ListarReunioes = () => {
             </div>
             <br></br>
             <ListarFeedback/>
+            <GraficoGeral/>
         </>
     )
 }
