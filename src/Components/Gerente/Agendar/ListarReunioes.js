@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { addfeedback, addschedule, editschedule, deleteschedule } from '../../../Service/ApiService';
+import { deletefeedback, addschedule, editschedule, deleteschedule } from '../../../Service/ApiService';
 
 import { UserContext } from "../../../context/UserContext";
 import { useGerentes } from "../../../hooks/useGerentes";
@@ -15,9 +15,9 @@ import ListarFeedback from '../Feedback/ListarFeedback';
 
 const ListarReunioes = () => {
     const [showScheduleForm, setShowScheduleForm] = useState(false);
-    const [showFeedbackForm, setShowFeedbackForm] = useState(false);
     const [showEditScheduleForm, setShowEditScheduleForm] = useState(false);
     const [selectEditData, setSelectEditData] = useState();
+    const [showFeedbackForm, setShowFeedbackForm] = useState(false);
     const [IdSchedule, setIdSchedule] = useState();
     const [seach, setSearch] = useState("");
 
@@ -76,10 +76,12 @@ const ListarReunioes = () => {
         // e.preventDefault();
         const token = prompt("TOKEN DE SEGURANÇA NECESSÁRIO:")
         if (token === manager_token) {
-            deleteschedule(schedule_id)
-                .then(res => {
-                    setSchedules(schedules.filter(c => c.schedule_id !== schedule_id))
-                })
+            deleteschedule(schedule_id).then(res => {
+                setSchedules(schedules.filter(c => c.schedule_id !== schedule_id))
+            })
+            deletefeedback(schedule_id).then(res => {
+                setFeedbacks(feedbacks.filter(f => f.feedback_id !== schedule_id))
+            })
         } else {
             alert("TOKEN INVÁLIDO!")
         }

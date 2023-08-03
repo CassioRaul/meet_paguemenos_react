@@ -65,9 +65,10 @@ const ListarFeedback = () => {
     <div className="container_white">
         <div className="button_add_close">
             <div className='container_display_flex'>
-                <button className="btn btn-primary m-0 i bi-plus-circle " onClick={() => setShowFeedbackForm(true)}> ADICIONAR</button>&nbsp;&nbsp;&nbsp;
-                <Search seach={seach} setSearch={setSearch} />
+                {/* <button className="btn btn-primary m-0 i bi-plus-circle " onClick={() => setShowFeedbackForm(true)}> ADICIONAR</button>&nbsp;&nbsp;&nbsp; */}
             </div>
+            <Search seach={seach} setSearch={setSearch} />
+
         </div>
         <div className="button_add_close">
             {showFeedbackForm && <AdicionarFeedback handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />}
@@ -90,7 +91,8 @@ const ListarFeedback = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {feedbacks.filter(feedback => feedback.feedback_manager_id == idGerentes && feedback.feedback_id == feedback.feedback_idschedule).filter(filterFeedbacks => filterFeedbacks.feedback_collaborator.toLowerCase().includes(seach.toLowerCase())).map(feedback => {
+                    {/* && feedback.feedback_id == feedback.feedback_idschedule */}
+                    {feedbacks.filter(feedback => feedback.feedback_manager_id == idGerentes).filter(filterFeedbacks => filterFeedbacks.feedback_collaborator.toLowerCase().includes(seach.toLowerCase())).map(feedback => {
                         return (
                             <tr key={feedback.feedback_id}>
                                 <td>{feedback.feedback_id}</td>

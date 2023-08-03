@@ -81,9 +81,9 @@ export function getfeedback() {
     })
 }
 
-export function addfeedback(id_schedule, feedback) {
+export function addfeedback(feedback) {
   return ApiService.post('/feedback/', {
-    'feedback_id': id_schedule,
+    'feedback_id': null,
     'feedback_manage': feedback.feedback_manage.value,
     'feedback_collaborator': feedback.feedback_collaborator.value,
     'feedback_title': feedback.feedback_title.value,
