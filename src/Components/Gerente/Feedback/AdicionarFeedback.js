@@ -13,7 +13,7 @@ const AdicionarFeedback = ({ IdSchedule, handleCancelButton }) => {
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
   const { gerentes } = useGerentes([]);
   const { colaboradores } = useColaboradores([]);
-  const { idGerentes } = useContext(UserContext);
+  const { idGerentes, idColaboradores } = useContext(UserContext);
   const { schedules, setSchedules } = useSchedules([]);
   const { feedbacks, setFeedbacks } = useFeedbacks([]);
 
@@ -46,11 +46,7 @@ const AdicionarFeedback = ({ IdSchedule, handleCancelButton }) => {
         )
       })}
 
-      {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
-        return (
-          <TextField key={gerente.manager_id} sx={{ m: 1, width: '10%' }} type="text" name='feedback_collaborator_id' className="from__input" id="inputGroup-sizing-default" defaultValue={gerente.manager_id} label="ID do Colaborador" placeholder="ID do Colaborador" multiline disabled/>
-        )
-      })}
+      <TextField sx={{ m: 1, width: '10%' }} type="text" name='feedback_collaborator_id' className="from__input" id="inputGroup-sizing-default"defaultValue={IdSchedule.schedule_collaborator_id} label="ID do Colaborador" placeholder="ID do Colaborador" multiline disabled/>
 
       <TextField sx={{ m: 1, width: '28%' }} type="text" name='feedback_collaborator' id="inputGroup-sizing-default" defaultValue={IdSchedule.schedule_name_collaborator} label="Colaborador" placeholder="Colaborador" multiline disabled/>
       

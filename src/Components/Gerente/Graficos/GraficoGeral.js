@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { UserData } from "./Data";
-import { useGerentes } from "../../hooks/useGerentes";
+import { useGerentes } from "../../../hooks/useGerentes";
 
 // import { UserData } from "./DataBase";
-import { getcolaboradores } from '../../Service/ApiService';
+import { getcolaboradores } from '../../../Service/ApiService';
 import BarChart from './BarChart';
 // import LineChart from './components/LineChart';
 // import PieChart from './components/PieChart';
@@ -42,7 +42,7 @@ const GraficoGeral = () => {
     <div class="container_white">
         <br></br><h2>Gráfico Geral</h2><br></br>
             <div class="row">
-                <div style={{width: 800 }} class="col-2">
+                <div style={{width: 850 }} class="col-2">
                     {/* {colaboradores.map(colaborador => {
                         return (
                             <h6 key={colaborador.collaborator_id}>{colaborador.collaborator_name}</h6>

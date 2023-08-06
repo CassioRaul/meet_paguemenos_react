@@ -55,7 +55,7 @@ const EditarReunioes = ({ handleEditSubmit, selectEditData, handleCancelButton }
           )
         })}
 
-        <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_collaborator_id' defaultValue="1" className="from__input" id="inputGroup-sizing-default" label="Id Colaborador" placeholder="Id Colaborador" disabled multiline/>
+        <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_collaborator_id' defaultValue="1" className="from__input" id="inputGroup-sizing-default" label="Id Colaborador" placeholder="Id Colaborador" multiline/>
         
         <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_meet_location' defaultValue={selectEditData.schedule_meet_location} className="from__input" id="basic-url" label="Sala" placeholder="Sala" multiline/>
 

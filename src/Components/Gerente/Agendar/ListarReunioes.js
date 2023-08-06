@@ -12,7 +12,6 @@ import Search from './Search';
 import './Agendar.css';
 import AdicionarFeedback from '../Feedback/AdicionarFeedback';
 import ListarFeedback from '../Feedback/ListarFeedback';
-import GraficoGeral from '../../Graficos/GraficoGeral';
 
 const ListarReunioes = () => {
     const [showScheduleForm, setShowScheduleForm] = useState(false);
@@ -159,7 +158,6 @@ const ListarReunioes = () => {
             </div>
             <br></br>
             <ListarFeedback/>
-            <GraficoGeral/>
         </>
     )
 }

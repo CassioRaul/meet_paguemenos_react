@@ -1,32 +1,29 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import "../../Styles/FotodePerfil.css";
 import "../../Styles/MenuGerente.css";
-import PerfilColaborador from '../../Assets/Perfils/usuario.jpg';
+import "../../Styles/FotodePerfil.css";
 import { useColaboradores } from "../../hooks/useColaboradores";
 import { UserContext } from "../../context/UserContext";
 import 'bootstrap/js/dist/dropdown';
 
-function MenuColaborador() {
+const MenuColaborador = () => {
   const { colaboradores } = useColaboradores([]);
-  const { idColaborador } = useContext(UserContext);
+  const { idColaboradores } = useContext(UserContext);
 
   return (
     <div className="gerente__responsivo MeuGerente">
 
       <div className="sesaoPerfil">
-        <img className="fotoDePerfil" src={PerfilColaborador} alt="Foto perfil colaborador" />
-        {colaboradores.filter(colaborador => colaborador.collaborator_id == idColaborador).map(colaborador => {
+        {colaboradores.filter(colaborador => colaborador.collaborator_id == idColaboradores).map(colaborador => {
           return (
             <div key={colaborador.collaborator_id}>
-              <img className="fotoDePerfil" src={colaborador.collaborator_image} alt="Foto perfil gerente" />
+              <img className="fotoDePerfil" src={colaborador.collaborator} alt="Foto perfil gerente" />
               <h4 className="gerente__nome">{colaborador.collaborator_name}</h4>
               <h6 className="gerente__cargo">{colaborador.collaborator_function}<br></br>token: {colaborador.collaborator_token}</h6>
             </div>
           )
         })}
       </div>
-      
       <div className="accordion accordion-flush " id="accordionFlushExample">
         <Link to="/AColaborador" className="MenuGerente__Link " >
           <button className="accordion-button collapsed MenuGerente__Button btn__home">
@@ -47,7 +44,7 @@ function MenuColaborador() {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MenuColaborador
+export default MenuColaborador;

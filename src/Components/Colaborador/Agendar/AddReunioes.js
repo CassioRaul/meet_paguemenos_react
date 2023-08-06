@@ -4,12 +4,13 @@ import { useState, useContext } from 'react';
 import { UserContext } from "../../../context/UserContext";
 import { useGerentes } from "../../../hooks/useGerentes";
 import { useColaboradores } from "../../../hooks/useColaboradores";
-import "./../../Gerente/Agendar/Agendar.css";
+import "../../Gerente/Agendar/Agendar.css";
 
 const AddReunioes = ({ handleAddSubmit, handleCancelButton }) => {
   const { gerentes } = useGerentes([]);
   const { colaboradores } = useColaboradores([]);
   const { idGerentes } = useContext(UserContext);
+  const { idColaboradores } = useContext(UserContext);
   const [ idColaborador, SetIdColaborador ] = useState([]);
   const [ openModal, setOpenModal ] = useState(false);
 
@@ -17,11 +18,11 @@ const AddReunioes = ({ handleAddSubmit, handleCancelButton }) => {
     <>
       <div className="container_white">
       <Box onSubmit={handleAddSubmit} component="form" noValidate autoComplete="off">
-        <h3 className="text-center">AGENDAR REUNIÃO</h3><br></br>
+        <h3 className="text-center">AGENDAR REUNIÃO X</h3><br></br>
         
-        {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
+        {colaboradores.filter(colaborador => colaborador.collaborator_id == idColaboradores).map(colaborador => {
           return (
-          <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_name_manager' key={gerente.manager_id} defaultValue={gerente.manager_name} className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" disabled multiline/>
+          <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_name_collaborator' key={colaborador.collaborator_id} defaultValue={colaborador.collaborator_name} className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" multiline disabled/>
           )
         })}
         
@@ -29,10 +30,10 @@ const AddReunioes = ({ handleAddSubmit, handleCancelButton }) => {
 
         {/* <ModalColaborador isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}>
           <Box onSubmit={handleIdColaborador} component="form" noValidate autoComplete="off"> */}
-            <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_name_collaborator' id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select>
-            {colaboradores.map(colaborador => {
+            <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_name_manager' id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select>
+            {gerentes.map(gerente => {
             return (
-              <MenuItem key={colaborador.collaborator_id} value={colaborador.collaborator_name}>{colaborador.collaborator_name}</MenuItem>
+              <MenuItem key={gerente.manager_id} value={gerente.manager_name}>{gerente.manager_name}</MenuItem>
               )
             })}
             </TextField>
