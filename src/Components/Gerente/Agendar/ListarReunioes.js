@@ -58,29 +58,10 @@ const ListarReunioes = () => {
         setShowEditScheduleForm(true)
     }
 
-    // const handleIdScheduleSubmit = (e, schedule_id) => {
-    //     e.preventDefault();
-    //     addfeedback(schedule_id, e.target)
-    //     .then(res => {
-    //         setFeedbacks([res])
-    //     })
-    //     setShowFeedbackForm(false)
-    // }
-
-    const handleIdScheduleButton = (schedule_id) => {
-        // const res = prompt("FINALIZAR REUNIÃO S/N: ")
-        // if (res === "S" || res === "s") {
-        // const newSchedules = [...schedules];
-        // newSchedules.map((schedule) => schedule.schedule_id === schedule_id ? (schedule.schedule_status = !schedule.schedule_status) : schedule);
-
-        // setSchedules([newSchedules])
-        setIdSchedule(schedule_id)
+    const handleIdScheduleButton = (schedule) => {
+        // alert(schedule_status)
+        setIdSchedule(schedule)
         setShowFeedbackForm(true)
-        // }
-
-        // } else{
-        //     alert("REUNIÃO NÃO FINALIZADA!")
-        // }
     }
 
     const handleDeleteButton = (schedule_id, manager_token) => {
@@ -139,7 +120,7 @@ const ListarReunioes = () => {
                     </thead>
                     <tbody>
                         {/* && schedule.schedule_status == true */}
-                        {schedules.filter(schedule => schedule.schedule_manager_id == idGerentes).filter(filterSchedule => filterSchedule.schedule_name_collaborator.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
+                        {schedules.filter(schedule => schedule.schedule_manager_id == idGerentes).filter(filterSchedule => filterSchedule.schedule_name_collaborator.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_topic.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
                             return (
                                 <tr key={schedule.schedule_id} style={{ textDecoration: schedule.schedule_status ? "line-through" : "" }}>
                                     <td>{schedule.schedule_id}</td>
@@ -152,18 +133,16 @@ const ListarReunioes = () => {
                                     <td>{schedule.schedule_duration}</td>
                                     {/* <td>{schedule.schedule_status}</td> */}
                                     <td>
-                                        <div>
-                                            
-                                            <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" />
+                                        <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" />
 
-                                            <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" />
-                                            
-                                            {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
-                                            return (
-                                                <i key={gerente.manager_id} onClick={() => handleDeleteButton(schedule.schedule_id, gerente.manager_token)} className="btn btn-danger m-1 bi bi-trash" />
-                                                )
-                                            })}
-                                        </div>
+                                        <i onClick={() => handleEditButton(schedule)}
+                                        className="btn btn-warning m-1 bi bi-pencil-square" />
+                                        
+                                        {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
+                                        return (
+                                            <i key={gerente.manager_id} onClick={() => handleDeleteButton(schedule.schedule_id, gerente.manager_token)} className="btn btn-danger m-1 bi bi-trash" />
+                                            )
+                                        })}
                                     </td>
                                 </tr>
                             )
