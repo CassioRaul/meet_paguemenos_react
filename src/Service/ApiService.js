@@ -60,7 +60,7 @@ export function editschedule(schedule_id, schedule) {
       'schedule_meet_location': schedule.schedule_meet_location.value,
       'schedule_description': schedule.schedule_description.value,
       'schedule_duration': schedule.schedule_duration.value,
-      // 'schedule_status': schedule.schedule_status.value,
+      'schedule_status': schedule.schedule_status.value,
     })
     .then(res => {
       return res.data

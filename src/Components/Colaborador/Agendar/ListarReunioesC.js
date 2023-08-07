@@ -15,6 +15,8 @@ import Search from '../../Gerente/Agendar/Search';
 // import ListarFeedback from '../Feedback/ListarFeedback';
 import GraficoGeral from '../../Gerente/Graficos/GraficoGeral';
 import '../../Gerente/Agendar/Agendar.css';
+import AdicionarFeedbackC from '../Feedback/AdicionarFeedbackC';
+import ListarFeedbackC from '../Feedback/ListarFeedbackC';
 
 const ListarReunioesC = () => {
     const [showScheduleForm, setShowScheduleForm] = useState(false);
@@ -110,7 +112,7 @@ const ListarReunioesC = () => {
 
                     {showEditScheduleForm && <EditarReunioes handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
 
-                    {/* {showFeedbackForm && <AdicionarFeedback handleIdScheduleButton={handleIdScheduleButton} IdSchedule={IdSchedule} handleCancelButton={handleCancelButton}/>} */}
+                    {showFeedbackForm && <AdicionarFeedbackC handleIdScheduleButton={handleIdScheduleButton} IdSchedule={IdSchedule} handleCancelButton={handleCancelButton}/>}
                 </div>
                 <br></br>
                 <h3>LISTA DE REUNIÕES</h3>
@@ -122,7 +124,7 @@ const ListarReunioesC = () => {
                             <th scope="col">DESCRIÇÃO</th>
                             <th scope="col">DATA</th>
                             <th scope="col">HORA</th>
-                            <th scope="col">COLABORADOR</th>
+                            <th scope="col">GERENTE</th>
                             <th scope="col">LOCAL</th>
                             <th scope="col">DURAÇÃO</th>
                             {/* <th scope="col">STATUS</th> */}
@@ -161,8 +163,7 @@ const ListarReunioesC = () => {
                     </table>
             </div>
             <br></br>
-            {/* <ListarFeedback/> */}
-            <GraficoGeral/>
+            <ListarFeedbackC/>
         </>
     )
 }

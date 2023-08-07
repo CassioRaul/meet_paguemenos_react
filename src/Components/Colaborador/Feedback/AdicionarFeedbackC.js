@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { Box, MenuItem, TextField } from '@mui/material';
 
-import { editschedule, addfeedback, editfeedback, deletefeedback } from '../../../Service/ApiService';
+import { addfeedback, editfeedback, deletefeedback } from '../../../Service/ApiService';
 
 import { UserContext } from "../../../context/UserContext";
 import { useGerentes } from "../../../hooks/useGerentes";
@@ -9,7 +9,7 @@ import { useColaboradores } from "../../../hooks/useColaboradores";
 import { useSchedules } from "../../../hooks/useSchedules";
 import { useFeedbacks } from "../../../hooks/useFeedbacks";
 
-const AdicionarFeedback = ({ IdSchedule, handleCancelButton }) => {
+const AdicionarFeedbackC = ({ IdSchedule, handleCancelButton }) => {
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
   const { gerentes } = useGerentes([]);
   const { colaboradores } = useColaboradores([]);
@@ -33,9 +33,9 @@ const AdicionarFeedback = ({ IdSchedule, handleCancelButton }) => {
       <h3 className="text-center">FEEDBACK DA REUNIÃO</h3>
 
       <TextField sx={{ m: 1, width: '92%' }} name='feedback_title' type="text" defaultValue={IdSchedule.schedule_topic} className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline disabled/>
-
+      
       <TextField sx={{ m: 1, width: '10%' }} type="text" name='feedback_manager_id' className="from__input" id="inputGroup-sizing-default" defaultValue={IdSchedule.schedule_manager_id}  label="ID do Gerente" placeholder="ID do Gerente" multiline disabled/>
-
+        
       <TextField sx={{ m: 1, width: '39%' }} type="text"  name='feedback_manage' className="from__input" id="inputGroup-sizing-default" defaultValue={IdSchedule.schedule_name_manager} label="Gerente" placeholder="Gerente" multiline disabled/>
 
       <TextField sx={{ m: 1, width: '10%' }} type="text" name='feedback_collaborator_id' className="from__input" id="inputGroup-sizing-default"defaultValue={IdSchedule.schedule_collaborator_id} label="ID do Colaborador" placeholder="ID do Colaborador" multiline disabled/>
@@ -60,4 +60,4 @@ const AdicionarFeedback = ({ IdSchedule, handleCancelButton }) => {
   )
 }
 
-export default AdicionarFeedback
+export default AdicionarFeedbackC
