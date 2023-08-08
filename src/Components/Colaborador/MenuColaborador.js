@@ -26,18 +26,18 @@ const MenuColaborador = () => {
       </div>
       <div className="accordion accordion-flush " id="accordionFlushExample">
         <Link to="/AColaborador" className="MenuGerente__Link " >
-          <button className="accordion-button collapsed MenuGerente__Button btn__home">
+          <button className="accordion-button collapsed MenuGerente_Button btn_home">
             <i className="bi bi-journal-plus" />Agendar
           </button>
         </Link>
         <Link to="/PColaborador" className="MenuGerente__Link" >
-          <button className="accordion-button collapsed MenuGerente__Button btn__home">
+          <button className="accordion-button collapsed MenuGerente_Button btn_home">
             <i className="bi bi-clipboard2-data"></i>
             <p>Pdi</p>
           </button>
         </Link>
         <Link to="/HColaborador" className="MenuGerente__Link">
-          <button className="accordion-button collapsed MenuGerente__Button btn__home">
+          <button className="accordion-button collapsed MenuGerente_Button btn_home">
             <i className="bi bi-clock-history"></i>
             <p>Históricos</p>
           </button>
