@@ -1,45 +1,43 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import "../../Styles/FotodePerfil.css";
 import "../../Styles/MenuGerente.css";
-import PerfilColaborador from '../../Assets/Perfils/usuario.jpg';
-//import { useColaboradores } from "../../hooks/useColaboradores";
-import { useGerentes } from "../../hooks/useGerentes";
+import "../../Styles/FotodePerfil.css";
+import { useColaboradores } from "../../hooks/useColaboradores";
 import { UserContext } from "../../context/UserContext";
 import 'bootstrap/js/dist/dropdown';
 
 const MenuColaborador = () => {
-  const { gerentes } = useGerentes([]);
-  const { idGerentes } = useContext(UserContext);
+  const { colaboradores } = useColaboradores([]);
+  const { idColaboradores } = useContext(UserContext);
 
   return (
     <div className="gerente__responsivo MeuGerente">
 
       <div className="sesaoPerfil">
-        {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
+        {colaboradores.filter(colaborador => colaborador.collaborator_id == idColaboradores).map(colaborador => {
           return (
-            <div key={gerente.manager_id}>
-              <img className="fotoDePerfil" src={gerente.manager_image} alt="Foto perfil gerente" />
-              <h4 className="gerente__nome">{gerente.manager_name}</h4>
-              <h6 className="gerente__cargo">{gerente.manager_function}<br></br>token: {gerente.manager_token}</h6>
+            <div key={colaborador.collaborator_id}>
+              <img className="fotoDePerfil" src={colaborador.collaborator} alt="Foto perfil gerente" />
+              <h4 className="gerente__nome">{colaborador.collaborator_name}</h4>
+              <h6 className="gerente__cargo">{colaborador.collaborator_function}<br></br>token: {colaborador.collaborator_token}</h6>
             </div>
           )
         })}
       </div>
       <div className="accordion accordion-flush " id="accordionFlushExample">
-        <Link to="/AGerente" className="MenuGerente__Link " >
-          <button className="accordion-button collapsed MenuGerente__Button btn__home">
+        <Link to="/AColaborador" className="MenuGerente__Link " >
+          <button className="accordion-button collapsed MenuGerente_Button btn_home">
             <i className="bi bi-journal-plus" />Agendar
           </button>
         </Link>
-        <Link to="/PGerente" className="MenuGerente__Link" >
-          <button className="accordion-button collapsed MenuGerente__Button btn__home">
+        <Link to="/PColaborador" className="MenuGerente__Link" >
+          <button className="accordion-button collapsed MenuGerente_Button btn_home">
             <i className="bi bi-clipboard2-data"></i>
             <p>Pdi</p>
           </button>
         </Link>
-        <Link to="/HGerente" className="MenuGerente__Link">
-          <button className="accordion-button collapsed MenuGerente__Button btn__home">
+        <Link to="/HColaborador" className="MenuGerente__Link">
+          <button className="accordion-button collapsed MenuGerente_Button btn_home">
             <i className="bi bi-clock-history"></i>
             <p>Históricos</p>
           </button>
@@ -48,4 +46,5 @@ const MenuColaborador = () => {
     </div>
   );
 };
-export default MenuColaborador
+
+export default MenuColaborador;
