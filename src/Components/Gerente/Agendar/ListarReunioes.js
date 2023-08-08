@@ -21,8 +21,13 @@ const ListarReunioes = () => {
     const [seach, setSearch] = useState("");
 
     const { gerentes } = useGerentes([]);
-    const { schedules, setSchedules } = useSchedules([]);
     const { idGerentes } = useContext(UserContext);
+
+    const { schedules, setSchedules } = useSchedules([]);
+
+    // const updateSchedule = useCallback(() => {
+        
+    // }, [])
 
     const handleAddSubmit = (e) => {
         e.preventDefault();
