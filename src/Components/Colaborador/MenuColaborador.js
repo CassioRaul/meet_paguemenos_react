@@ -33,7 +33,7 @@ const MenuColaborador = () => {
         <Link to="/PColaborador" className="MenuGerente__Link" >
           <button className="accordion-button collapsed MenuGerente_Button btn_home">
             <i className="bi bi-clipboard2-data"></i>
-            <p>Pdi</p>
+            <p>pdi</p>
           </button>
         </Link>
         <Link to="/HColaborador" className="MenuGerente__Link">
