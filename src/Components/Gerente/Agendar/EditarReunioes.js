@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Box, MenuItem, TextField } from '@mui/material';
 import { useGerentes } from "../../../hooks/useGerentes";
 import { useColaboradores } from '../../../hooks/useColaboradores';

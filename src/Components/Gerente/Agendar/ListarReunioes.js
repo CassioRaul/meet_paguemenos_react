@@ -1,10 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import { addschedule, editschedule, deleteschedule } from '../../../Service/ApiService';
 
 import { UserContext } from "../../../context/UserContext";
 import { useGerentes } from "../../../hooks/useGerentes";
 import { useSchedules } from "../../../hooks/useSchedules";
-import { useFeedbacks } from "../../../hooks/useFeedbacks";
 
 import EditarReunioes from './EditarReunioes';
 import AdicionarReunioes from './AdicionarReunioes';
@@ -21,9 +20,8 @@ const ListarReunioes = () => {
     const [IdSchedule, setIdSchedule] = useState();
     const [seach, setSearch] = useState("");
 
-    const { gerentes, setGerentes } = useGerentes([]);
+    const { gerentes } = useGerentes([]);
     const { schedules, setSchedules } = useSchedules([]);
-    const { feedbacks, setFeedbacks } = useFeedbacks([]);
     const { idGerentes } = useContext(UserContext);
 
     const handleAddSubmit = (e) => {
@@ -34,15 +32,6 @@ const ListarReunioes = () => {
         })
         setShowScheduleForm(false)
     }
-
-    // const handleEditSubmitFeedback = (e, schedule_id) => {
-    //     e.preventDefault();
-    //     editschedule(schedule_id, e.target)
-    //     .then(res => {
-    //         setSchedules([res])
-    //     })
-    //     setShowEditScheduleForm(false)
-    // }
 
     const handleEditSubmit = (e, schedule_id) => {
         e.preventDefault();
@@ -58,8 +47,23 @@ const ListarReunioes = () => {
         setShowEditScheduleForm(true)
     }
 
+    // const handleEditSubmitFeedback = (e, schedule_id) => {
+    //     e.preventDefault();
+    //     editschedule(schedule_id, e.target)
+    //     .then(res => {
+    //         setSchedules([res])
+    //     })
+    //     setShowEditScheduleForm(false)
+    // }
+
     const handleIdScheduleButton = (schedule) => {
         // alert(schedule_status)
+        // const schedule_id = schedule.schedule_id
+
+        // editschedule(schedule_id, e.target)
+        // .then(res => {
+        //     setSchedules([res])
+        // })
         setIdSchedule(schedule)
         setShowFeedbackForm(true)
     }
