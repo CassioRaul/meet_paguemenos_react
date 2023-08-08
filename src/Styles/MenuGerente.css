@@ -1,7 +1,7 @@
 .MeuGerente, .MenuColacorador{
     margin-left: 0.5em;
 }
-
+ 
 .MenuGerente__Button{
     display: flex;
     align-items:baseline;
