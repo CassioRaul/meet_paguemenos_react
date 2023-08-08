@@ -18,40 +18,34 @@ const AdicionarReunioes = ({ handleAddSubmit, handleCancelButton }) => {
       <div className="container_white">
       <Box onSubmit={handleAddSubmit} component="form" noValidate autoComplete="off">
         <h3 className="text-center">AGENDAR REUNIÃO</h3><br></br>
-        
-        {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
-          return (
-          <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_name_manager' key={gerente.manager_id} defaultValue={gerente.manager_name} className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" disabled multiline/>
-          )
-        })}
-        
-        {/* <button className="btn btn-primary m-1" onClick={handleSelectColaborador}>SELECIONAR<br></br>COLABORADOR</button> */}
-
-        {/* <ModalColaborador isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}>
-          <Box onSubmit={handleIdColaborador} component="form" noValidate autoComplete="off"> */}
-            <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_name_collaborator' id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select>
-            {colaboradores.map(colaborador => {
-            return (
-              <MenuItem key={colaborador.collaborator_id} value={colaborador.collaborator_name}>{colaborador.collaborator_name}</MenuItem>
-              )
-            })}
-            </TextField>
-            {/* {colaboradores.map(colaborador => {
-              return (
-                <input type="text" value={colaborador.collaborator_id}/>
-              )
-            })}
-            <button className="btn btn-primary m-1" type="submit">Salvar</button>
-          </Box>
-        </ModalColaborador> */}
 
         {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
           return (
-          <TextField sx={{ m: 1, width: '36%' }} type="text" name='schedule_manager_id' key={gerente.manager_id} defaultValue={gerente.manager_id} className="from__input" id="inputGroup-sizing-default" label="Id Gerente" placeholder="Id Gerente" disabled multiline/>
+          <TextField sx={{ m: 1, width: '40.5%' }} type="text" name='schedule_name_manager' key={gerente.manager_id} defaultValue={gerente.manager_name} className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" disabled multiline/>
+          )
+        })}
+        
+        {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
+          return (
+          <TextField sx={{ m: 1, width: '8%' }} type="text" name='schedule_manager_id' key={gerente.manager_id} defaultValue={gerente.manager_id} className="from__input" id="inputGroup-sizing-default" label="Id Gerente" placeholder="Id Gerente" disabled multiline/>
           )
         })}
 
-        <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_collaborator_id' defaultValue="1" className="from__input" id="inputGroup-sizing-default" label="Id Colaborador" placeholder="Id Colaborador" disabled multiline/>
+        <TextField sx={{ m: 1, width: '19%' }} type="text" name='schedule_name_collaborator' id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" multiline select>
+          {colaboradores.map(colaborador => {
+          return (
+            <MenuItem key={colaborador.collaborator_id} value={colaborador.collaborator_name}>{colaborador.collaborator_id} - {colaborador.collaborator_name}</MenuItem>
+            )
+          })}
+        </TextField>
+
+        <TextField sx={{ m: 1, width: '19%' }} type="text" name='schedule_collaborator_id'  className="from__input" id="inputGroup-sizing-default" label="Id Colaborador" placeholder="Id Colaborador" multiline select>
+          {colaboradores.map(colaborador => {
+          return (
+            <MenuItem key={colaborador.collaborator_id} value={colaborador.collaborator_id}>{colaborador.collaborator_id}</MenuItem>
+            )
+          })}
+        </TextField>
 
         <TextField sx={{ m: 1, width: '50%' }} name='schedule_topic' type="text" className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline />
 

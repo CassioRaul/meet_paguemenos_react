@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const ApiService = axios.create({
-  baseURL: 'http://25.0.155.100:8000',
+  baseURL: 'http://192.168.177.29:8000',
   headers: {
     'Content-Type': 'application/json'
   }
@@ -60,7 +60,7 @@ export function editschedule(schedule_id, schedule) {
       'schedule_meet_location': schedule.schedule_meet_location.value,
       'schedule_description': schedule.schedule_description.value,
       'schedule_duration': schedule.schedule_duration.value,
-      // 'schedule_status': schedule.schedule_status.value,
+      'schedule_status': schedule.schedule_status.value,
     })
     .then(res => {
       return res.data

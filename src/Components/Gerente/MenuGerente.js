@@ -42,6 +42,12 @@ const MenuGerente = () => {
             <p>Históricos</p>
           </button>
         </Link>
+        <Link to="/GGrafico" className="MenuGerente__Link">
+          <button className="accordion-button collapsed MenuGerente__Button btn__home">
+            <i className="bi bi-clock-history"></i>
+            <p>Gráficos</p>
+          </button>
+        </Link>
       </div>
     </div>
   );

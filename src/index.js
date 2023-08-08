@@ -29,6 +29,7 @@ import ListarPdiC from './Components/Colaborador/Pdi/ListarPdiC';
 import Historico from './Components/Gerente/Historico';
 import Relatorios from './Components/Gerente/Relatorios/Relatorios';
 import ListarFeedback from './Components/Gerente/Feedback/ListarFeedback';
+import GraficoGeral from './Components/Gerente/Graficos/GraficoGeral';
 
 
 const router = createBrowserRouter([
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
       {
         path:"/RColaborador",
         element: <RelatorioColaborador />
+      },
+      {
+        path:"/GGrafico",
+        element: <GraficoGeral />
       },
     ]
   }

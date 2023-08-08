@@ -1,15 +1,15 @@
 import { useState, useContext } from 'react';
 import { addfeedback, editfeedback, deletefeedback } from '../../../Service/ApiService';
 // import './Feedback.css';
-import AdicionarFeedback from './AdicionarFeedback';
-import EditarFeedback from './EditarFeedback';
+import AdicionarFeedbackC from '../Feedback/AdicionarFeedbackC';
+import EditarFeedbackC from '../Feedback/EditarFeedbackC';
 
 import { useGerentes } from "../../../hooks/useGerentes";
 import { useFeedbacks } from "../../../hooks/useFeedbacks";
 import { UserContext } from "../../../context/UserContext";
-import Search from '../Agendar/Search';
+import Search from '../../Gerente/Agendar/Search';
 
-const ListarFeedback = () => {
+const ListarFeedbackC = () => {
     
     const [showFeedbackForm, setShowFeedbackForm] = useState(false);
     const [showEditFeedbackForm, setShowEditFeedbackForm] = useState(false);
@@ -18,7 +18,7 @@ const ListarFeedback = () => {
 
     const { gerentes, setGerentes } = useGerentes([]);
     const { feedbacks, setFeedbacks } = useFeedbacks([]);
-    const { idGerentes } = useContext(UserContext);
+    const { idGerentes, idColaboradores } = useContext(UserContext);
 
     const handleAddSubmit = (e) => {
         e.preventDefault();
@@ -71,8 +71,8 @@ const ListarFeedback = () => {
 
         </div>
         <div className="button_add_close">
-            {showFeedbackForm && <AdicionarFeedback handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />}
-            {showEditFeedbackForm && <EditarFeedback handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton}/>}
+            {showFeedbackForm && <AdicionarFeedbackC handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />}
+            {showEditFeedbackForm && <EditarFeedbackC handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton}/>}
         </div>
         
         <br></br><h3>LISTA DE FEEDBACKS</h3>
@@ -82,7 +82,7 @@ const ListarFeedback = () => {
                         <th scope="col">ID</th>
                         <th scope="col">REUNIÃO</th>
                         <th scope="col">TÍTULO</th>
-                        <th scope="col">COLABORADOR</th>
+                        <th scope="col">GERENTE</th>
                         <th scope="col">DATA</th>
                         <th scope="col">HORA</th>
                         <th scope="col">ANOTAÇÕES</th>
@@ -92,13 +92,13 @@ const ListarFeedback = () => {
                 </thead>
                 <tbody>
                     {/* && feedback.feedback_id == feedback.feedback_idschedule */}
-                    {feedbacks.filter(feedback => feedback.feedback_manager_id == idGerentes).filter(filterFeedbacks => filterFeedbacks.feedback_collaborator.toLowerCase().includes(seach.toLowerCase())).map(feedback => {
+                    {feedbacks.filter(feedback => feedback.feedback_collaborator_id == idColaboradores).filter(filterFeedbacks => filterFeedbacks.feedback_manage.toLowerCase().includes(seach.toLowerCase())).map(feedback => {
                         return (
                             <tr key={feedback.feedback_id}>
                                 <td>{feedback.feedback_id}</td>
                                 <td>ID {feedback.feedback_idschedule}</td>
                                 <td>{feedback.feedback_title}</td>
-                                <td>{feedback.feedback_collaborator}</td>
+                                <td>{feedback.feedback_manage}</td>
                                 <td>{feedback.feedback_date}</td>
                                 <td>{feedback.feedback_hour}</td>
                                 <td>{feedback.feedback_note}</td>
@@ -118,4 +118,4 @@ const ListarFeedback = () => {
     )
 }
 
-export default ListarFeedback
+export default ListarFeedbackC
