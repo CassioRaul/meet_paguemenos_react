@@ -52,13 +52,24 @@ const EditarPdiC = ({ handleEditSubmit, selectEditData, handleCancelButton }) =>
 
       <TextField sx={{ m: 1, width: '50%' }} type="text" name='planning_goals' className="from__input" id="inputGroup-sizing-default" defaultValue={selectEditData.planning_goals} label="Meta" placeholder="Meta" disabled/>
 
-      <TextField sx={{ m: 1, width: '40%' }} type="text" name='planning_status' className="from__input" id="inputGroup-sizing-default" label="Status" placeholder="Status" multiline select>
+      <TextField sx={{ m: 1, width: '40%' }} type="text" name='planning_status' className="from__input" defaultValue={selectEditData.planning_status} id="inputGroup-sizing-default" label="Status" placeholder="Status" multiline select>
         <MenuItem value="EM ANDAMENTO">EM ANDAMENTO</MenuItem>
         <MenuItem value="CONCLUÍDO">CONCLUÍDO</MenuItem>
         <MenuItem value="EM ATRASO">EM ATRASO</MenuItem>
       </TextField>
 
-      <TextField sx={{ m: 1, width: '92%' }} type="text" name='planning_progess' className="from__input" defaultValue={selectEditData.planning_progess} id="inputGroup-sizing-default" label="Progresso" placeholder="Progresso" disabled />
+      <TextField sx={{ m: 1, width: '92%' }} type="text" name='planning_progess' className="from__input" defaultValue={selectEditData.planning_progess} id="inputGroup-sizing-default" label="Progresso" placeholder="Progresso" multiline select>
+        <MenuItem value={10}>10%</MenuItem>
+        <MenuItem value={20}>20%</MenuItem>
+        <MenuItem value={30}>30%</MenuItem>
+        <MenuItem value={40}>40%</MenuItem>
+        <MenuItem value={50}>50%</MenuItem>
+        <MenuItem value={60}>60%</MenuItem>
+        <MenuItem value={70}>70%</MenuItem>
+        <MenuItem value={80}>80%</MenuItem>
+        <MenuItem value={90}>90%</MenuItem>
+        <MenuItem value={100}>100%</MenuItem>
+      </TextField>
 
       <TextField sx={{ m: 1, width: '50%' }} type="date" name='planning_final_date' defaultValue={selectEditData.planning_final_date} className="from__input" id="inputGroup-sizing-default" label="Data de Entrega" disabled/>
 

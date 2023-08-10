@@ -45,7 +45,8 @@ const GraficoGeral = () => {
       <h2>Gráfico Geral de Plano de Desenvolvimento Individual</h2>
       <div class="container_white">
           <div style={{width: 900 }}>
-              <BarChart chartData={userData}/>
+              {/* <BarChart chartData={userData}/> */}
+              <BarChart/>
           </div>
       </div>
   </div>    

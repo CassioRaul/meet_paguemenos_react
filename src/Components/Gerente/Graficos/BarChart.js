@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react'
-import {Chart as ChartJS, BarElement} from 'chart.js';
+// import {Chart as ChartJS, BarElement} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-// import { Chart as ChartJS } from "chart.js/auto";
+import { Chart as ChartJS } from "chart.js/auto";
 import { UserContext } from "../../../context/UserContext";
 import { useGerentes } from "../../../hooks/useGerentes";
+import { useColaboradores } from '../../../hooks/useColaboradores';
 import { useSchedules } from "../../../hooks/useSchedules";
 import { useFeedbacks } from "../../../hooks/useFeedbacks";
 import { usePdi } from "../../../hooks/usePdi";
-import { useColaboradores } from '../../../hooks/useColaboradores';
 
-function BarChart({chartData}) {
+function BarChart() {
 
-  const [chart, setChart] = useState({})
+    const [chart, setChart] = useState({})
 
     const { gerentes } = useGerentes([]);
     const { colaboradores } = useColaboradores([]);
