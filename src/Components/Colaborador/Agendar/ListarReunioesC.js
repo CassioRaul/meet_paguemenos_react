@@ -156,7 +156,7 @@ const ListarReunioesC = () => {
                                             
                                             {colaboradores.filter(colaborador => colaborador.collaborator_id == idColaboradores).map(colaborador => {
                                             return (
-                                                <i key={colaborador.collaborator_id} onClick={() => handleDeleteButton(schedule.schedule_id, colaborador.collaborator)} className="btn btn-danger m-1 bi bi-trash" />
+                                                <i key={colaborador.collaborator_id} onClick={() => handleDeleteButton(schedule.schedule_id, colaborador.collaborator_token)} className="btn btn-danger m-1 bi bi-trash" />
                                                 )
                                             })}
                                         </div>

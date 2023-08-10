@@ -1,29 +1,63 @@
-import { Box, TextField } from '@mui/material';
-import React from 'react';
+import { Box, MenuItem, TextField } from '@mui/material';
+import { useContext } from 'react';
+
+import { UserContext } from "../../../context/UserContext";
+import { useGerentes } from "../../../hooks/useGerentes";
+import { useColaboradores } from "../../../hooks/useColaboradores";
+import "../../Gerente/Agendar/Agendar.css";
 
 const EditarReunioesC = ({ handleEditSubmit, selectEditData, handleCancelButton }) => {
+  const { gerentes } = useGerentes([]);
+  const { colaboradores } = useColaboradores([]);
+  const { idGerentes, idColaboradores } = useContext(UserContext);
     return (
       <>
       <div className="container_white">
       <Box onSubmit={(e)=>handleEditSubmit(e,selectEditData.schedule_id)} component="form" noValidate
         autoComplete="off">
-          <h3 className="text-center">EDITAR REUNIÃO a</h3><br></br>
+        <h3 className="text-center">EDITAR REUNIÃO</h3><br></br>
   
-          <TextField sx={{ m: 1, width: '50%' }} name='schedule_topic' type="text" className="from__input" defaultValue={selectEditData.schedule_topic} id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline/>
-  
-          <TextField sx={{ m: 1, width: '40%' }} name='schedule_date_hour' defaultValue={selectEditData.schedule_date_hour} className="from__input" id="inputGroup-sizing-default" label="Data Hora inicial" type="datetime-local"/>
-  
-          <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_name_creator' defaultValue={selectEditData.schedule_name_creator} className="from__input" id="inputGroup-sizing-default" label="Gerente" placeholder="Placeholder" multiline/>
-  
-          <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_name_receiver' defaultValue={selectEditData.schedule_name_receiver} className="from__input" id="inputGroup-sizing-default" label="Colaborador" placeholder="Placeholder" multiline/>
-  
-          <TextField sx={{ m: 1, width: '92%' }} type="url" name='schedule_meet_link' defaultValue={selectEditData.schedule_meet_link} className="from__input" id="basic-url" label="Link" placeholder="Link" multiline/>
-          
-          <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_meet_location' defaultValue={selectEditData.schedule_meet_location} className="from__input" id="basic-url" label="Sala" placeholder="Sala" multiline/>
-  
-          <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_duration' defaultValue={selectEditData.schedule_duration} className="from__input" id="filled-number" label="Duração" placeholder="30 min" multiline/>
-  
-          <TextField sx={{ m: 1, width: '92%' }} type="text" name='schedule_description' defaultValue={selectEditData.schedule_description} className="from__input" id="basic-url" label="Descrição" placeholder="Descrição" multiline rows={4}/>
+        <TextField sx={{ m: 1, width: '40.5%' }} type="text" name='schedule_name_collaborator' defaultValue={selectEditData.schedule_name_collaborator} className="from__input" id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" disabled/>
+        
+        <TextField sx={{ m: 1, width: '8%' }} type="text" name='schedule_collaborator_id' defaultValue={selectEditData.schedule_collaborator_id} className="from__input" id="inputGroup-sizing-default" label="Id Colaborador" placeholder="Id Colaborador" disabled multiline/>
+
+        <TextField sx={{ m: 1, width: '19%' }} type="text" defaultValue={selectEditData.schedule_name_manager} name='schedule_name_manager' id="inputGroup-sizing-default" label="Gerente" placeholder="Gerente" multiline select>
+        {gerentes.map(gerente => {
+          return (
+            <MenuItem key={gerente.manager_id} value={gerente.manager_name}>{gerente.manager_id} - {gerente.manager_name}</MenuItem>
+            )
+          })}
+        </TextField>
+        
+        <TextField sx={{ m: 1, width: '19%' }} type="text" defaultValue={selectEditData.schedule_manager_id} name='schedule_manager_id' className="from__input" id="inputGroup-sizing-default" label="Id Gerente" placeholder="Id Gerente" multiline select>
+        {gerentes.map(gerente => {
+          return (
+            <MenuItem key={gerente.manager_id} value={gerente.manager_id}>{gerente.manager_id}</MenuItem>
+            )
+          })}
+        </TextField>
+
+        <TextField sx={{ m: 1, width: '50%' }} name='schedule_topic' type="text" defaultValue={selectEditData.schedule_topic} className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo"/>
+
+        <TextField sx={{ m: 1, width: '19%' }} type="date" defaultValue={selectEditData.schedule_date} name='schedule_date' className="from__input" id="inputGroup-sizing-default" label="Data" InputLabelProps={{
+          shrink: true,
+        }}/>
+
+        <TextField sx={{ m: 1, width: '19%' }} type="time" defaultValue={selectEditData.schedule_hour} name='schedule_hour' className="from__input" id="inputGroup-sizing-default" label="Hora" InputLabelProps={{
+          shrink: true,
+        }}/>
+
+        <TextField sx={{ m: 1, width: '50%' }} type="text" defaultValue={selectEditData.schedule_meet_location} name='schedule_meet_location' className="from__input" id="inputGroup-sizing-default" label="Local" placeholder="Local" multiline/>
+
+        <TextField sx={{ m: 1, width: '40%' }} type="text" defaultValue={selectEditData.schedule_duration} name='schedule_duration' className="from__input" id="inputGroup-sizing-default" label="Duração" placeholder="30min" multiline select>
+          <MenuItem value="30">30 minutos</MenuItem>
+          <MenuItem value="45">45 minutos</MenuItem>
+          <MenuItem value="60">60 minutos</MenuItem>
+        </TextField>
+
+        <TextField sx={{ m: 1, width: '92%' }} type="text" defaultValue={selectEditData.schedule_description} name='schedule_description' className="from__input" id="inputGroup-sizing-default" label="Descrição" placeholder="Descrição" multiline rows={4}/>
+
+        <input type='hidden' name='schedule_status' defaultValue={0}/>
   
           <button className="btn btn-primary m-1" type='submit'>EDITAR</button>
           <button className="btn btn-danger m-1" onClick={handleCancelButton}>Fechar</button>

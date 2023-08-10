@@ -48,12 +48,7 @@ const AdicionarReunioes = ({ handleAddSubmit, handleCancelButton }) => {
         </TextField>
 
         <TextField sx={{ m: 1, width: '50%' }} name='schedule_topic' type="text" className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline />
-
-        {/* <TextField sx={{ m: 1, width: '40%' }} type="datetime-local" name='schedule_date_hour' className="from__input" id="inputGroup-sizing-default" label="Data/Hora inicial" InputLabelProps={{
-          shrink: true,
-        }}
-          variant="filled" /> */}
-
+        
         <TextField sx={{ m: 1, width: '19%' }} type="date" name='schedule_date' className="from__input" id="inputGroup-sizing-default" label="Data" InputLabelProps={{
           shrink: true,
         }}/>

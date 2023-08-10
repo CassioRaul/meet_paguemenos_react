@@ -1,5 +1,5 @@
 import { Box, MenuItem, TextField } from '@mui/material';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 
 import { UserContext } from "../../../context/UserContext";
 import { useGerentes } from "../../../hooks/useGerentes";
@@ -10,7 +10,6 @@ const AddReunioes = ({ handleAddSubmit, handleCancelButton }) => {
   const { gerentes } = useGerentes([]);
   const { colaboradores } = useColaboradores([]);
   const { idGerentes, idColaboradores } = useContext(UserContext);
-  const [ openModal, setOpenModal ] = useState(false);
 
   return (
     <>
@@ -38,7 +37,13 @@ const AddReunioes = ({ handleAddSubmit, handleCancelButton }) => {
           })}
         </TextField>
         
-        <TextField sx={{ m: 1, width: '19%' }} type="text" name='schedule_manager_id' className="from__input" id="inputGroup-sizing-default" label="Id Gerente" placeholder="Id Gerente"/>
+        <TextField sx={{ m: 1, width: '19%' }} type="text" name='schedule_manager_id' className="from__input" id="inputGroup-sizing-default" label="Id Gerente" placeholder="Id Gerente" multiline select>
+        {gerentes.map(gerente => {
+          return (
+            <MenuItem key={gerente.manager_id} value={gerente.manager_id}>{gerente.manager_id}</MenuItem>
+            )
+          })}
+        </TextField>
 
         <TextField sx={{ m: 1, width: '50%' }} name='schedule_topic' type="text" className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline />
 
@@ -59,6 +64,8 @@ const AddReunioes = ({ handleAddSubmit, handleCancelButton }) => {
         </TextField>
 
         <TextField sx={{ m: 1, width: '92%' }} type="text" name='schedule_description' className="from__input" id="inputGroup-sizing-default" label="Descrição" placeholder="Descrição" multiline rows={4}/>
+
+        <input type='hidden' name='schedule_status' defaultValue={0}/>
 
         <button className="btn btn-primary m-1" type='submit'>Salvar</button>
         <button className="btn btn-danger m-1" onClick={handleCancelButton}>Fechar</button>
