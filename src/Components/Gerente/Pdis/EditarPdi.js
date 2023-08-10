@@ -73,7 +73,7 @@ const EditarPdi = ({ handleEditSubmit, selectEditData, handleCancelButton }) => 
       <TextField sx={{ m: 1, width: '92%' }} type="text" name='planning_resource' className="from__input" defaultValue={selectEditData.planning_resource} id="inputGroup-sizing-default" label="Recursos" placeholder="Recursos" multiline />
 
       <TextField sx={{ m: 1, width: '92%' }} type="text" name='planning_description' className="from__input" defaultValue={selectEditData.planning_description} id="inputGroup-sizing-default" label="Descrição" placeholder="Descrição" multiline rows={4} />
-
+      <br></br>
       <button className="btn btn-primary m-1" type='submit'>EDITAR</button>
       <button className="btn btn-danger m-1" onClick={handleCancelButton}>Fechar</button>
     </Box>
