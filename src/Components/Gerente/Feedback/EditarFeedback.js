@@ -57,8 +57,8 @@ const EditarFeedback = ({ handleEditSubmit, selectEditData, handleCancelButton }
 
       <TextField sx={{ m: 1, width: '92%' }} type="text" name='feedback_note' defaultValue={selectEditData.feedback_note} className="from__input" id="basic-url" label="Anotações" placeholder="Anotações" multiline rows={4} />
 
-        <button className="btn btn-primary m-1" type='submit'>EDITAR</button>
-        <button className="btn btn-danger m-1" onClick={handleCancelButton}>Fechar</button>
+      <button className="btn btn-primary m-1" type='submit'>EDITAR</button>
+      <button className="btn btn-danger m-1" onClick={handleCancelButton}>Fechar</button>
     </Box>
     </div>
     </>

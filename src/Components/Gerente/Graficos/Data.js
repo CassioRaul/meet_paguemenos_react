@@ -1,42 +1,3 @@
-// import { useState, useEffect } from 'react';
-// import { UserData } from './EntityUser';
-// import { getgerente } from '../../Service/ApiService';
-
-// export function MyUserData() {
-// const [gerentes, setGerentes] = useState([])
-// const [ listUserData, setListUserData ] = useState([]);
-
-//     useEffect(() => {
-//         getgerente()
-//         .then(res => {
-//             setGerentes(res.data)
-//         })
-//     }, []);
-
-//     return {
-//         gerentes
-//     }
-
-// }
-import React, { useState, useContext } from 'react';
-import { useGerentes } from "../../../hooks/useGerentes";
-import { UserContext } from "../../../context/UserContext";
-
-export const UserData1 = () => {
-    const { gerentes, setGerentes } = useGerentes([]);
-    const { idGerentes } = useContext(UserContext);
-
-    return (
-    <>
-    {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
-        return (
-            <>{gerente.manager_id}</>
-        )
-    })}
-    </>
-    )
-}
-
 export const UserData = [
     {
         id: 1,
@@ -44,14 +5,7 @@ export const UserData = [
         year: "2016",
         month: "JANEIRO",
         userGain: 80000,
-        userLost: 60,
-    },{
-        id: 2,
-        name: "Ursula",
-        year: 2017,
-        month: "FEVEREIRO",
-        userGain: 45677,
-        userLost: 34,
+        userLost: 5,
     },
     {
         id: 2,

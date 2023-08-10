@@ -23,7 +23,7 @@ const Auth = () => {
                         ))}
                     </select>
                 </div>
-                <br />
+                <br/>
                 <div>
                     <br></br><br></br>
                     <select className="btn btn-primary login_button_filho" onChange={handleIdColaboradores} >

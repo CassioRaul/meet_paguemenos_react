@@ -23,7 +23,7 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.5",
-    "chart.js": "^4.3.0",
+    "chart.js": "^4.3.3",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.7",
     "jquery": "^3.7.0",

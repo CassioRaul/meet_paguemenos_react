@@ -5,6 +5,7 @@ import { useGerentes } from "../../../hooks/useGerentes";
 // import { UserData } from "./DataBase";
 import { getcolaboradores } from '../../../Service/ApiService';
 import BarChart from './BarChart';
+import BarChart1 from './BarChart1';
 // import LineChart from './components/LineChart';
 // import PieChart from './components/PieChart';
 
@@ -38,10 +39,11 @@ const GraficoGeral = () => {
           borderWidth: 0.6,
         }],
     })
+    
   return (
-    <div class="container_white">
+  <div class="container_white">
         <br></br><h2>Gráfico Geral</h2><br></br>
-            <div class="row">
+          <div class="row">
                 <div style={{width: 850 }} class="col-2">
                     {/* {colaboradores.map(colaborador => {
                         return (
@@ -52,14 +54,15 @@ const GraficoGeral = () => {
                     <br></br>
                 </div>
                 
-                {/* <div style={{width: 400 }} class="col-2">
+                <div style={{width: 400 }} class="col-2">
                 <BarChart chartData={userData}/>
                 </div>
                 <div style={{width: 400 }} class="col-2">
                 <BarChart chartData={userData}/>
-                </div> */}
+                </div>
             </div>
-    </div>    
+            <BarChart1/>
+  </div>    
   )
 }
 
