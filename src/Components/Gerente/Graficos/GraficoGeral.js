@@ -42,26 +42,12 @@ const GraficoGeral = () => {
     
   return (
   <div class="container_white">
-        <br></br><h2>Gráfico Geral</h2><br></br>
-          <div class="row">
-                <div style={{width: 850 }} class="col-2">
-                    {/* {colaboradores.map(colaborador => {
-                        return (
-                            <h6 key={colaborador.collaborator_id}>{colaborador.collaborator_name}</h6>
-                        )
-                    })} */}
-                    <BarChart chartData={userData}/>
-                    <br></br>
-                </div>
-                
-                <div style={{width: 400 }} class="col-2">
-                <BarChart chartData={userData}/>
-                </div>
-                <div style={{width: 400 }} class="col-2">
-                <BarChart chartData={userData}/>
-                </div>
-            </div>
-            <BarChart1/>
+      <h2>Gráfico Geral de Plano de Desenvolvimento Individual</h2>
+      <div class="container_white">
+          <div style={{width: 900 }}>
+              <BarChart chartData={userData}/>
+          </div>
+      </div>
   </div>    
   )
 }

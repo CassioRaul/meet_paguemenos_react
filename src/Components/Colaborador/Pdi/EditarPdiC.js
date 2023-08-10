@@ -58,7 +58,7 @@ const EditarPdiC = ({ handleEditSubmit, selectEditData, handleCancelButton }) =>
         <MenuItem value="EM ATRASO">EM ATRASO</MenuItem>
       </TextField>
 
-      <TextField sx={{ m: 1, width: '92%' }} type="text" name='planning_progess' className="from__input" defaultValue={selectEditData.planning_progess} id="inputGroup-sizing-default" label="Progresso" placeholder="Progresso" disabled/>
+      <TextField sx={{ m: 1, width: '92%' }} type="text" name='planning_progess' className="from__input" defaultValue={selectEditData.planning_progess} id="inputGroup-sizing-default" label="Progresso" placeholder="Progresso" disabled />
 
       <TextField sx={{ m: 1, width: '50%' }} type="date" name='planning_final_date' defaultValue={selectEditData.planning_final_date} className="from__input" id="inputGroup-sizing-default" label="Data de Entrega" disabled/>
 
