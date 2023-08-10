@@ -18,10 +18,16 @@ const AdicionarFeedback = ({ IdSchedule, handleCancelButton }) => {
   const { feedbacks, setFeedbacks } = useFeedbacks([]);
 
   const handleAddSubmit = (e) => {
+    const schedule = IdSchedule
+    console.log('AQUI ',schedule.schedule_id)
     e.preventDefault();
     addfeedback(e.target)
     .then(res => {
         setFeedbacks([res])
+    })
+    editschedule(schedule.schedule_id, e.target)
+    .then(res => {
+        setSchedules([res])
     })
     handleCancelButton(e)
   }
@@ -52,6 +58,19 @@ const AdicionarFeedback = ({ IdSchedule, handleCancelButton }) => {
 
       <TextField sx={{ m: 1, width: '92%' }} type="text" name='feedback_note' className="from__input" id="basic-url" label="Anotações" placeholder="Anotações" multiline rows={4}/>
 
+      <input type='hidden' name='schedule_name_manager' defaultValue={IdSchedule.schedule_name_manager}/>
+      <input type='hidden' name='schedule_manager_id' defaultValue={IdSchedule.schedule_manager_id}/>
+      <input type='hidden' name='schedule_name_collaborator' defaultValue={IdSchedule.schedule_name_collaborator}/>
+      <input type='hidden' name='schedule_collaborator_id' defaultValue={IdSchedule.schedule_collaborator_id}/>
+      <input type='hidden' name='schedule_topic' defaultValue={IdSchedule.schedule_topic}/>
+      <input type='hidden' name='schedule_date' defaultValue={IdSchedule.schedule_date}/>
+      <input type='hidden' name='schedule_hour' defaultValue={IdSchedule.schedule_hour}/>
+      <input type='hidden' name='schedule_meet_location' defaultValue={IdSchedule.schedule_meet_location}/>
+      <input type='hidden' name='schedule_duration' defaultValue={IdSchedule.schedule_duration}/>
+      <input type='hidden' name='schedule_description' defaultValue={IdSchedule.schedule_description}/>
+      <input type='hidden' name='schedule_status' defaultValue={IdSchedule.schedule_status + 1}/>
+
+<br></br>
       <button className="btn btn-primary m-1" type='submit'>Salvar</button>
       <button className="btn btn-danger m-1" onClick={handleCancelButton}>Fechar</button>
     </Box>

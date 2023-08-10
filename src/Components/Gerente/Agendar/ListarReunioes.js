@@ -4,6 +4,7 @@ import { addschedule, editschedule, deleteschedule } from '../../../Service/ApiS
 import { UserContext } from "../../../context/UserContext";
 import { useGerentes } from "../../../hooks/useGerentes";
 import { useSchedules } from "../../../hooks/useSchedules";
+import { useFeedbacks } from "../../../hooks/useFeedbacks";
 
 import EditarReunioes from './EditarReunioes';
 import AdicionarReunioes from './AdicionarReunioes';
@@ -22,7 +23,7 @@ const ListarReunioes = () => {
 
     const { gerentes } = useGerentes([]);
     const { idGerentes } = useContext(UserContext);
-
+    const { feedbacks, setFeedbacks } = useFeedbacks([]);
     const { schedules, setSchedules } = useSchedules([]);
 
     // const updateSchedule = useCallback(() => {
@@ -62,13 +63,6 @@ const ListarReunioes = () => {
     // }
 
     const handleIdScheduleButton = (schedule) => {
-        // alert(schedule_status)
-        // const schedule_id = schedule.schedule_id
-
-        // editschedule(schedule_id, e.target)
-        // .then(res => {
-        //     setSchedules([res])
-        // })
         setIdSchedule(schedule)
         setShowFeedbackForm(true)
     }
@@ -140,12 +134,17 @@ const ListarReunioes = () => {
                                     <td>{schedule.schedule_name_collaborator}</td>
                                     <td>{schedule.schedule_meet_location}</td>
                                     <td>{schedule.schedule_duration}</td>
-                                    <td>{schedule.schedule_status == 2 ? "FINALIZADA" : "NÃO FINALIZADA"}</td>
                                     <td>
-                                        <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" />
+                                        {schedule.schedule_status === 0 ? "EM ANDAMENTO" : ""}
+                                        {schedule.schedule_status === 1 ? "NÃO FINALIZADA" : ""}
+                                        {schedule.schedule_status === 2 ? "FINALIZADA" : ""}
+                                    </td>
+                                    <td>
+                                        {schedule.schedule_status === 0 || schedule.schedule_status === 1 ? <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" /> : <i className="btn btn-secondary m-1 bi bi-calendar2-check" />}
 
-                                        <i onClick={() => handleEditButton(schedule)}
-                                        className="btn btn-warning m-1 bi bi-pencil-square" />
+                                        {schedule.schedule_status === 0 || schedule.schedule_status === 1 ? <i onClick={() => handleEditButton(schedule)}
+                                        className="btn btn-warning m-1 bi bi-pencil-square" /> : <i
+                                        className="btn btn-secondary m-1 bi bi-pencil-square" />}
                                         
                                         {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
                                         return (
