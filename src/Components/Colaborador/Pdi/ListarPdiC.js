@@ -1,45 +1,38 @@
-import React, { useEffect, useState } from 'react'
-import { getgerente, getpdi, addpdi, editpdi, deletepdi } from '../../../Service/ApiService';
-import AddPdi from './AddPdi';
-import EditarPdiC from './EditarPdiC';
+import React, { useState, useContext } from 'react';
+import { addpdi, editpdi, deletepdi } from '../../../Service/ApiService';
+
+import { UserContext } from "../../../context/UserContext";
+import { usePdi } from "../../../hooks/usePdi";
+
+import EditarPdi from './EditarPdiC';
+import AdicionarPdi from './AddPdi';
+import Search from '../../Gerente/Agendar/Search';
 
 const ListarPdiC = () => {
-    const [pdis, setPdis] = useState([]);
     const [showPdiForm, setShowPdiForm] = useState(false);
     const [showEditPdiForm, setShowEditPdiForm] = useState(false);
     const [selectEditData, setSelectEditData] = useState();
-    const [gerentes, setGerentes] = useState([])
+    const [seach, setSearch] = useState("");
 
-    useEffect(() => {
-        let mount = true
-        getgerente()
-            .then(res => {
-                setGerentes(res)
-                return () => mount = false
-            })
-    }, [])
-
-    useEffect(() => {
-        let mount = true
-        getpdi()
-            .then(res => {
-                setPdis(res)
-                return () => mount = false
-            })
-    }, [])
+    const { pdis, setPdi } = usePdi([]);
+    const { idColaboradores } = useContext(UserContext);
 
     const handleAddSubmit = (e) => {
+        e.preventDefault();
         addpdi(e.target)
-            .then(res => {
-                setPdis([res])
-            })
+        .then(res => {
+            setPdi([res])
+        })
+        setShowPdiForm(false)
     }
 
     const handleEditSubmit = (e, planning_id) => {
+        e.preventDefault();
         editpdi(planning_id, e.target)
             .then(res => {
-                setPdis([res])
+                setPdi([res])
             })
+        setShowEditPdiForm(false)
     }
 
     const handleEditButton = (pdi) => {
@@ -47,11 +40,11 @@ const ListarPdiC = () => {
         setShowEditPdiForm(true)
     }
 
-    const handleDeleteButton = (e, planning_id, manager_token) => {
+    const handleDeleteButton = (planning_id) => {
         deletepdi(planning_id)
-            .then(res => {
-                setPdis(pdis.filter(c => c.planning_id !== planning_id))
-            })
+        .then(res => {
+            setPdi(pdis.filter(c => c.planning_id !== planning_id))
+        })
     }
 
     function handleCancelButton(e) {
@@ -59,58 +52,59 @@ const ListarPdiC = () => {
         setShowPdiForm(false)
         setShowEditPdiForm(false)
     }
+
     return (
         <>
             <div className="container_white">
                 <div className="button_add_close">
-                    <button className="btn btn-primary m-1 bi-plus-circle " onClick={() => setShowPdiForm(true)}>ADICIONAR</button>
-                    {showPdiForm && <AddPdi handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />}
-                    {showEditPdiForm && <EditarPdiC handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
+                    <div className='container_display_flex'>
+                        {/* <button className="btn btn-primary m-0 i bi-plus-circle " onClick={() => setShowPdiForm(true)}> ADICIONAR</button>&nbsp;&nbsp;&nbsp; */}
+                    </div>
+                    <Search seach={seach} setSearch={setSearch} />
+                </div>
+                <div className="button_add_close">
+                    {/* {showPdiForm && <AdicionarPdi handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />} */}
+                    {showEditPdiForm && <EditarPdi handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
                 </div>
                 <br></br>
-                <h3>LISTA DE PDIS</h3>
-                <br></br>
-
-                <table className="form-control table table-hover">
+                <br></br><h3>LISTA DE PDIS</h3>
+                <table className="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">TÍTULO</th>
                             <th scope="col">META</th>
-                            <th scope="col">STATUS</th>
                             <th scope="col">PROGRESSO</th>
-                            <th scope="col">DATA FINAL</th>
-                            <th scope="col">RECURSOS</th>
                             <th scope="col">DESCRIÇÃO</th>
+                            <th scope="col">RECURSOS</th>
                             <th scope="col">GERENTE</th>
-                            <th scope="col">COLABORADOR</th>
-                            <th scope="col">DATA DE CRIAÇÃO</th>
-                            <th scope="col">AÇÕES</th>
+                            {/* <th scope="col">DATA</th>
+                            <th scope="col">HORA</th> */}
+                            <th scope="col">DATA DE ENTREGA</th>
+                            <th scope="col">STATUS</th>
+                            {/* <th scope="col">HORA FINAL</th> */}
+                            {/* <th scope="col">AÇÕES</th> */}
                         </tr>
                     </thead>
                     <tbody>
-                        {pdis.map(pdi => {
+                        {pdis.filter(pdi => pdi.planning_collaborator_id == idColaboradores).filter(filterPdi => filterPdi.planning_name_manager.toLowerCase().includes(seach.toLowerCase())).map(pdi => {
                             return (
                                 <tr key={pdi.planning_id}>
                                     <td>{pdi.planning_id}</td>
                                     <td>{pdi.planning_title}</td>
                                     <td>{pdi.planning_goals}</td>
-                                    <td>{pdi.planning_status}</td>
                                     <td>{pdi.planning_progess}</td>
-                                    <td>{pdi.planning_final_date}</td>
                                     <td>{pdi.planning_description}</td>
                                     <td>{pdi.planning_resource}</td>
-                                    <td>{pdi.planning_creator}</td>
-                                    <td>{pdi.planning_contributor_name}</td>
-                                    <td>{pdi.planning_date}</td>
+                                    <td>{pdi.planning_name_manager}</td>
+                                    {/* <td>{pdi.planning_date}</td>
+                                    <td>{pdi.planning_hour}</td> */}
+                                    <td>{pdi.planning_final_date}<br></br>{pdi.planning_final_hour}</td>
+                                    <td>{pdi.planning_status}</td>
                                     <td>
-                                        <i className="btn btn-success m-1 bi bi-bookmark-x" />
+                                        {/* <i className="btn btn-success m-1 bi bi-bookmark-x" /> */}
                                         <i onClick={() => handleEditButton(pdi)} className="btn btn-warning m-1 bi bi-pencil-square" />
-                                        {gerentes.map(gerente => {
-                                            return (
-                                                <i onClick={() => handleDeleteButton(pdi.planning_id)} className="btn btn-danger m-1 bi bi-trash" />
-                                            )
-                                        })}
+                                        {/* <i onClick={() => handleDeleteButton(pdi.planning_id)} className="btn btn-danger m-1 bi bi-trash" /> */}
                                     </td>
                                 </tr>
                             )

@@ -56,14 +56,14 @@ const Historico = () => {
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">TÍTULO</th>
-                        <th scope="col">DATA/HORA</th>
                         <th scope="col">GERENTE</th>
                         <th scope="col">COLABORADOR</th>
+                        <th scope="col">TÍTULO</th>
+                        <th scope="col">DATA/HORA</th>
                         <th scope="col">SALA</th>
                         <th scope="col">DESCRIÇÃO</th>
                         <th scope="col">DURAÇÃO</th>
-                        <th scope="col">STATUS</th>
+                        {/* <th scope="col">STATUS</th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -71,14 +71,14 @@ const Historico = () => {
                         return (
                             <tr key={schedule.schedule_id}>
                                 <td>{schedule.schedule_id}</td>
+                                <td>{schedule.schedule_name_manager}</td>
+                                <td>{schedule.schedule_name_collaborator}</td>
                                 <td>{schedule.schedule_topic}</td>
-                                <td>{schedule.schedule_date_hour}</td>
-                                <td>{schedule.schedule_name_creator}</td>
-                                <td>{schedule.schedule_name_receiver}</td>
+                                <td>{schedule.schedule_date} | {schedule.schedule_hour}</td>
                                 <td>{schedule.schedule_meet_location}</td>
                                 <td>{schedule.schedule_description}</td>
                                 <td>{schedule.schedule_duration}</td>
-                                <td>{schedule.schedule_status}</td>
+                                {/* <td>{schedule.schedule_status}</td> */}
                             </tr>
                         )
                     })}
@@ -92,16 +92,16 @@ const Historico = () => {
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">GERENTE</th>
+                            <th scope="col">COLABORADOR</th>
                             <th scope="col">TÍTULO</th>
                             <th scope="col">META</th>
-                            <th scope="col">STATUS</th>
                             <th scope="col">PROGRESSO</th>
-                            <th scope="col">DATA FINAL</th>
                             <th scope="col">RECURSOS</th>
                             <th scope="col">DESCRIÇÃO</th>
-                            <th scope="col">COLABORADOR</th>
-                            <th scope="col">GERENTE</th>
                             <th scope="col">DATA DE CRIAÇÃO</th>
+                            <th scope="col">DATA DE ENTREGA</th>
+                            <th scope="col">STATUS</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,16 +109,16 @@ const Historico = () => {
                             return (
                                 <tr key={pdi.planning_id}>
                                     <td>{pdi.planning_id}</td>
+                                    <td>{pdi.planning_name_manager}</td>
+                                    <td>{pdi.planning_name_collaborator}</td>
                                     <td>{pdi.planning_title}</td>
                                     <td>{pdi.planning_goals}</td>
-                                    <td>{pdi.planning_status}</td>
                                     <td>{pdi.planning_progess}</td>
-                                    <td>{pdi.planning_final_date}</td>
                                     <td>{pdi.planning_description}</td>
                                     <td>{pdi.planning_resource}</td>
-                                    <td>{pdi.planning_contributor_name}</td>
-                                    <td>{pdi.planning_creator}</td>
-                                    <td>{pdi.planning_date}</td>
+                                    <td>{pdi.planning_date} | {pdi.planning_hour}</td>
+                                    <td>{pdi.planning_final_date} | {pdi.planning_final_hour}</td>
+                                    <td>{pdi.planning_status}</td>
                                 </tr>
                             )
                         })}
@@ -134,9 +134,9 @@ const Historico = () => {
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">ID REUNIÃO</th>
-                                <th scope="col">TÍTULO</th>
                                 <th scope="col">GERENTE</th>
                                 <th scope="col">COLABORADOR</th>
+                                <th scope="col">TÍTULO</th>
                                 <th scope="col">DATA/HORA</th>
                                 <th scope="col">ANOTAÇÕES</th>
                                 <th scope="col">AVALIAÇÃO</th>
@@ -145,13 +145,13 @@ const Historico = () => {
                         <tbody>
                             {feedbacks.map(feedback => {
                                 return (
-                                    <tr key={feedback.feedback_iduser}>
-                                        <td>{feedback.feedback_iduser}</td>
+                                    <tr key={feedback.feedback_id}>
+                                        <td>{feedback.feedback_id}</td>
                                         <td>{feedback.feedback_idschedule}</td>
-                                        <td>{feedback.feedback_title}</td>
                                         <td>{feedback.feedback_manage}</td>
                                         <td>{feedback.feedback_collaborator}</td>
-                                        <td>{feedback.feedback_date}</td>
+                                        <td>{feedback.feedback_title}</td>
+                                        <td>{feedback.feedback_date} | {feedback.feedback_hour}</td>
                                         <td>{feedback.feedback_note}</td>
                                         <td>{feedback.feedback_evaluate}</td>
                                     </tr>

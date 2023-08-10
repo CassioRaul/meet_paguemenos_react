@@ -19,7 +19,8 @@ const MenuGerente = () => {
             <div key={gerente.manager_id}>
               <img className="fotoDePerfil" src={gerente.manager_image} alt="Foto perfil gerente" />
               <h4 className="gerente__nome">{gerente.manager_name}</h4>
-              <h6 className="gerente__cargo">{gerente.manager_function}<br></br>token: {gerente.manager_token}</h6>
+              <h6 className="gerente__cargo">{gerente.manager_function}</h6>
+              {/* <br></br>token: {gerente.manager_token} */}
             </div>
           )
         })}

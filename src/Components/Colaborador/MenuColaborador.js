@@ -19,7 +19,8 @@ const MenuColaborador = () => {
             <div key={colaborador.collaborator_id}>
               <img className="fotoDePerfil" src={colaborador.collaborator} alt="Foto perfil gerente" />
               <h4 className="gerente__nome">{colaborador.collaborator_name}</h4>
-              <h6 className="gerente__cargo">{colaborador.collaborator_function}<br></br>token: {colaborador.collaborator_token}</h6>
+              <h6 className="gerente__cargo">{colaborador.collaborator_function}</h6>
+              {/* <br></br>token: {colaborador.collaborator_token} */}
             </div>
           )
         })}

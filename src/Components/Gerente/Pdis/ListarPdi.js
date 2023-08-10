@@ -27,7 +27,7 @@ const ListarPdi = () => {
     }
 
     const handleEditSubmit = (e, planning_id) => {
-        // e.preventDefault();
+        e.preventDefault();
         editpdi(planning_id, e.target)
             .then(res => {
                 setPdi([res])
@@ -102,7 +102,7 @@ const ListarPdi = () => {
                                     <td>{pdi.planning_final_date}<br></br>{pdi.planning_final_hour}</td>
                                     <td>{pdi.planning_status}</td>
                                     <td>
-                                        <i className="btn btn-success m-1 bi bi-bookmark-x" />
+                                        {/* <i className="btn btn-success m-1 bi bi-bookmark-x" /> */}
                                         <i onClick={() => handleEditButton(pdi)} className="btn btn-warning m-1 bi bi-pencil-square" />
                                         <i onClick={() => handleDeleteButton(pdi.planning_id)} className="btn btn-danger m-1 bi bi-trash" />
                                     </td>

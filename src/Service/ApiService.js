@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const ApiService = axios.create({
-  baseURL: 'http://192.168.177.29:8000',
+  baseURL: 'http://192.168.3.20:8000',
   headers: {
     'Content-Type': 'application/json'
   }
@@ -41,6 +41,7 @@ export function addschedule(schedule) {
     'schedule_meet_location': schedule.schedule_meet_location.value,
     'schedule_description': schedule.schedule_description.value,
     'schedule_duration': schedule.schedule_duration.value,
+    'schedule_status': schedule.schedule_status.value,
   })
     .then(res => {
       return res.data
@@ -140,14 +141,14 @@ export function addpdi(pdi) {
     'planning_collaborator_id': pdi.planning_collaborator_id.value,
     'planning_title': pdi.planning_title.value,
     'planning_goals': pdi.planning_goals.value,
-    'planning_status': pdi.planning_status.value,
+    // 'planning_status': pdi.planning_status.value,
     'planning_progess': pdi.planning_progess.value,
     'planning_description': pdi.planning_description.value,
     'planning_resource': pdi.planning_resource.value,
     'planning_name_manager': pdi.planning_name_manager.value,
     'planning_name_collaborator': pdi.planning_name_collaborator.value,
-    'planning_date': pdi.planning_date.value,
-    'planning_hour': pdi.planning_hour.value,
+    // 'planning_date': pdi.planning_date.value,
+    // 'planning_hour': pdi.planning_hour.value,
     'planning_final_date': pdi.planning_final_date.value,
     'planning_final_hour': pdi.planning_final_hour.value,
   })
@@ -159,7 +160,7 @@ export function addpdi(pdi) {
 export function editpdi(planning_id, pdi) {
   return ApiService.put('/pdi/' + planning_id + '/',
     {
-      'planning_manager_id': pdi.planning_manager_id.value,
+    'planning_manager_id': pdi.planning_manager_id.value,
     'planning_collaborator_id': pdi.planning_collaborator_id.value,
     'planning_title': pdi.planning_title.value,
     'planning_goals': pdi.planning_goals.value,
@@ -169,8 +170,8 @@ export function editpdi(planning_id, pdi) {
     'planning_resource': pdi.planning_resource.value,
     'planning_name_manager': pdi.planning_name_manager.value,
     'planning_name_collaborator': pdi.planning_name_collaborator.value,
-    'planning_date': pdi.planning_date.value,
-    'planning_hour': pdi.planning_hour.value,
+    // 'planning_date': pdi.planning_date.value,
+    // 'planning_hour': pdi.planning_hour.value,
     'planning_final_date': pdi.planning_final_date.value,
     'planning_final_hour': pdi.planning_final_hour.value,
     })
