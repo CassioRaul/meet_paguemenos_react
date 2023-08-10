@@ -127,14 +127,14 @@ const ListarReunioesC = () => {
                             <th scope="col">GERENTE</th>
                             <th scope="col">LOCAL</th>
                             <th scope="col">DURAÇÃO</th>
-                            {/* <th scope="col">STATUS</th> */}
+                            <th scope="col">STATUS</th>
                             <th scope="col">AÇÕES</th>
                         </tr>
                     </thead>
                     <tbody>
                         {schedules.filter(schedule => schedule.schedule_collaborator_id == idColaboradores).filter(filterSchedule => filterSchedule.schedule_name_manager.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
                             return (
-                                <tr key={schedule.schedule_id}>
+                                <tr key={schedule.schedule_id} style={{ textDecoration: schedule.schedule_status == 2 ? "line-through" : "" }}>
                                     <td>{schedule.schedule_id}</td>
                                     <td>{schedule.schedule_topic}</td>
                                     <td>{schedule.schedule_description}</td>
@@ -143,12 +143,17 @@ const ListarReunioesC = () => {
                                     <td>{schedule.schedule_name_manager}</td>
                                     <td>{schedule.schedule_meet_location}</td>
                                     <td>{schedule.schedule_duration}</td>
-                                    {/* <td>{schedule.schedule_status}</td> */}
+                                    <td>
+                                        {schedule.schedule_status === 0 ? "EM ANDAMENTO" : ""}
+                                        {schedule.schedule_status === 1 ? "NÃO FINALIZADA" : ""}
+                                        {schedule.schedule_status === 2 ? "FINALIZADA" : ""}
+                                    </td>
                                     <td>
                                         <div>
-                                            <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" />
+                                            {schedule.schedule_status === 0 || schedule.schedule_status === 1 ? <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" /> : <i className="btn btn-secondary m-1 bi bi-calendar2-check" />}
 
-                                            <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" />
+                                            {schedule.schedule_status === 0 || schedule.schedule_status === 1 ? <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" /> : <i className="btn btn-secondary m-1 bi bi-pencil-square" />}
+                                            
                                             {colaboradores.filter(colaborador => colaborador.collaborator_id == idColaboradores).map(colaborador => {
                                             return (
                                                 <i key={colaborador.collaborator_id} onClick={() => handleDeleteButton(schedule.schedule_id, colaborador.collaborator)} className="btn btn-danger m-1 bi bi-trash" />
