@@ -53,15 +53,6 @@ const ListarReunioes = () => {
         setShowEditScheduleForm(true)
     }
 
-    // const handleEditSubmitFeedback = (e, schedule_id) => {
-    //     e.preventDefault();
-    //     editschedule(schedule_id, e.target)
-    //     .then(res => {
-    //         setSchedules([res])
-    //     })
-    //     setShowEditScheduleForm(false)
-    // }
-
     const handleIdScheduleButton = (schedule) => {
         setIdSchedule(schedule)
         setShowFeedbackForm(true)
