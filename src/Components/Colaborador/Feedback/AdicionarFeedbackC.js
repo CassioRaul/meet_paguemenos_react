@@ -19,7 +19,6 @@ const AdicionarFeedbackC = ({ IdSchedule, handleCancelButton }) => {
 
   const handleAddSubmit = (e) => {
     const schedule = IdSchedule
-    // console.log('AQUI ',schedule.schedule_id)
     e.preventDefault();
     addfeedback(e.target)
     .then(res => {
