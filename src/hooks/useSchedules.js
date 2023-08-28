@@ -1,20 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { getschedule } from '../Service/ApiService';
-import { useCallback } from "react";
 
 export const useSchedules = () => {
     const [schedules, setSchedules] = useState([]);
-    
-    const innerSchedule = useCallback(() => {
+
+    useEffect(() => {
         getschedule()
         .then(res => {
             setSchedules(res)
         })
-    })
+    }, []);
+
+    // const listSchedule = useCallback(() => {
+    //     getschedule()
+    //     .then(res => {
+    //         setSchedules(res)
+    //     })
+    // }, [schedules]);
     
-    useEffect(() => {
-        innerSchedule();
-    }, [innerSchedule]);
+    // useEffect(() => {
+    //     listSchedule();
+    // }, [listSchedule]);
 
     return {
         schedules,

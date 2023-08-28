@@ -5,10 +5,14 @@ import "../../Styles/FotodePerfil.css";
 import { useGerentes } from "../../hooks/useGerentes";
 import { UserContext } from "../../context/UserContext";
 import 'bootstrap/js/dist/dropdown';
+import { Box, Icon, List, ListItemButton, ListItemIcon, ListItemText, useTheme } from "@mui/material";
+import { useAppThemeContext } from "../../context/ThemeContext.tsx";
 
 const MenuGerente = () => {
+  const theme = useTheme();
   const { gerentes } = useGerentes([]);
   const { idGerentes } = useContext(UserContext);
+  const { toggleTheme } = useAppThemeContext();
 
   return (
     <div className="gerente__responsivo MeuGerente">
@@ -49,6 +53,17 @@ const MenuGerente = () => {
             <p>Gráficos</p>
           </button>
         </Link>
+        
+        {/* <Box>
+            <List component="nav">
+            <ListItemButton onClick={toggleTheme}>
+                <ListItemIcon>
+                    <Icon>dark_mode</Icon>
+                </ListItemIcon>
+                <ListItemText primary="Alternar tema" />
+            </ListItemButton>
+            </List>
+        </Box> */}
       </div>
     </div>
   );
