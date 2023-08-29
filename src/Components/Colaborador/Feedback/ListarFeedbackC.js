@@ -97,7 +97,6 @@ const ListarFeedbackC = () => {
                                     <td>{feedback.feedback_evaluate}</td>
                                     <td>
                                         <i onClick={() => handleEditButton(feedback)} className="btn btn-warning m-1 bi bi-pencil-square" />
-                                        <i onClick={() => handleDeleteButton(feedback.feedback_id)} className="btn btn-danger m-1 bi bi-trash" />
                                     </td>
                                 </tr>
                             )
