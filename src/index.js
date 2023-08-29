@@ -1,18 +1,3 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom/client';
-// import './index.css';
-// import App from './App';
-// import reportWebVitals from './reportWebVitals';
-
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
-
-// reportWebVitals();
-
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -26,7 +11,8 @@ import ListarReunioes from './Components/Gerente/Agendar/ListarReunioes';
 import ListarReunioesC from './Components/Colaborador/Agendar/ListarReunioesC';
 import ListarPdi from './Components/Gerente/Pdis/ListarPdi';
 import ListarPdiC from './Components/Colaborador/Pdi/ListarPdiC';
-import Historico from './Components/Gerente/Historico';
+import Historico from './Components/Gerente/Historico/Historico';
+import HistoricoC from './Components/Colaborador/HistoricoC/Historico';
 import Relatorios from './Components/Gerente/Relatorios/Relatorios';
 import ListarFeedback from './Components/Gerente/Feedback/ListarFeedback';
 import GraficoGeral from './Components/Gerente/Graficos/GraficoGeral';
@@ -34,56 +20,56 @@ import GraficoGeral from './Components/Gerente/Graficos/GraficoGeral';
 
 const router = createBrowserRouter([
   {
-    path:"/",
+    path: "/",
     element: <App />,
     errorElement: <ErroPege />,
     children: [
       {
-        path:"/PGerente",
+        path: "/PGerente",
         element: <ListarPdi />
       },
       {
-        path:"/PColaborador",
+        path: "/PColaborador",
         element: <ListarPdiC />
       },
       {
-        path:"/HGerente",
+        path: "/HGerente",
         element: <Historico />
       },
       {
-        path:"/HColaborador",
-        element: <Historico />
+        path: "/HColaborador",
+        element: <HistoricoC />
       },
       {
-        path:"/",
+        path: "/",
         element: <ListarReunioes />
       },
       {
-        path:"/AGerente",
+        path: "/AGerente",
         element: <ListarReunioes />
       },
       {
-        path:"/AColaborador",
-        element: <ListarReunioesC/>
+        path: "/AColaborador",
+        element: <ListarReunioesC />
       },
       {
-        path:"/ListarFeedback",
+        path: "/ListarFeedback",
         element: <ListarFeedback />
       },
       {
-        path:"/AddFeedback",
+        path: "/AddFeedback",
         element: <AdicionarFeedback />
       },
       {
-        path:"/RGerente",
+        path: "/RGerente",
         element: <Relatorios />
       },
       {
-        path:"/RColaborador",
+        path: "/RColaborador",
         element: <RelatorioColaborador />
       },
       {
-        path:"/GGrafico",
+        path: "/GGrafico",
         element: <GraficoGeral />
       },
     ]
