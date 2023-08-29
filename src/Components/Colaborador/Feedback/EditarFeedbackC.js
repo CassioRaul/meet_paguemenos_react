@@ -50,7 +50,13 @@ const EditarFeedbackC = ({ handleEditSubmit, selectEditData, handleCancelButton 
             shrink: true,
           }} disabled />
 
-          <TextField sx={{ m: 1, width: '40%' }} name='feedback_evaluate' type="text" defaultValue={selectEditData.feedback_evaluate} className="from__input" id="inputGroup-sizing-default" label="Avaliação" placeholder="Avaliação" multiline />
+          <TextField sx={{ m: 1, width: '40%' }} type="text" name='feedback_evaluate' className="from__input" id="inputGroup-sizing-default" label="Avaliação" placeholder="Avaliação" multiline select>
+            <MenuItem value={1}> <i class="bi bi-star-fill"></i></MenuItem>
+            <MenuItem value={2}><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></MenuItem>
+            <MenuItem value={3}><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></MenuItem>
+            <MenuItem value={4}><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></MenuItem>
+            <MenuItem value={5}><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></MenuItem>
+          </TextField>
 
           <TextField sx={{ m: 1, width: '92%' }} type="text" name='feedback_note' defaultValue={selectEditData.feedback_note} className="from__input" id="basic-url" label="Anotações" placeholder="Anotações" multiline rows={4} />
 

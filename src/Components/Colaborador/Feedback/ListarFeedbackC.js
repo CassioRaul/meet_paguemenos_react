@@ -42,12 +42,10 @@ const ListarFeedbackC = () => {
     }
 
     const handleDeleteButton = (feedback_id) => {
-
         deletefeedback(feedback_id)
             .then(res => {
                 setFeedbacks(feedbacks.filter(c => c.feedback_id !== feedback_id))
             })
-
     }
 
     function handleCancelButton(e) {
@@ -61,7 +59,6 @@ const ListarFeedbackC = () => {
             <div className="container_white">
                 <div className="button_add_close">
                     <div className='container_display_flex'>
-                        {/* <button className="btn btn-primary m-0 i bi-plus-circle " onClick={() => setShowFeedbackForm(true)}> ADICIONAR</button>&nbsp;&nbsp;&nbsp; */}
                     </div>
                     <Search seach={seach} setSearch={setSearch} />
 
@@ -87,7 +84,6 @@ const ListarFeedbackC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* && feedback.feedback_id == feedback.feedback_idschedule */}
                         {feedbacks.filter(feedback => feedback.feedback_collaborator_id == idColaboradores).filter(filterFeedbacks => filterFeedbacks.feedback_manage.toLowerCase().includes(seach.toLowerCase())).map(feedback => {
                             return (
                                 <tr key={feedback.feedback_id}>
@@ -100,7 +96,6 @@ const ListarFeedbackC = () => {
                                     <td>{feedback.feedback_note}</td>
                                     <td>{feedback.feedback_evaluate}</td>
                                     <td>
-                                        {/* <i className="btn btn-primary m-1 bi bi-person-up"></i> */}
                                         <i onClick={() => handleEditButton(feedback)} className="btn btn-warning m-1 bi bi-pencil-square" />
                                         <i onClick={() => handleDeleteButton(feedback.feedback_id)} className="btn btn-danger m-1 bi bi-trash" />
                                     </td>
