@@ -7,17 +7,22 @@ import { useGerentes } from "../../../hooks/useGerentes";
 import { useColaboradores } from "../../../hooks/useColaboradores";
 
 const EditarFeedbackC = ({ handleEditSubmit, selectEditData, handleCancelButton }) => {
+  // Obtendo a lista de gerentes usando o hook useGerentes
   const { gerentes } = useGerentes([]);
+  // Obtendo a lista de colaboradores usando o hook useColaboradores
   const { colaboradores } = useColaboradores([]);
+  // Obtendo o ID do gerente atual do contexto do usuário
   const { idGerentes } = useContext(UserContext);
+  // Inicializando o estado para as agendas (schedules)
   const [schedules, setSchedule] = useState([])
 
   return (
     <>
       <div className="container_white">
+        {/* Formulário de edição */}
         <Box onSubmit={(e) => handleEditSubmit(e, selectEditData.feedback_id)} component="form" noValidateautoComplete="off">
           <h3 className="text-center">EDITAR FEEDBACK</h3><br></br>
-
+          {/* Campo de entrada para o título do feedback (desabilitado e preenchido com o valor existente) */}
           <TextField sx={{ m: 1, width: '92%' }} name='feedback_title' type="text" className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline defaultValue={selectEditData.feedback_title} disabled />
 
           {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
@@ -49,7 +54,7 @@ const EditarFeedbackC = ({ handleEditSubmit, selectEditData, handleCancelButton 
           <TextField sx={{ m: 1, width: '15%' }} name='feedback_hour' type="time" defaultValue={selectEditData.feedback_hour} className="from__input" id="inputGroup-sizing-default" label="Hora" InputLabelProps={{
             shrink: true,
           }} disabled />
-
+          {/* Campo de entrada para a avaliação (escolha entre 1 a 5 estrelas) */}
           <TextField sx={{ m: 1, width: '40%' }} type="text" name='feedback_evaluate' className="from__input" id="inputGroup-sizing-default" label="Avaliação" placeholder="Avaliação" multiline select>
             <MenuItem value={1}> <i class="bi bi-star-fill"></i></MenuItem>
             <MenuItem value={2}><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></MenuItem>
