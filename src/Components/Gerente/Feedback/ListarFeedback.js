@@ -106,7 +106,7 @@ const ListarFeedback = () => {
                                 <td>
                                     {/* <i className="btn btn-primary m-1 bi bi-person-up"></i> */}
                                     <i onClick={() => handleEditButton(feedback)} className="btn btn-warning m-1 bi bi-pencil-square"/>
-                                    {/* <i onClick={() => handleDeleteButton(feedback.feedback_id)} className="btn btn-danger m-1 bi bi-trash"/> */}
+                                    <i onClick={() => handleDeleteButton(feedback.feedback_id)} className="btn btn-danger m-1 bi bi-trash"/>
                                 </td>
                             </tr>
                         )

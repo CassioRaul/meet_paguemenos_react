@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getgerente, getschedule, addschedule, editschedule, deleteschedule,getfeedback, addfeedback, editfeedback, deletefeedback, getpdi } from '../../Service/ApiService';
+import { getgerente, getschedule, addschedule, editschedule, deleteschedule, getfeedback, addfeedback, editfeedback, deletefeedback, getpdi } from '../../../Service/ApiService';
 
 const Historico = () => {
     const [schedules, setSchedules] = useState([]);
@@ -51,39 +51,39 @@ const Historico = () => {
     return (
         <>
             <div className="container_white">
-            <h3>LISTA DE REUNIÕES</h3><br></br>
-            <table className="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">GERENTE</th>
-                        <th scope="col">COLABORADOR</th>
-                        <th scope="col">TÍTULO</th>
-                        <th scope="col">DATA/HORA</th>
-                        <th scope="col">SALA</th>
-                        <th scope="col">DESCRIÇÃO</th>
-                        <th scope="col">DURAÇÃO</th>
-                        {/* <th scope="col">STATUS</th> */}
-                    </tr>
-                </thead>
-                <tbody>
-                    {schedules.map(schedule => {
-                        return (
-                            <tr key={schedule.schedule_id}>
-                                <td>{schedule.schedule_id}</td>
-                                <td>{schedule.schedule_name_manager}</td>
-                                <td>{schedule.schedule_name_collaborator}</td>
-                                <td>{schedule.schedule_topic}</td>
-                                <td>{schedule.schedule_date} | {schedule.schedule_hour}</td>
-                                <td>{schedule.schedule_meet_location}</td>
-                                <td>{schedule.schedule_description}</td>
-                                <td>{schedule.schedule_duration}</td>
-                                {/* <td>{schedule.schedule_status}</td> */}
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+                <h3>LISTA DE REUNIÕES</h3><br></br>
+                <table className="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">GERENTE</th>
+                            <th scope="col">COLABORADOR</th>
+                            <th scope="col">TÍTULO</th>
+                            <th scope="col">DATA/HORA</th>
+                            <th scope="col">SALA</th>
+                            <th scope="col">DESCRIÇÃO</th>
+                            <th scope="col">DURAÇÃO</th>
+                            {/* <th scope="col">STATUS</th> */}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {schedules.map(schedule => {
+                            return (
+                                <tr key={schedule.schedule_id}>
+                                    <td>{schedule.schedule_id}</td>
+                                    <td>{schedule.schedule_name_manager}</td>
+                                    <td>{schedule.schedule_name_collaborator}</td>
+                                    <td>{schedule.schedule_topic}</td>
+                                    <td>{schedule.schedule_date} | {schedule.schedule_hour}</td>
+                                    <td>{schedule.schedule_meet_location}</td>
+                                    <td>{schedule.schedule_description}</td>
+                                    <td>{schedule.schedule_duration}</td>
+                                    {/* <td>{schedule.schedule_status}</td> */}
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
             </div>
             <br></br>
             <div class="container_white">
