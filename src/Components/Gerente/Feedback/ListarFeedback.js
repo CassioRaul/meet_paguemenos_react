@@ -1,21 +1,17 @@
 import { useState, useContext } from 'react';
 import { addfeedback, editfeedback, deletefeedback } from '../../../Service/ApiService';
-// import './Feedback.css';
 import AdicionarFeedback from './AdicionarFeedback';
 import EditarFeedback from './EditarFeedback';
-
 import { useGerentes } from "../../../hooks/useGerentes";
 import { useFeedbacks } from "../../../hooks/useFeedbacks";
 import { UserContext } from "../../../context/UserContext";
 import Search from '../Agendar/Search';
 
 const ListarFeedback = () => {
-    
     const [showFeedbackForm, setShowFeedbackForm] = useState(false);
     const [showEditFeedbackForm, setShowEditFeedbackForm] = useState(false);
     const [selectEditData, setSelectEditData] = useState();
     const [seach, setSearch] = useState("");
-
     const { gerentes, setGerentes } = useGerentes([]);
     const { feedbacks, setFeedbacks } = useFeedbacks([]);
     const { idGerentes } = useContext(UserContext);
@@ -42,16 +38,10 @@ const ListarFeedback = () => {
     }
 
     const handleDeleteButton = (feedback_id) => {
-        // e.preventDefault();
-        // const token = prompt("TOKEN DE SEGURANÇA NECESSÁRIO:")
-        // if (token === manager_token){
         deletefeedback(feedback_id)
         .then(res => {
             setFeedbacks(feedbacks.filter(c => c.feedback_id !== feedback_id))
         })
-        // } else{
-        //     alert("TOKEN INVÁLIDO, DIGITE NOVAMENTE!")
-        // }
     }
 
     function handleCancelButton(e) {
@@ -61,15 +51,12 @@ const ListarFeedback = () => {
     }
     
   return (
-    <>
     <div className="container_white">
         <div className="button_add_close">
-            <div className='container_display_flex'>
-                {/* <button className="btn btn-primary m-0 i bi-plus-circle " onClick={() => setShowFeedbackForm(true)}> ADICIONAR</button>&nbsp;&nbsp;&nbsp; */}
-            </div>
+            <div className='container_display_flex'></div>
             <Search seach={seach} setSearch={setSearch} />
-
         </div>
+
         <div className="button_add_close">
             {showFeedbackForm && <AdicionarFeedback handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />}
             {showEditFeedbackForm && <EditarFeedback handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton}/>}
@@ -77,42 +64,40 @@ const ListarFeedback = () => {
         
         <br></br><h3>LISTA DE FEEDBACKS</h3>
         <table className="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">REUNIÃO</th>
-                        <th scope="col">TÍTULO</th>
-                        <th scope="col">COLABORADOR</th>
-                        <th scope="col">DATA</th>
-                        <th scope="col">HORA</th>
-                        <th scope="col">ANOTAÇÕES</th>
-                        <th scope="col">AVALIAÇÃO</th>
-                        <th scope="col">AÇÕES</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* && feedback.feedback_id == feedback.feedback_idschedule */}
-                    {feedbacks.filter(feedback => feedback.feedback_manager_id == idGerentes).filter(filterFeedbacks => filterFeedbacks.feedback_collaborator.toLowerCase().includes(seach.toLowerCase())).map(feedback => {
-                        return (
-                            <tr key={feedback.feedback_id}>
-                                <td>{feedback.feedback_id}</td>
-                                <td>ID {feedback.feedback_idschedule}</td>
-                                <td>{feedback.feedback_title}</td>
-                                <td>{feedback.feedback_collaborator}</td>
-                                <td>{feedback.feedback_date}</td>
-                                <td>{feedback.feedback_hour}</td>
-                                <td>{feedback.feedback_note}</td>
-                                <td>{feedback.feedback_evaluate}</td>
-                                <td>
-                                    <i onClick={() => handleEditButton(feedback)} className="btn btn-warning m-1 bi bi-pencil-square"/>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-                </table>
-            </div>
-        </>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">REUNIÃO</th>
+                    <th scope="col">TÍTULO</th>
+                    <th scope="col">COLABORADOR</th>
+                    <th scope="col">DATA</th>
+                    <th scope="col">HORA</th>
+                    <th scope="col">ANOTAÇÕES</th>
+                    <th scope="col">AVALIAÇÃO</th>
+                    <th scope="col">AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody>
+                {feedbacks.filter(feedback => feedback.feedback_manager_id == idGerentes).filter(filterFeedbacks => filterFeedbacks.feedback_collaborator.toLowerCase().includes(seach.toLowerCase())).map(feedback => {
+                    return (
+                        <tr key={feedback.feedback_id}>
+                            <td>{feedback.feedback_id}</td>
+                            <td>ID {feedback.feedback_idschedule}</td>
+                            <td>{feedback.feedback_title}</td>
+                            <td>{feedback.feedback_collaborator}</td>
+                            <td>{feedback.feedback_date}</td>
+                            <td>{feedback.feedback_hour}</td>
+                            <td>{feedback.feedback_note}</td>
+                            <td>{feedback.feedback_evaluate}</td>
+                            <td>
+                                <i onClick={() => handleEditButton(feedback)} className="btn btn-warning m-1 bi bi-pencil-square"/>
+                            </td>
+                        </tr>
+                    )
+                })}
+            </tbody>
+        </table>
+    </div>
     )
 }
 
