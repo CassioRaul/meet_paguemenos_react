@@ -23,7 +23,6 @@ const ListarReunioes = () => {
 
     const { gerentes } = useGerentes([]);
     const { idGerentes } = useContext(UserContext);
-    const { feedbacks, setFeedbacks } = useFeedbacks([]);
     const { schedules, setSchedules } = useSchedules([]);
 
     const handleAddSubmit = (e) => {
@@ -108,9 +107,9 @@ const ListarReunioes = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {schedules.filter(schedule => schedule.schedule_manager_id == idGerentes).filter(filterSchedule => filterSchedule.schedule_name_collaborator.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_topic.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_status_manager.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
+                        {schedules.filter(schedule => schedule.schedule_manager_id == idGerentes && schedule.schedule_status_manager === "EM ANDAMENTO" || schedule.schedule_status_collaborator === "EM ANDAMENTO").filter(filterSchedule => filterSchedule.schedule_name_collaborator.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_topic.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_status_manager.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
                             return (
-                                <tr key={schedule.schedule_id} style={{ textDecoration: schedule.schedule_status_manager === "FINALIZADA" ? "line-through" : "" }}>
+                                <tr key={schedule.schedule_id} style={{ textDecoration: schedule.schedule_status_manager === "FINALIZADA" && schedule.schedule_status_collaborator === "FINALIZADA" ? "line-through" : "" }}>
                                     <td>{schedule.schedule_id}</td>
                                     <td>{schedule.schedule_topic}</td>
                                     <td>{schedule.schedule_description}</td>
@@ -119,19 +118,27 @@ const ListarReunioes = () => {
                                     <td>{schedule.schedule_name_collaborator}</td>
                                     <td>{schedule.schedule_meet_location}</td>
                                     <td>{schedule.schedule_duration}</td>
-                                    <td>{schedule.schedule_status_manager}</td>
+                                    <td>{schedule.schedule_status_manager === "FINALIZADA" && schedule.schedule_status_collaborator === "FINALIZADA" ? "FINALIZADA" : "EM ANDAMENTO" }</td>
                                     <td>
-                                        {schedule.schedule_status_manager === "EM ANDAMENTO" || schedule.schedule_status_manager === "NÃO FINALIZADA" ? <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" /> : <i className="btn btn-secondary m-1 bi bi-calendar2-check" />}
+                                        {schedule.schedule_status_manager === "FINALIZADA" ? <i className="btn btn-secondary m-1 bi bi-calendar2-check" /> : <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" />}
 
-                                        {schedule.schedule_status_manager === "EM ANDAMENTO" || schedule.schedule_status_manager === "NÃO FINALIZADA" ? <i onClick={() => handleEditButton(schedule)}
-                                        className="btn btn-warning m-1 bi bi-pencil-square" /> : <i
-                                        className="btn btn-secondary m-1 bi bi-pencil-square" />}
+                                        {schedule.schedule_status_manager === "FINALIZADA" ? <i className="btn btn-secondary m-1 bi bi-pencil-square" /> : 
+                                        <i onClick={() => handleEditButton(schedule)}
+                                        className="btn btn-warning m-1 bi bi-pencil-square" />}
                                         
-                                        {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
-                                        return (
-                                            <i key={gerente.manager_id} onClick={() => handleDeleteButton(schedule.schedule_id, gerente.manager_token)} className="btn btn-danger m-1 bi bi-trash" />
-                                            )
-                                        })}
+                                        {schedule.schedule_status_manager === "FINALIZADA" ?
+                                        gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
+                                            return (
+                                                <i key={gerente.manager_id} className="btn btn-secondary m-1 bi bi-trash" />
+                                                )
+                                            }) :
+                                        gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
+                                            return (
+                                                <i key={gerente.manager_id} onClick={() => handleDeleteButton(schedule.schedule_id, gerente.manager_token)} className="btn btn-danger m-1 bi bi-trash" />
+                                                )
+                                            })
+                                        }
+                                        
                                     </td>
                                 </tr>
                             )

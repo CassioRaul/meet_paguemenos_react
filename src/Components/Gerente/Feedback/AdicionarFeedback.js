@@ -73,7 +73,8 @@ const AdicionarFeedback = ({ IdSchedule, handleCancelButton }) => {
       <input type='hidden' name='schedule_meet_location' defaultValue={IdSchedule.schedule_meet_location}/>
       <input type='hidden' name='schedule_duration' defaultValue={IdSchedule.schedule_duration}/>
       <input type='hidden' name='schedule_description' defaultValue={IdSchedule.schedule_description}/>
-      <input type='hidden' name='schedule_status' defaultValue={IdSchedule.schedule_status + 1}/>
+      <input type='hidden' name='schedule_status_manager' defaultValue="FINALIZADA"/>
+      <input type='hidden' name='schedule_status_collaborator' defaultValue={IdSchedule.schedule_status_collaborator}/>
       <br></br>
 
       <button className="btn btn-primary m-1" type='submit'>Salvar</button>

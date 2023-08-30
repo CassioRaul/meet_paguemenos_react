@@ -133,7 +133,7 @@ const ListarReunioesC = () => {
                         {/* Mapeia e exibe as reuniões que atendem aos critérios de filtro */}
                         {schedules.filter(schedule => schedule.schedule_collaborator_id == idColaboradores).filter(filterSchedule => filterSchedule.schedule_name_manager.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
                             return (
-                                <tr key={schedule.schedule_id} style={{ textDecoration: schedule.schedule_status == 2 ? "line-through" : "" }}>
+                                <tr key={schedule.schedule_id} style={{ textDecoration: schedule.schedule_status_manager === "FINALIZADA" && schedule.schedule_status_collaborator === "FINALIZADA" ? "line-through" : "" }}>
                                     <td>{schedule.schedule_id}</td>
                                     <td>{schedule.schedule_topic}</td>
                                     <td>{schedule.schedule_description}</td>
@@ -142,18 +142,12 @@ const ListarReunioesC = () => {
                                     <td>{schedule.schedule_name_manager}</td>
                                     <td>{schedule.schedule_meet_location}</td>
                                     <td>{schedule.schedule_duration}</td>
-                                    <td>
-                                        {/* Exibe o status da reunião com base no valor de 'schedule_status' */}
-                                        {schedule.schedule_status === 0 ? "EM ANDAMENTO" : ""}
-                                        {schedule.schedule_status === 1 ? "NÃO FINALIZADA" : ""}
-                                        {schedule.schedule_status === 2 ? "FINALIZADA" : ""}
-                                    </td>
+                                    <td>{schedule.schedule_status_manager === "FINALIZADA" && schedule.schedule_status_collaborator === "FINALIZADA" ? "FINALIZADA" : "EM ANDAMENTO" }</td>
                                     <td>
                                         <div>
-                                            {/* Botões de ação com base no status da reunião */}
-                                            {schedule.schedule_status === 0 || schedule.schedule_status === 1 ? <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" /> : <i className="btn btn-secondary m-1 bi bi-calendar2-check" />}
+                                        {schedule.schedule_status_collaborator === "FINALIZADA" ? <i className="btn btn-secondary m-1 bi bi-calendar2-check" /> : <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" /> }
 
-                                            {schedule.schedule_status === 0 || schedule.schedule_status === 1 ? <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" /> : <i className="btn btn-secondary m-1 bi bi-pencil-square" />}
+                                        {schedule.schedule_status_collaborator === "FINALIZADA" ? <i className="btn btn-secondary m-1 bi bi-pencil-square" /> : <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" /> }
                                         </div>
                                     </td>
                                 </tr>
