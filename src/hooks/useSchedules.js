@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { getschedule } from '../Service/ApiService';
 
 export const useSchedules = () => {
@@ -8,19 +8,8 @@ export const useSchedules = () => {
         getschedule()
         .then(res => {
             setSchedules(res)
-        })
-    }, []);
-
-    // const listSchedule = useCallback(() => {
-    //     getschedule()
-    //     .then(res => {
-    //         setSchedules(res)
-    //     })
-    // }, [schedules]);
-    
-    // useEffect(() => {
-    //     listSchedule();
-    // }, [listSchedule]);
+        });
+    }, [schedules]);
 
     return {
         schedules,

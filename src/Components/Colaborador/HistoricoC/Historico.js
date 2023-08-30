@@ -1,31 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { getgerente, getschedule, addschedule, editschedule, deleteschedule, getfeedback, addfeedback, editfeedback, deletefeedback, getpdi } from '../../../Service/ApiService';
-
-
-
-
+import React, { useContext, useEffect, useState } from 'react'
+import { getschedule, getfeedback, getpdi } from '../../../Service/ApiService';
+import { useSchedules } from '../../../hooks/useSchedules';
+import { UserContext } from '../../../context/UserContext';
+import { useColaboradores } from '../../../hooks/useColaboradores';
+import Search from '../../Gerente/Agendar/Search';
 
 const Historico = () => {
-    const [schedules, setSchedules] = useState([]);
-    const [showScheduleForm, setShowScheduleForm] = useState(false);
-    const [showEditScheduleForm, setShowEditScheduleForm] = useState(false);
-    const [gerentes, setGerentes] = useState([])
-    const [feedback_idschedule, setFeedback_idSchedule] = useState()
+    const [seach, setSearch] = useState("");
+    const { colaboradores } = useColaboradores([]);
+    const { idColaboradores } = useContext(UserContext);
+    const { schedules, setSchedules } = useSchedules([]);
     const [pdis, setPdis] = useState([]);
-    const [showPdiForm, setShowPdiForm] = useState(false);
     const [feedbacks, setFeedback] = useState([]);
-    const [showFeedbackForm, setShowFeedbackForm] = useState(false);
-
-
-
-    useEffect(() => {
-        let mount = true
-        getgerente()
-            .then(res => {
-                setGerentes(res)
-                return () => mount = false
-            })
-    }, [])
 
     useEffect(() => {
         let mount = true
@@ -57,34 +43,33 @@ const Historico = () => {
     return (
         <>
             <div className="container_white">
+                <Search seach={seach} setSearch={setSearch} /><br></br>
                 <h3>LISTA DE REUNIÕES</h3><br></br>
                 <table className="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">GERENTE</th>
-                            <th scope="col">COLABORADOR</th>
                             <th scope="col">TÍTULO</th>
                             <th scope="col">DATA/HORA</th>
                             <th scope="col">SALA</th>
                             <th scope="col">DESCRIÇÃO</th>
                             <th scope="col">DURAÇÃO</th>
-                            {/* <th scope="col">STATUS</th> */}
+                            <th scope="col">STATUS</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {schedules.map(schedule => {
+                    {schedules.filter(schedule => schedule.schedule_collaborator_id == idColaboradores && schedule.schedule_status_manager === "FINALIZADA" && schedule.schedule_status_collaborator === "FINALIZADA").filter(filterSchedule => filterSchedule.schedule_name_manager.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_topic.toLowerCase().includes(seach.toLowerCase()) || String(filterSchedule.schedule_id).toLowerCase().includes(seach.toLowerCase())).map(schedule => {
                             return (
                                 <tr key={schedule.schedule_id}>
                                     <td>{schedule.schedule_id}</td>
                                     <td>{schedule.schedule_name_manager}</td>
-                                    <td>{schedule.schedule_name_collaborator}</td>
                                     <td>{schedule.schedule_topic}</td>
                                     <td>{schedule.schedule_date} | {schedule.schedule_hour}</td>
                                     <td>{schedule.schedule_meet_location}</td>
                                     <td>{schedule.schedule_description}</td>
                                     <td>{schedule.schedule_duration}</td>
-                                    {/* <td>{schedule.schedule_status}</td> */}
+                                    <td>{schedule.schedule_status_collaborator}</td>
                                 </tr>
                             )
                         })}
