@@ -64,7 +64,8 @@ const EditarReunioes = ({ handleEditSubmit, selectEditData, handleCancelButton }
 
         <TextField sx={{ m: 1, width: '92%' }} type="text" name='schedule_description' defaultValue={selectEditData.schedule_description} className="from__input" id="basic-url" label="Descrição" placeholder="Descrição" multiline rows={4}/>
 
-        <input type='hidden' name='schedule_status' defaultValue={selectEditData.schedule_status}/>
+        <input type='hidden' name='schedule_status_manager' defaultValue={selectEditData.schedule_status_manager}/>
+        <input type='hidden' name='schedule_status_collaborator' defaultValue={selectEditData.schedule_status_collaborator}/>
         <br></br>
 
         <button className="btn btn-primary m-1" type='submit'>EDITAR</button>

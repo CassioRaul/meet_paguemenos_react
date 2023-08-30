@@ -26,18 +26,10 @@ const EditarFeedback = ({ handleEditSubmit, selectEditData, handleCancelButton }
         <h3 className="text-center">EDITAR FEEDBACK</h3><br></br>
 
         <TextField sx={{ m: 1, width: '92%' }} name='feedback_title' type="text" className="from__input" id="inputGroup-sizing-default" label="Titulo" placeholder="Titulo" multiline defaultValue={selectEditData.feedback_title} disabled/>
+        
+        <TextField sx={{ m: 1, width: '10%' }} type="text" name='feedback_manager_id' className="from__input" id="inputGroup-sizing-default" defaultValue={selectEditData.feedback_manager_id}  label="ID do Gerente" placeholder="ID do Gerente" multiline disabled />
 
-        {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
-          return (
-            <TextField sx={{ m: 1, width: '10%' }} type="text" name='feedback_manager_id' className="from__input" id="inputGroup-sizing-default" defaultValue={gerente.manager_id}  label="ID do Gerente" placeholder="ID do Gerente" multiline disabled/>
-          )
-        })}
-
-        {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
-          return (
-          <TextField key={gerente.manager_id} sx={{ m: 1, width: '39%' }} type="text"  name='feedback_manage' className="from__input" id="inputGroup-sizing-default" defaultValue={gerente.manager_name} label="Gerente" placeholder="Gerente" multiline disabled/>
-          )
-        })}
+        <TextField sx={{ m: 1, width: '39%' }} type="text"  name='feedback_manage' className="from__input" id="inputGroup-sizing-default" defaultValue={selectEditData.feedback_manage} label="Gerente" placeholder="Gerente" multiline disabled/>
         
         <TextField sx={{ m: 1, width: '10%' }} type="text" name='feedback_collaborator_id' className="from__input" id="inputGroup-sizing-default" defaultValue={selectEditData.feedback_collaborator_id} label="ID do Colaborador" placeholder="ID do Colaborador" multiline disabled/>
 
@@ -51,7 +43,7 @@ const EditarFeedback = ({ handleEditSubmit, selectEditData, handleCancelButton }
         <TextField sx={{ m: 1, width: '18.5%' }} name='feedback_hour' type="time" defaultValue={selectEditData.feedback_hour} className="from__input" id="inputGroup-sizing-default" label="Hora" InputLabelProps={{shrink: true,
         }} disabled/>
 
-        <TextField sx={{ m: 1, width: '40%' }} type="text" name='feedback_evaluate'  className="from__input" id="inputGroup-sizing-default" label="Avaliação" placeholder="Avaliação" multiline select>
+        <TextField sx={{ m: 1, width: '40%' }} type="text" name='feedback_evaluate'  className="from__input" id="inputGroup-sizing-default" defaultValue={selectEditData.feedback_evaluate} label="Avaliação" placeholder="Avaliação" multiline select>
           <MenuItem value={1}> <i class="bi bi-star-fill"></i></MenuItem>
           <MenuItem value={2}><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></MenuItem>
           <MenuItem value={3}><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></MenuItem>

@@ -3,6 +3,7 @@ import { getgerente, getschedule, addschedule, editschedule, deleteschedule, get
 import { useSchedules } from '../../../hooks/useSchedules';
 import { useGerentes } from '../../../hooks/useGerentes';
 import { UserContext } from '../../../context/UserContext';
+import Search from '../Agendar/Search';
 
 const Historico = () => {
     const [seach, setSearch] = useState("");
@@ -42,12 +43,12 @@ const Historico = () => {
     return (
         <>
             <div className="container_white">
+                <Search seach={seach} setSearch={setSearch} /><br></br>
                 <h3>LISTA DE REUNIÕES</h3><br></br>
                 <table className="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">GERENTE</th>
                             <th scope="col">COLABORADOR</th>
                             <th scope="col">TÍTULO</th>
                             <th scope="col">DATA/HORA</th>
@@ -58,58 +59,20 @@ const Historico = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    {schedules.filter(schedule => schedule.schedule_manager_id == idGerentes && schedule.schedule_status_manager === "FINALIZADA" && schedule.schedule_status_collaborator === "FINALIZADA").filter(filterSchedule => filterSchedule.schedule_name_collaborator.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_topic.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_status_manager.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
+                    {schedules.filter(schedule => schedule.schedule_manager_id == idGerentes && schedule.schedule_status_manager === "FINALIZADA" && schedule.schedule_status_collaborator === "FINALIZADA").filter(filterSchedule => filterSchedule.schedule_name_collaborator.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_topic.toLowerCase().includes(seach.toLowerCase()) || String(filterSchedule.schedule_id).toLowerCase().includes(seach.toLowerCase())).map(schedule => {
                             return (
                                 <tr key={schedule.schedule_id}>
                                     <td>{schedule.schedule_id}</td>
-                                    <td>{schedule.schedule_name_manager}</td>
                                     <td>{schedule.schedule_name_collaborator}</td>
                                     <td>{schedule.schedule_topic}</td>
                                     <td>{schedule.schedule_date} | {schedule.schedule_hour}</td>
                                     <td>{schedule.schedule_meet_location}</td>
                                     <td>{schedule.schedule_description}</td>
                                     <td>{schedule.schedule_duration}</td>
-                                    <td>{schedule.schedule_status_manager}</td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
-            </div>
-            <br></br>
-            <div class="container_white">
-                <h3>LISTA DE PDIS</h3>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">GERENTE</th>
-                            <th scope="col">COLABORADOR</th>
-                            <th scope="col">TÍTULO</th>
-                            <th scope="col">META</th>
-                            <th scope="col">PROGRESSO</th>
-                            <th scope="col">RECURSOS</th>
-                            <th scope="col">DESCRIÇÃO</th>
-                            <th scope="col">DATA DE CRIAÇÃO</th>
-                            <th scope="col">DATA DE ENTREGA</th>
-                            <th scope="col">STATUS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {pdis.map(pdi => {
-                            return (
-                                <tr key={pdi.planning_id}>
-                                    <td>{pdi.planning_id}</td>
-                                    <td>{pdi.planning_name_manager}</td>
-                                    <td>{pdi.planning_name_collaborator}</td>
-                                    <td>{pdi.planning_title}</td>
-                                    <td>{pdi.planning_goals}</td>
-                                    <td>{pdi.planning_progess}</td>
-                                    <td>{pdi.planning_description}</td>
-                                    <td>{pdi.planning_resource}</td>
-                                    <td>{pdi.planning_date} | {pdi.planning_hour}</td>
-                                    <td>{pdi.planning_final_date} | {pdi.planning_final_hour}</td>
-                                    <td>{pdi.planning_status}</td>
+                                    <td>
+                                        {schedule.schedule_status_manager === "FINALIZADA" ? <i class="bi bi-check-circle"></i> : <i class="bi bi-x-circle"/>}
+                                        {schedule.schedule_status_collaborator === "FINALIZADA" ? <i class="bi bi-check-circle"></i> : <i class="bi bi-x-circle"/>}
+                                    </td>
                                 </tr>
                             )
                         })}
@@ -151,6 +114,46 @@ const Historico = () => {
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <br></br>
+            <div class="container_white">
+                <h3>LISTA DE PDIS</h3>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">GERENTE</th>
+                            <th scope="col">COLABORADOR</th>
+                            <th scope="col">TÍTULO</th>
+                            <th scope="col">META</th>
+                            <th scope="col">PROGRESSO</th>
+                            <th scope="col">RECURSOS</th>
+                            <th scope="col">DESCRIÇÃO</th>
+                            <th scope="col">DATA DE CRIAÇÃO</th>
+                            <th scope="col">DATA DE ENTREGA</th>
+                            <th scope="col">STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {pdis.map(pdi => {
+                            return (
+                                <tr key={pdi.planning_id}>
+                                    <td>{pdi.planning_id}</td>
+                                    <td>{pdi.planning_name_manager}</td>
+                                    <td>{pdi.planning_name_collaborator}</td>
+                                    <td>{pdi.planning_title}</td>
+                                    <td>{pdi.planning_goals}</td>
+                                    <td>{pdi.planning_progess}</td>
+                                    <td>{pdi.planning_description}</td>
+                                    <td>{pdi.planning_resource}</td>
+                                    <td>{pdi.planning_date} | {pdi.planning_hour}</td>
+                                    <td>{pdi.planning_final_date} | {pdi.planning_final_hour}</td>
+                                    <td>{pdi.planning_status}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
             </div>
         </>
     )

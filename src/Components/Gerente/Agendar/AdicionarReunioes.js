@@ -17,7 +17,7 @@ const AdicionarReunioes = ({ handleAddSubmit, handleCancelButton }) => {
     <>
       <div className="container_white">
       <Box onSubmit={handleAddSubmit} component="form" noValidate autoComplete="off">
-        <h3 className="text-center">AGENDAR REUNIÃO</h3><br></br>
+        <h3 className="text-center">AGENDAR REUNIÃO</h3>
 
         {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
           return (
@@ -65,7 +65,7 @@ const AdicionarReunioes = ({ handleAddSubmit, handleCancelButton }) => {
           <MenuItem value="60">60 minutos</MenuItem>
         </TextField>
 
-        <TextField sx={{ m: 1, width: '91%' }} type="text" name='schedule_description' className="from__input" id="inputGroup-sizing-default" label="Descrição" placeholder="Descrição" multiline rows={4}/>
+        <TextField sx={{ m: 1, width: '92%' }} type="text" name='schedule_description' className="from__input" id="inputGroup-sizing-default" label="Descrição" placeholder="Descrição" multiline rows={2}/>
 
         <input type='hidden' name='schedule_status_manager' defaultValue="EM ANDAMENTO"/>
         <input type='hidden' name='schedule_status_collaborator' defaultValue="EM ANDAMENTO"/>

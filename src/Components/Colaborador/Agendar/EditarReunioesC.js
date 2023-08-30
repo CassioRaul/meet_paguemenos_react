@@ -18,7 +18,7 @@ const EditarReunioesC = ({ handleEditSubmit, selectEditData, handleCancelButton 
         {/* Cria um formulário com alguns campos para editar informações de reuniões. */}
         <Box onSubmit={(e) => handleEditSubmit(e, selectEditData.schedule_id)} component="form" noValidate
           autoComplete="off">
-          <h3 className="text-center">EDITAR REUNIÃO</h3><br></br>
+          <h3 className="text-center">EDITAR REUNIÃO</h3>
           {/* Campo de texto para o nome do colaborador, desativado (não editável). */}
           <TextField sx={{ m: 1, width: '40.5%' }} type="text" name='schedule_name_collaborator' defaultValue={selectEditData.schedule_name_collaborator} className="from__input" id="inputGroup-sizing-default" label="Colaborador" placeholder="Colaborador" disabled />
           {/* Campo de texto para o ID do colaborador, desativado (não editável). */}
@@ -59,9 +59,10 @@ const EditarReunioesC = ({ handleEditSubmit, selectEditData, handleCancelButton 
             <MenuItem value="60">60 minutos</MenuItem>
           </TextField>
 
-          <TextField sx={{ m: 1, width: '92%' }} type="text" defaultValue={selectEditData.schedule_description} name='schedule_description' className="from__input" id="inputGroup-sizing-default" label="Descrição" placeholder="Descrição" multiline rows={4} />
+          <TextField sx={{ m: 1, width: '92%' }} type="text" defaultValue={selectEditData.schedule_description} name='schedule_description' className="from__input" id="inputGroup-sizing-default" label="Descrição" placeholder="Descrição" multiline rows={2} />
           {/* Campo oculto para definir o status da reunião. */}
-          <input type='hidden' name='schedule_status' defaultValue={0} />
+          <input type='hidden' name='schedule_status_manager' defaultValue={selectEditData.schedule_status_manager}/>
+          <input type='hidden' name='schedule_status_collaborator' defaultValue={selectEditData.schedule_status_collaborator}/>
           <br></br>
           {/* Botão para enviar o formulário de edição. */}
           <button className="btn btn-primary m-1" type='submit'>EDITAR</button>

@@ -8,7 +8,7 @@ export const usePdi = () => {
         getpdi()
         .then(res => {
             setPdi(res)
-        })
+        });
     }, []);
 
     return {

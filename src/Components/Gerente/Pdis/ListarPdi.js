@@ -72,17 +72,14 @@ const ListarPdi = () => {
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">COLABORADOR</th>
                             <th scope="col">TÍTULO</th>
                             <th scope="col">META</th>
                             <th scope="col">PROGRESSO</th>
                             <th scope="col">DESCRIÇÃO</th>
                             <th scope="col">RECURSOS</th>
-                            <th scope="col">COLABORADOR</th>
-                            {/* <th scope="col">DATA</th>
-                            <th scope="col">HORA</th> */}
                             <th scope="col">DATA FINAL</th>
                             <th scope="col">STATUS</th>
-                            {/* <th scope="col">HORA FINAL</th> */}
                             <th scope="col">AÇÕES</th>
                         </tr>
                     </thead>
@@ -91,18 +88,15 @@ const ListarPdi = () => {
                             return (
                                 <tr key={pdi.planning_id}>
                                     <td>{pdi.planning_id}</td>
+                                    <td>{pdi.planning_name_collaborator}</td>
                                     <td>{pdi.planning_title}</td>
                                     <td>{pdi.planning_goals}</td>
                                     <td>{pdi.planning_progess}</td>
                                     <td>{pdi.planning_description}</td>
                                     <td>{pdi.planning_resource}</td>
-                                    <td>{pdi.planning_name_collaborator}</td>
-                                    {/* <td>{pdi.planning_date}</td>
-                                    <td>{pdi.planning_hour}</td> */}
                                     <td>{pdi.planning_final_date}<br></br>{pdi.planning_final_hour}</td>
                                     <td>{pdi.planning_status}</td>
                                     <td>
-                                        {/* <i className="btn btn-success m-1 bi bi-bookmark-x" /> */}
                                         <i onClick={() => handleEditButton(pdi)} className="btn btn-warning m-1 bi bi-pencil-square" />
                                         <i onClick={() => handleDeleteButton(pdi.planning_id)} className="btn btn-danger m-1 bi bi-trash" />
                                     </td>

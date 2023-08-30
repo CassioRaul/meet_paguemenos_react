@@ -6,6 +6,7 @@ import { useGerentes } from "../../../hooks/useGerentes";
 import { useFeedbacks } from "../../../hooks/useFeedbacks";
 import { UserContext } from "../../../context/UserContext";
 import Search from '../Agendar/Search';
+import { useSchedules } from '../../../hooks/useSchedules';
 
 const ListarFeedback = () => {
     const [showFeedbackForm, setShowFeedbackForm] = useState(false);
@@ -15,6 +16,7 @@ const ListarFeedback = () => {
     const { gerentes, setGerentes } = useGerentes([]);
     const { feedbacks, setFeedbacks } = useFeedbacks([]);
     const { idGerentes } = useContext(UserContext);
+    const { schedules, setSchedules } = useSchedules([]);
 
     const handleAddSubmit = (e) => {
         e.preventDefault();
@@ -68,8 +70,8 @@ const ListarFeedback = () => {
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">REUNIÃO</th>
-                    <th scope="col">TÍTULO</th>
                     <th scope="col">COLABORADOR</th>
+                    <th scope="col">TÍTULO</th>
                     <th scope="col">DATA</th>
                     <th scope="col">HORA</th>
                     <th scope="col">ANOTAÇÕES</th>
@@ -83,8 +85,8 @@ const ListarFeedback = () => {
                         <tr key={feedback.feedback_id}>
                             <td>{feedback.feedback_id}</td>
                             <td>ID {feedback.feedback_idschedule}</td>
-                            <td>{feedback.feedback_title}</td>
                             <td>{feedback.feedback_collaborator}</td>
+                            <td>{feedback.feedback_title}</td>
                             <td>{feedback.feedback_date}</td>
                             <td>{feedback.feedback_hour}</td>
                             <td>{feedback.feedback_note}</td>

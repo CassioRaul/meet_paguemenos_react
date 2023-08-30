@@ -23,6 +23,7 @@ const ListarReunioes = () => {
 
     const { gerentes } = useGerentes([]);
     const { idGerentes } = useContext(UserContext);
+    const { feedbacks, setFeedbacks } = useFeedbacks([]);
     const { schedules, setSchedules } = useSchedules([]);
 
     const handleAddSubmit = (e) => {
@@ -81,7 +82,6 @@ const ListarReunioes = () => {
                         <Search seach={seach} setSearch={setSearch} />
                     </div>
                 </div>
-                <br></br>
                 <div className="button_add_close">
                     {showScheduleForm && <AdicionarReunioes handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />}
 
@@ -95,11 +95,11 @@ const ListarReunioes = () => {
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">COLABORADOR</th>
                             <th scope="col">TÍTULO</th>
                             <th scope="col">DESCRIÇÃO</th>
                             <th scope="col">DATA</th>
                             <th scope="col">HORA</th>
-                            <th scope="col">COLABORADOR</th>
                             <th scope="col">LOCAL</th>
                             <th scope="col">DURAÇÃO</th>
                             <th scope="col">STATUS</th>
@@ -107,18 +107,21 @@ const ListarReunioes = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {schedules.filter(schedule => schedule.schedule_manager_id == idGerentes && schedule.schedule_status_manager === "EM ANDAMENTO" || schedule.schedule_status_collaborator === "EM ANDAMENTO").filter(filterSchedule => filterSchedule.schedule_name_collaborator.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_topic.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_status_manager.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
+                        {schedules.filter(schedule => schedule.schedule_manager_id == idGerentes && schedule.schedule_status_manager === "EM ANDAMENTO" || schedule.schedule_status_collaborator === "EM ANDAMENTO").filter(filterSchedule => filterSchedule.schedule_name_collaborator.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_topic.toLowerCase().includes(seach.toLowerCase()) || String(filterSchedule.schedule_id).toLowerCase().includes(seach.toLowerCase())).map(schedule => {
                             return (
                                 <tr key={schedule.schedule_id} style={{ textDecoration: schedule.schedule_status_manager === "FINALIZADA" && schedule.schedule_status_collaborator === "FINALIZADA" ? "line-through" : "" }}>
                                     <td>{schedule.schedule_id}</td>
+                                    <td>{schedule.schedule_name_collaborator}</td>
                                     <td>{schedule.schedule_topic}</td>
                                     <td>{schedule.schedule_description}</td>
                                     <td>{schedule.schedule_date}</td>
                                     <td>{schedule.schedule_hour}</td>
-                                    <td>{schedule.schedule_name_collaborator}</td>
                                     <td>{schedule.schedule_meet_location}</td>
-                                    <td>{schedule.schedule_duration}</td>
-                                    <td>{schedule.schedule_status_manager === "FINALIZADA" && schedule.schedule_status_collaborator === "FINALIZADA" ? "FINALIZADA" : "EM ANDAMENTO" }</td>
+                                    <td>{schedule.schedule_duration} min</td>
+                                    <td>
+                                        {schedule.schedule_status_manager === "FINALIZADA" ? <i class="bi bi-check-circle"></i> : <i class="bi bi-x-circle"/>}
+                                        {schedule.schedule_status_collaborator === "FINALIZADA" ? <i class="bi bi-check-circle"></i> : <i class="bi bi-x-circle"/>}
+                                    </td>
                                     <td>
                                         {schedule.schedule_status_manager === "FINALIZADA" ? <i className="btn btn-secondary m-1 bi bi-calendar2-check" /> : <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" />}
 
@@ -138,7 +141,6 @@ const ListarReunioes = () => {
                                                 )
                                             })
                                         }
-                                        
                                     </td>
                                 </tr>
                             )
