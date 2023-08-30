@@ -154,13 +154,6 @@ const ListarReunioesC = () => {
                                             {schedule.schedule_status === 0 || schedule.schedule_status === 1 ? <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" /> : <i className="btn btn-secondary m-1 bi bi-calendar2-check" />}
 
                                             {schedule.schedule_status === 0 || schedule.schedule_status === 1 ? <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" /> : <i className="btn btn-secondary m-1 bi bi-pencil-square" />}
-
-                                            {colaboradores.filter(colaborador => colaborador.collaborator_id == idColaboradores).map(colaborador => {
-                                                return (
-                                                    /* Botão de exclusão de reunião */
-                                                    <i key={colaborador.collaborator_id} onClick={() => handleDeleteButton(schedule.schedule_id, colaborador.collaborator_token)} className="btn btn-danger m-1 bi bi-trash" />
-                                                )
-                                            })}
                                         </div>
                                     </td>
                                 </tr>

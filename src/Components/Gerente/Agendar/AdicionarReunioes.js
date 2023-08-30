@@ -67,7 +67,8 @@ const AdicionarReunioes = ({ handleAddSubmit, handleCancelButton }) => {
 
         <TextField sx={{ m: 1, width: '91%' }} type="text" name='schedule_description' className="from__input" id="inputGroup-sizing-default" label="Descrição" placeholder="Descrição" multiline rows={4}/>
 
-        <input type='hidden' name='schedule_status' defaultValue={0}/>
+        <input type='hidden' name='schedule_status_manager' defaultValue="EM ANDAMENTO"/>
+        <input type='hidden' name='schedule_status_collaborator' defaultValue="EM ANDAMENTO"/>
         <br></br>
         <button className="btn btn-primary m-1" type='submit'>Salvar</button>
         <button className="btn btn-danger m-1" onClick={handleCancelButton}>Fechar</button>

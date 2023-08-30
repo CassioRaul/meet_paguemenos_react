@@ -41,7 +41,8 @@ export function addschedule(schedule) {
     'schedule_meet_location': schedule.schedule_meet_location.value,
     'schedule_description': schedule.schedule_description.value,
     'schedule_duration': schedule.schedule_duration.value,
-    'schedule_status': schedule.schedule_status.value,
+    'schedule_status_manager': schedule.schedule_status_manager.value,
+    'schedule_status_collaborator': schedule.schedule_status_collaborator.value,
   })
     .then(res => {
       return res.data

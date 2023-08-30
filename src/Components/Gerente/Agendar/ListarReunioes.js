@@ -26,10 +26,6 @@ const ListarReunioes = () => {
     const { feedbacks, setFeedbacks } = useFeedbacks([]);
     const { schedules, setSchedules } = useSchedules([]);
 
-    // const updateSchedule = useCallback(() => {
-        
-    // }, [])
-
     const handleAddSubmit = (e) => {
         e.preventDefault();
         addschedule(e.target)
@@ -59,16 +55,15 @@ const ListarReunioes = () => {
     }
 
     const handleDeleteButton = (schedule_id, manager_token) => {
-        // e.preventDefault();
         const token = prompt("TOKEN DE SEGURANÇA NECESSÁRIO:")
         if (token === manager_token) {
             deleteschedule(schedule_id).then(res => {
                 setSchedules(schedules.filter(c => c.schedule_id !== schedule_id))
             })
         }
-        // else {
-        //     alert("TOKEN INVÁLIDO!")
-        // }
+        else {
+            alert("TOKEN INVÁLIDO!")
+        }
     }
 
     function handleCancelButton(e) {
@@ -113,10 +108,9 @@ const ListarReunioes = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* && schedule.schedule_status == true */}
-                        {schedules.filter(schedule => schedule.schedule_manager_id == idGerentes).filter(filterSchedule => filterSchedule.schedule_name_collaborator.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_topic.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
+                        {schedules.filter(schedule => schedule.schedule_manager_id == idGerentes).filter(filterSchedule => filterSchedule.schedule_name_collaborator.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_topic.toLowerCase().includes(seach.toLowerCase()) || filterSchedule.schedule_status_manager.toLowerCase().includes(seach.toLowerCase())).map(schedule => {
                             return (
-                                <tr key={schedule.schedule_id} style={{ textDecoration: schedule.schedule_status == 2 ? "line-through" : "" }}>
+                                <tr key={schedule.schedule_id} style={{ textDecoration: schedule.schedule_status_manager === "FINALIZADA" ? "line-through" : "" }}>
                                     <td>{schedule.schedule_id}</td>
                                     <td>{schedule.schedule_topic}</td>
                                     <td>{schedule.schedule_description}</td>
@@ -125,15 +119,11 @@ const ListarReunioes = () => {
                                     <td>{schedule.schedule_name_collaborator}</td>
                                     <td>{schedule.schedule_meet_location}</td>
                                     <td>{schedule.schedule_duration}</td>
+                                    <td>{schedule.schedule_status_manager}</td>
                                     <td>
-                                        {schedule.schedule_status === 0 ? "EM ANDAMENTO" : ""}
-                                        {schedule.schedule_status === 1 ? "NÃO FINALIZADA" : ""}
-                                        {schedule.schedule_status === 2 ? "FINALIZADA" : ""}
-                                    </td>
-                                    <td>
-                                        {schedule.schedule_status === 0 || schedule.schedule_status === 1 ? <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" /> : <i className="btn btn-secondary m-1 bi bi-calendar2-check" />}
+                                        {schedule.schedule_status_manager === "EM ANDAMENTO" || schedule.schedule_status_manager === "NÃO FINALIZADA" ? <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" /> : <i className="btn btn-secondary m-1 bi bi-calendar2-check" />}
 
-                                        {schedule.schedule_status === 0 || schedule.schedule_status === 1 ? <i onClick={() => handleEditButton(schedule)}
+                                        {schedule.schedule_status_manager === "EM ANDAMENTO" || schedule.schedule_status_manager === "NÃO FINALIZADA" ? <i onClick={() => handleEditButton(schedule)}
                                         className="btn btn-warning m-1 bi bi-pencil-square" /> : <i
                                         className="btn btn-secondary m-1 bi bi-pencil-square" />}
                                         
@@ -158,53 +148,3 @@ const ListarReunioes = () => {
 
 export default ListarReunioes
 
-
-//  <br></br>
-//                 <h3>LISTA DE REUNIÕES</h3>
-//                 <br></br>
-//                 <div className='listaDeReunioes'>
-//                 <table className="table table-striped table-hover">
-//                 <thead>
-//                     <tr>
-//                         <th scope="col">ID</th>
-//                         <th scope="col">TÍTULO</th>
-//                         <th scope="col">DATA/HORA</th>
-//                         <th scope="col">GERENTE</th>
-//                         <th scope="col">COLABORADOR</th>
-//                         <th scope="col">LINK</th>
-//                         <th scope="col">SALA</th>
-//                         <th scope="col">DESCRIÇÃO</th>
-//                         <th scope="col">DURAÇÃO</th>
-//                         <th scope="col">AÇÕES</th>
-//                     </tr>
-//                 </thead>
-//                 <tbody>
-//                     {schedules.map(schedule => {
-//                         return (
-//                             <tr key={schedule.schedule_id}>
-//                                 <td>{schedule.schedule_id}</td>
-//                                 <td>{schedule.schedule_topic}</td>
-//                                 <td>{schedule.schedule_date_hour}</td>
-//                                 <td>{schedule.schedule_name_creator}</td>
-//                                 <td>{schedule.schedule_name_receiver}</td>
-//                                 <td>{schedule.schedule_meet_link}</td>
-//                                 <td>{schedule.schedule_meet_location}</td>
-//                                 <td>{schedule.schedule_description}</td>
-//                                 <td>{schedule.schedule_duration}</td>
-//                                 <td>{/* <i onClick={() => setShowScheduleForm(true)} class="btn btn-primary m-1 bi bi-plus-square"/> */}
-//                                     {/* <i onClick={ ()=>handleEditButton(schedule)} class="btn btn-success m-1 bi bi-bell"></i> */}
-//                                     <i class="btn btn-primary m-1 bi bi-bookmark-x"/>
-//                                     {/* <i class="btn btn-primary m-1 bi bi-person-up"></i> */}
-//                                     <i onClick={() => handleEditButton(schedule)} class="btn btn-warning m-1 bi bi-pencil-square"/>
-//                                     {gerentes.map(gerente => {
-//                                         return (
-//                                             <i onClick={() => handleDeleteButton(schedule.schedule_id, gerente.manager_token)} class="btn btn-danger m-1 bi bi-trash"/>
-//                                         )
-//                                     })}
-//                                 </td>
-//                             </tr>
-//                         )
-//                     })}
-//                 </tbody>
-//                 </table>
-//                 </div>
