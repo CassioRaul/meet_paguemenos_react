@@ -71,8 +71,8 @@ const ListarFeedbackC = () => {
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">REUNIÃO</th>
+                        <th scope="col">FUNCIONÁRIO</th>
                         <th scope="col">TÍTULO</th>
-                        <th scope="col">GERENTE</th>
                         <th scope="col">DATA</th>
                         <th scope="col">HORA</th>
                         <th scope="col">ANOTAÇÕES</th>
@@ -86,14 +86,17 @@ const ListarFeedbackC = () => {
                             <tr key={feedback.feedback_id}>
                                 <td>{feedback.feedback_id}</td>
                                 <td>ID {feedback.feedback_idschedule}</td>
+                                <td>
+                                    {feedback.feedback_funcionario === "GERENTE" ? feedback.feedback_manage : feedback.feedback_collaborator}
+                                </td>
                                 <td>{feedback.feedback_title}</td>
-                                <td>{feedback.feedback_manage}</td>
                                 <td>{feedback.feedback_date}</td>
                                 <td>{feedback.feedback_hour}</td>
                                 <td>{feedback.feedback_note}</td>
-                                <td>{feedback.feedback_evaluate}</td>
+                                <td>{feedback.feedback_evaluate} <i class="bi bi-star"/></td>
                                 <td>
-                                    <i onClick={() => handleEditButton(feedback)} className="btn btn-warning m-1 bi bi-pencil-square" />
+                                    {feedback.feedback_funcionario === "COLABORADOR" ?
+                                    <i onClick={() => handleEditButton(feedback)} className="btn btn-warning m-1 bi bi-pencil-square" /> : <i className="btn btn-secondary m-1 bi bi-pencil-square" />}
                                 </td>
                             </tr>
                         )

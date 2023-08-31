@@ -69,6 +69,9 @@ const AdicionarFeedbackC = ({ IdSchedule, handleCancelButton }) => {
 
         <TextField sx={{ m: 1, width: '92%' }} type="text" name='feedback_note' className="from__input" id="basic-url" label="Anotações" placeholder="Anotações" multiline rows={2} />
 
+        <input type='hidden' name='feedback_status' defaultValue="FINALIZADA"/>
+        <input type='hidden' name='feedback_funcionario' defaultValue="COLABORADOR"/>
+
         <input type='hidden' name='schedule_name_manager' defaultValue={IdSchedule.schedule_name_manager} />
         <input type='hidden' name='schedule_manager_id' defaultValue={IdSchedule.schedule_manager_id} />
         <input type='hidden' name='schedule_name_collaborator' defaultValue={IdSchedule.schedule_name_collaborator} />

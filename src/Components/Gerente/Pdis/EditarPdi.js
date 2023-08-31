@@ -24,7 +24,7 @@ const EditarPdi = ({ handleEditSubmit, selectEditData, handleCancelButton }) => 
     <div className="container_white">
       <Box onSubmit={(e)=>handleEditSubmit(e, selectEditData.planning_id)} component="form" noValidate
       autoComplete="off">
-        <br></br><h3 className="text-center">EDITAR PDI</h3>
+      <h3 className="text-center">EDITAR PDI</h3>
 
       {gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
         return (
@@ -58,13 +58,9 @@ const EditarPdi = ({ handleEditSubmit, selectEditData, handleCancelButton }) => 
 
       <TextField sx={{ m: 1, width: '50%' }} type="text" name='planning_goals' className="from__input" id="inputGroup-sizing-default" defaultValue={selectEditData.planning_goals} label="Meta" placeholder="Meta"/>
 
-      <TextField sx={{ m: 1, width: '40%' }} type="text" name='planning_status' className="from__input" defaultValue='EM ANDAMENTO' id="inputGroup-sizing-default"  label="Status" placeholder="Status" disabled/>
+      <TextField sx={{ m: 1, width: '40%' }} type="text" name='planning_status' className="from__input" defaultValue={selectEditData.planning_status}id="inputGroup-sizing-default"  label="Status" placeholder="Status" disabled/>
 
-      <TextField sx={{ m: 1, width: '92%' }} type="text" name='planning_progess' className="from__input" defaultValue={selectEditData.planning_progess} id="inputGroup-sizing-default" label="Progresso" placeholder="Progresso"/>
-
-      {/* <TextField sx={{ m: 1, width: '15%' }} type="date" name='planning_date' defaultValue={selectEditData.planning_date} className="from__input" id="inputGroup-sizing-default" label="Data" InputLabelProps={{ shrink: true, }} disabled/>
-
-      <TextField sx={{ m: 1, width: '15%' }} type="time" name='planning_hour' className="from__input" defaultValue={selectEditData.planning_hour} id="inputGroup-sizing-default" label="Hora" InputLabelProps={{ shrink: true, }} disabled/> */}
+      <TextField sx={{ m: 1, width: '92%' }} type="text" name='planning_progess' className="from__input" defaultValue={selectEditData.planning_progess} id="inputGroup-sizing-default" label="Progresso" placeholder="Progresso" disabled/>
 
       <TextField sx={{ m: 1, width: '50%' }} type="date" name='planning_final_date' className="from__input" defaultValue={selectEditData.planning_final_date} id="inputGroup-sizing-default" label="Data Final"/>
 

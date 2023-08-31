@@ -57,7 +57,7 @@ const AdicionarReunioes = ({ handleAddSubmit, handleCancelButton }) => {
           shrink: true,
         }}/>
 
-        <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_meet_location' className="from__input" id="inputGroup-sizing-default" label="Local" placeholder="Local" multiline/>
+        <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_meet_location' className="from__input" id="inputGroup-sizing-default" label="Local / Link" placeholder="Local / Link" multiline/>
 
         <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_duration' className="from__input" id="inputGroup-sizing-default" label="Duração" placeholder="30min" multiline select>
           <MenuItem value="30">30 minutos</MenuItem>

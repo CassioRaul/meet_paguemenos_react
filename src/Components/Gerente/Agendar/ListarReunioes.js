@@ -100,7 +100,7 @@ const ListarReunioes = () => {
                             <th scope="col">DESCRIÇÃO</th>
                             <th scope="col">DATA</th>
                             <th scope="col">HORA</th>
-                            <th scope="col">LOCAL</th>
+                            <th scope="col">LOCAL / LINK</th>
                             <th scope="col">DURAÇÃO</th>
                             <th scope="col">STATUS</th>
                             <th scope="col">AÇÕES</th>
@@ -130,11 +130,7 @@ const ListarReunioes = () => {
                                         className="btn btn-warning m-1 bi bi-pencil-square" />}
                                         
                                         {schedule.schedule_status_manager === "FINALIZADA" ?
-                                        gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
-                                            return (
-                                                <i key={gerente.manager_id} className="btn btn-secondary m-1 bi bi-trash" />
-                                                )
-                                            }) :
+                                        <i className="btn btn-secondary m-1 bi bi-trash" /> :
                                         gerentes.filter(gerente => gerente.manager_id == idGerentes).map(gerente => {
                                             return (
                                                 <i key={gerente.manager_id} onClick={() => handleDeleteButton(schedule.schedule_id, gerente.manager_token)} className="btn btn-danger m-1 bi bi-trash" />

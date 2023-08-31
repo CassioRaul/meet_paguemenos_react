@@ -55,7 +55,7 @@ const AddReunioes = ({ handleAddSubmit, handleCancelButton }) => {
             shrink: true,
           }} />
 
-          <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_meet_location' className="from__input" id="inputGroup-sizing-default" label="Local" placeholder="Local" multiline />
+          <TextField sx={{ m: 1, width: '50%' }} type="text" name='schedule_meet_location' className="from__input" id="inputGroup-sizing-default" label="Local / Link" placeholder="Local / Link" multiline />
 
           <TextField sx={{ m: 1, width: '40%' }} type="text" name='schedule_duration' className="from__input" id="inputGroup-sizing-default" label="Duração" placeholder="30min" multiline select>
             <MenuItem value="30">30 minutos</MenuItem>
@@ -66,7 +66,8 @@ const AddReunioes = ({ handleAddSubmit, handleCancelButton }) => {
           <TextField sx={{ m: 1, width: '92%' }} type="text" name='schedule_description' className="from__input" id="inputGroup-sizing-default" label="Descrição" placeholder="Descrição" multiline rows={4} />
 
           { /*Cria um campo oculto para o status da reunião */}
-          <input type='hidden' name='schedule_status' defaultValue={0} />
+          <input type='hidden' name='schedule_status_manager' defaultValue="EM ANDAMENTO"/>
+          <input type='hidden' name='schedule_status_collaborator' defaultValue="EM ANDAMENTO"/>
           <br></br>
 
           {/* Botões para salvar e fechar o formulário  */}

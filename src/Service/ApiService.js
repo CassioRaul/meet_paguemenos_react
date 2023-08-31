@@ -97,6 +97,8 @@ export function addfeedback(feedback) {
     'feedback_idschedule': feedback.feedback_idschedule.value,
     'feedback_manager_id': feedback.feedback_manager_id.value,
     'feedback_collaborator_id': feedback.feedback_collaborator_id.value,
+    'feedback_status': feedback.feedback_status.value,
+    'feedback_funcionario': feedback.feedback_funcionario.value,
   })
     .then(res => {
       return res.data

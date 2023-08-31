@@ -75,27 +75,32 @@ const ListarPdi = () => {
                             <th scope="col">COLABORADOR</th>
                             <th scope="col">TÍTULO</th>
                             <th scope="col">META</th>
-                            <th scope="col">PROGRESSO</th>
                             <th scope="col">DESCRIÇÃO</th>
                             <th scope="col">RECURSOS</th>
                             <th scope="col">DATA FINAL</th>
+                            <th scope="col">PROGRESSO</th>
                             <th scope="col">STATUS</th>
                             <th scope="col">AÇÕES</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {pdis.filter(pdi => pdi.planning_manager_id == idGerentes).filter(filterPdi => filterPdi.planning_name_collaborator.toLowerCase().includes(seach.toLowerCase())).map(pdi => {
+                        {pdis.filter(pdi => pdi.planning_manager_id == idGerentes && pdi.planning_status === "EM ANDAMENTO" || pdi.planning_status === "EM ATRASO").filter(filterPdi => filterPdi.planning_name_collaborator.toLowerCase().includes(seach.toLowerCase())).map(pdi => {
                             return (
                                 <tr key={pdi.planning_id}>
                                     <td>{pdi.planning_id}</td>
                                     <td>{pdi.planning_name_collaborator}</td>
                                     <td>{pdi.planning_title}</td>
                                     <td>{pdi.planning_goals}</td>
-                                    <td>{pdi.planning_progess}</td>
                                     <td>{pdi.planning_description}</td>
                                     <td>{pdi.planning_resource}</td>
                                     <td>{pdi.planning_final_date}<br></br>{pdi.planning_final_hour}</td>
-                                    <td>{pdi.planning_status}</td>
+                                    <td><i class="bi bi-bar-chart-line"/>{pdi.planning_progess}%</td>
+                                    <td>
+                                        {pdi.planning_status === "EM ANDAMENTO" ?
+                                        <i class="bi bi-person-up"></i> : ""}
+                                        {pdi.planning_status === "EM ATRASO" ?
+                                        <i class="bi bi-person-down"></i> : ""}
+                                    </td>
                                     <td>
                                         <i onClick={() => handleEditButton(pdi)} className="btn btn-warning m-1 bi bi-pencil-square" />
                                         <i onClick={() => handleDeleteButton(pdi.planning_id)} className="btn btn-danger m-1 bi bi-trash" />

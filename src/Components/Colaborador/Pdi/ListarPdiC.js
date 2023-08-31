@@ -56,14 +56,8 @@ const ListarPdiC = () => {
     return (
         <>
             <div className="container_white">
+                <Search seach={seach} setSearch={setSearch} />
                 <div className="button_add_close">
-                    <div className='container_display_flex'>
-                        {/* <button className="btn btn-primary m-0 i bi-plus-circle " onClick={() => setShowPdiForm(true)}> ADICIONAR</button>&nbsp;&nbsp;&nbsp; */}
-                    </div>
-                    <Search seach={seach} setSearch={setSearch} />
-                </div>
-                <div className="button_add_close">
-                    {/* {showPdiForm && <AdicionarPdi handleAddSubmit={handleAddSubmit} handleCancelButton={handleCancelButton} />} */}
                     {showEditPdiForm && <EditarPdi handleEditSubmit={handleEditSubmit} selectEditData={selectEditData} handleCancelButton={handleCancelButton} />}
                 </div>
                 <br></br>
@@ -72,39 +66,37 @@ const ListarPdiC = () => {
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">GERENTE</th>
                             <th scope="col">TÍTULO</th>
                             <th scope="col">META</th>
-                            <th scope="col">PROGRESSO</th>
                             <th scope="col">DESCRIÇÃO</th>
                             <th scope="col">RECURSOS</th>
-                            <th scope="col">GERENTE</th>
-                            {/* <th scope="col">DATA</th>
-                            <th scope="col">HORA</th> */}
                             <th scope="col">DATA DE ENTREGA</th>
+                            <th scope="col">PROGRESSO</th>
                             <th scope="col">STATUS</th>
-                            {/* <th scope="col">HORA FINAL</th> */}
-                            {/* <th scope="col">AÇÕES</th> */}
+                            <th scope="col">AÇÕES</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {pdis.filter(pdi => pdi.planning_collaborator_id == idColaboradores).filter(filterPdi => filterPdi.planning_name_manager.toLowerCase().includes(seach.toLowerCase())).map(pdi => {
+                        {pdis.filter(pdi => pdi.planning_collaborator_id == idColaboradores && pdi.planning_status === "EM ANDAMENTO" || pdi.planning_status === "EM ATRASO").filter(filterPdi => filterPdi.planning_name_manager.toLowerCase().includes(seach.toLowerCase())).map(pdi => {
                             return (
                                 <tr key={pdi.planning_id}>
                                     <td>{pdi.planning_id}</td>
+                                    <td>{pdi.planning_name_manager}</td>
                                     <td>{pdi.planning_title}</td>
                                     <td>{pdi.planning_goals}</td>
-                                    <td>{pdi.planning_progess}</td>
                                     <td>{pdi.planning_description}</td>
                                     <td>{pdi.planning_resource}</td>
-                                    <td>{pdi.planning_name_manager}</td>
-                                    {/* <td>{pdi.planning_date}</td>
-                                    <td>{pdi.planning_hour}</td> */}
                                     <td>{pdi.planning_final_date}<br></br>{pdi.planning_final_hour}</td>
-                                    <td>{pdi.planning_status}</td>
+                                    <td><i class="bi bi-bar-chart-line"/>{pdi.planning_progess}%</td>
                                     <td>
-                                        {/* <i className="btn btn-success m-1 bi bi-bookmark-x" /> */}
+                                        {pdi.planning_status === "EM ANDAMENTO" ?
+                                        <i class="bi bi-person-up"></i> : ""}
+                                        {pdi.planning_status === "EM ATRASO" ?
+                                        <i class="bi bi-person-down"></i> : ""}
+                                    </td>
+                                    <td>
                                         <i onClick={() => handleEditButton(pdi)} className="btn btn-warning m-1 bi bi-pencil-square" />
-                                        {/* <i onClick={() => handleDeleteButton(pdi.planning_id)} className="btn btn-danger m-1 bi bi-trash" /> */}
                                     </td>
                                 </tr>
                             )

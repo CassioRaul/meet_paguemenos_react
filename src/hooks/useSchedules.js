@@ -9,7 +9,7 @@ export const useSchedules = () => {
         .then(res => {
             setSchedules(res)
         });
-    }, []);
+    }, [schedules]);
 
     return {
         schedules,
