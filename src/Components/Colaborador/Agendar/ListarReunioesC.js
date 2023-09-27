@@ -142,14 +142,20 @@ const ListarReunioesC = () => {
                                     <td>{schedule.schedule_meet_location}</td>
                                     <td>{schedule.schedule_duration} min</td>
                                     <td>
-                                        {schedule.schedule_status_collaborator === "FINALIZADA" ? <i class="bi bi-check-circle"></i> : <i class="bi bi-x-circle"/>}
-                                        {schedule.schedule_status_manager === "FINALIZADA" ? <i class="bi bi-check-circle"></i> : <i class="bi bi-x-circle"/>}
+                                        {schedule.schedule_status_collaborator === "FINALIZADA" ?
+                                        <i class="bi bi-check-circle"></i> :
+                                        <i class="bi bi-x-circle"/>}
+                                        {schedule.schedule_status_manager === "FINALIZADA" ?
+                                        <i class="bi bi-check-circle"></i> :
+                                        <i class="bi bi-x-circle"/>}
                                     </td>
                                     <td>
                                         <div>
-                                        {schedule.schedule_status_collaborator === "FINALIZADA" ? <i className="btn btn-secondary m-1 bi bi-calendar2-check" /> : <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" /> }
+                                        {schedule.schedule_status_collaborator === "FINALIZADA" ?
+                                        <i className="btn btn-secondary m-1 bi bi-calendar2-check" /> : <i onClick={() => handleIdScheduleButton(schedule)} className="btn btn-success m-1 bi bi-calendar2-check" /> }
 
-                                        {schedule.schedule_status_collaborator === "FINALIZADA" ? <i className="btn btn-secondary m-1 bi bi-pencil-square" /> : <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" /> }
+                                        {schedule.schedule_status_collaborator === "FINALIZADA" ?
+                                        <i className="btn btn-secondary m-1 bi bi-pencil-square" /> : <i onClick={() => handleEditButton(schedule)} className="btn btn-warning m-1 bi bi-pencil-square" /> }
                                         </div>
                                     </td>
                                 </tr>
